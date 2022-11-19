@@ -122,25 +122,37 @@
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#"> ข้อมูลบริษัท </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> ข้อมูลแผนก </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> ข้อมูลตำแหน่ง </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> ข้อมูลสิทธิ์การลา </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="index.php?p=constant"> ข้อมูลบริษัท </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="index.php?p=department"> ข้อมูลแผนก </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="index.php?p=position"> ข้อมูลตำแหน่ง </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave"> ข้อมูลสิทธิ์การลา </a></li>
                 </ul>
             </div>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="index.php?p=employeeCEO">
+                <i class="typcn typcn-document-text menu-icon"></i>
+                <span class="menu-title">ข้อมูลผู้บริหาร</span>
+
+            </a>
+
+        </li>
+
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index.php?p=employeeHR">
                 <i class="typcn typcn-document-text menu-icon"></i>
                 <span class="menu-title">ข้อมูลหัวหน้าฝ่าย (HR)</span>
 
             </a>
 
         </li>
+
+
+
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="index.php?p=employeeEmp">
                 <i class="typcn typcn-film menu-icon"></i>
                 <span class="menu-title">ข้อมูลพนักงาน</span>
 

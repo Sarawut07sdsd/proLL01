@@ -16,9 +16,11 @@
             <img src="images/faces/face5.jpg" alt="profile" />
             <span class="nav-profile-name">
               สวัสดีคุณ : <?php echo $_SESSION['Emp_name']; ?>
-              รหัสสมาชิก :<?php echo $_SESSION['Emp_id']; ?>
-              รหัสตำแหน่ง: <?php echo $_SESSION['Pos_id']; ?> </span>
+              :: รหัสสมาชิก :<?php echo $_SESSION['Emp_id']; ?>
+              :: ตำแหน่ง: <?php echo $Pos_name; ?> </span>
+             
           </a>
+        <!--   <?php echo $DataPos[1]; ?>  -->
           <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
             <!--     <a class="dropdown-item">
                 <i class="typcn typcn-cog-outline text-primary"></i>
