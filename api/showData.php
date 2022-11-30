@@ -1,51 +1,16 @@
 <?php
 
-/* 
-while ($Showconstant = mysqli_fetch_array($Sqlconstant)) {
-} 
 
 
 
 
 
-                                            <td><?php
-                                            $Pos_id = $Showpeleave['Pos_id'];
-                                            @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
-                                            @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
-                                            while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
-                                                @$Pos_name = $Showposition['Pos_name'];
-                                            }
-                                            echo $Pos_name;
-
-
-                                            ?></td>
-
-
-                                            td><?php
-                                            $Dep_id = $Showmployeet['Dep_id'];
-                                            @$SqlsDep = "SELECT * FROM department WHERE  Dep_id =  '$Dep_id' ";
-                                            @$SqlsDepData = mysqli_query($con, $SqlsDep) or die("Error in query: $SqlsDep ");
-                                            while ($ShowSqlsDepData = mysqli_fetch_array($SqlsDepData)) {
-                                                @$Dep_name = $ShowSqlsDepData['Dep_name'];
-                                            }
-                                            echo $Dep_name;
-                                            ?></td>
-
-
-*/
-
-
-//SHow Head/************************************************************** */
-//position show Head
 $Pos_id = $_SESSION['Pos_id'];
 @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
 @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
 while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
     @$Pos_name = $Showposition['Pos_name'];
 }
-
-
-
 
 
 /*********************************************************************************** */

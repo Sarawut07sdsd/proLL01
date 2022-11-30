@@ -6,6 +6,122 @@
                 <h5 class="mb-2 text-titlecase mb-4">ข้อมูลตำแหน่ง</h5>
             </div>
         </div>
+
+
+
+
+
+
+
+        <button type="button" onclick="nullPosition()" class="btn btn-primary" data-toggle="modal" data-target="#addnullPosition">
+            เพิ่มข้อมูล
+        </button>
+
+        <br> <br>
+
+        <div class="modal fade" id="addnullPosition" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลตำแหน่ง</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-body">
+                            <form class="forms-sample" action="./api/api_system.php" method="POST">
+                                <input type="hidden" class="form-control" name="str" id="str" value="addnullPosition">
+                                <input type="hidden" class="form-control" name="Pos_id" id="Pos_id45" placeholder="รหัสแผนก" required>
+
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">รหัสตำแหน่ง</label>
+                                    <input type="text" class="form-control" name="Pos_id" id="Pos_id4" placeholder="รหัสตำแหน่ง" required>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputUsername1">ชื่อตำแหน่ง</label>
+                                    <input type="text" class="form-control" name="Pos_name" id="Pos_name" placeholder="ชื่อตำแหน่ง" required>
+                                </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary" id="buttonY"> </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <?php
+        extract(@$_GET);
+        ?>
+
+        <script type="text/javascript">
+            function nullPosition() {
+                var random = Math.floor(Math.random() * 10000000000000);
+                $('#Pos_id4').val(random);
+                document.getElementById("Pos_id4").readOnly = true;
+                $('#Pos_name').val("");
+                $('#str').val('addnullPosition');
+                $('#buttonY').text('เพิ่มข้อมูล');
+                $('#Pos_id').val('');
+
+            }
+
+            function edtiPosition(Pos_id) {
+                event.preventDefault();
+                $.ajax({
+                    url: "./api/getData.php?str=Position&Pos_id=" + Pos_id,
+                    type: 'get',
+                    dataType: 'JSON',
+                    success: function(data) {
+                        $('#Pos_id45').val(data.Pos_id);
+                        $('#Pos_id4').val(data.Pos_id);
+                        document.getElementById("Pos_id4").readOnly = true;
+                        $('#Pos_name').val(data.Pos_name);
+                        $('#str').val('edtiPosition');
+                        $('#buttonY').text('แก้ไขข้อมูล');
+                    }
+                });
+            }
+        </script>
+
+
+
+
+
+
+
+
+        <!-- ====================================================================================================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -29,15 +145,15 @@
                                         <td><?php echo $Showposition['Pos_id'] ?></td>
                                         <td><?php echo $Showposition['Pos_name'] ?></td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                        <div class="d-flex align-items-center">
+                                                <button type="button" data-toggle="modal" data-target="#addnullPosition" onclick="edtiPosition(Pos_id =<?php echo $Showposition['Pos_id'] ?>)" class="btn btn-success btn-sm btn-icon-text mr-3">
                                                     แก้ไข
                                                     <i class="typcn typcn-edit btn-icon-append"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-danger btn-sm btn-icon-text">
+                                                <a href="./api/api_system.php?str=deletePosition&Pos_id=<?php echo $Showposition['Pos_id']; ?>" onclick="return confirm('คุณแน่ใจว่าจะลบข้อมูลใช่หรือไม่');" type="button" class="btn btn-danger btn-sm btn-icon-text">
                                                     ลบ
                                                     <i class="typcn typcn-delete-outline btn-icon-append"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
