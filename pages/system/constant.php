@@ -1,72 +1,86 @@
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-xl-6 grid-margin stretch-card flex-column">
-                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลบริษัท</h5>
-            </div>
-        </div>
+
         <!-- ======================================================================================================== -->
-        <button type="button" onclick="nullConstant()" class="btn btn-primary" data-toggle="modal" data-target="#addconstant">
+        <!--         <button type="button" onclick="nullConstant()" class="btn btn-primary" data-toggle="modal" data-target="#addconstant">
             เพิ่มข้อมูล
-        </button>
+        </button> -->
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลบริษัท</h5>
+            <div class="card-body col-md-6">
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <div class="form-row">
+                        <input type="hidden" class="form-control" name="str" id="str" value="addconstant">
+                        <input type="hidden" class="form-control" name="Stytem_No" id="Stytem_No" value="addconstant">
 
-        <br> <br>
-
-        <div class="modal fade" id="addconstant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลบริษัท</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <form class="forms-sample" action="./api/api_system.php" method="POST">
-                                <input type="hidden" class="form-control" name="str" id="str" value="addconstant">
-                                <input type="hidden" class="form-control" name="Stytem_No" id="Stytem_No" value="addconstant">
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ชื่อบริษัท</label>
-                                    <input type="text" class="form-control" name="Stytem_name" id="Stytem_name" placeholder="ชื่อบริษัท" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ที่อยู่บริษัท</label>
-                                    <input type="text" class="form-control" name="Stytem_address" id="Stytem_address" placeholder="ที่อยู่บริษัท" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">เบอร์โทร</label>
-                                    <input type="text" class="form-control" name="Stytem_tel" id="Stytem_tel" placeholder="เบอร์โทร" min="100000000" max="9999999999" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ตำแหน่งรัติจุ</label>
-                                    <input type="text" class="form-control" name="Stytem_radius" id="Stytem_radius" placeholder="ตำแหน่งรัติจุ" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">เวลาเข้างาน</label>
-                                    <input type="time" class="form-control" name="Stytem_periodStest" id="Stytem_periodStest" placeholder="เวลาเข้างาน" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">เวลาออกงาน</label>
-                                    <input type="time" class="form-control" name="Stytem_periodEnd" id="Stytem_periodEnd" placeholder="เวลาออกงาน" required>
-                                </div>
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ชื่อบริษัท</label>
+                            <input type="text" class="form-control" name="Stytem_name" id="Stytem_name" placeholder="ชื่อบริษัท" required>
                         </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputUsername1">ที่อยู่บริษัท</label>
+                            <input type="text" class="form-control" name="Stytem_address" id="Stytem_address" placeholder="ที่อยู่บริษัท" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เบอร์โทร</label>
+                            <input type="text" class="form-control" name="Stytem_tel" id="Stytem_tel" placeholder="เบอร์โทร" min="100000000" max="9999999999" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รัศมี</label>
+                            <input type="text" class="form-control" name="Stytem_radius" id="Stytem_radius" placeholder="ตำแหน่งรัติจุ" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ละติจูด</label>
+                            <input type="text" class="form-control" name="System_latitude" id="System_latitude" placeholder="ตำแหน่งรัติจุ" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ลองติจูด</label>
+                            <input type="text" class="form-control" name="System_longitude" id="System_longitude" placeholder="ตำแหน่งรัติจุ" required>
+                        </div>
+
+
+
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ช่วงเวลาเข้าทำงาน</label>
+                            <input type="time" class="form-control" name="System_period" id="System_period" placeholder="เวลาเข้างาน" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ช่วงเวลาสิ้นสุด</label>
+                            <input type="time" class="form-control" name="System_timeoff" id="System_timeoff" placeholder="เวลาออกงาน" required>
+                        </div>
+
+
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เวลาเริ่มต้นออกงาน</label>
+                            <input type="time" class="form-control" name="Stytem_starttime" id="Stytem_starttime" placeholder="เวลาเข้างาน" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เวลาสิ้นสุดออกงาน</label>
+                            <input type="time" class="form-control" name="Stytem_endtime" id="Stytem_endtime" placeholder="เวลาออกงาน" required>
+                        </div>
+
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-primary" id="buttonY"> </button>
-                    </div>
-                    </form>
-                </div>
+
+
+                    <button type="submit" class="btn btn-primary" id="buttonY">เพื่มข้อมูล </button>
+                    <a onclick="nullConstant()" class="btn btn-info" i>รีเซ็ต </a>
+                </form>
             </div>
-        </div>
+        </center>
+
+
+
 
         <?php
         extract(@$_GET);
@@ -78,8 +92,13 @@
                 $('#Stytem_address').val("");
                 $('#Stytem_tel').val("");
                 $('#Stytem_radius').val("");
-                $('#Stytem_periodStest').val("");
-                $('#Stytem_periodEnd').val("");
+                $('#System_latitude').val("");
+                $('#System_longitude').val("");
+                $('#System_period').val("");
+                $('#System_timeoff').val("");
+                $('#Stytem_starttime').val("");
+                $('#Stytem_endtime').val("");
+
                 $('#str').val('addconstant');
                 $('#buttonY').text('เพิ่มข้อมูล');
                 $('#Stytem_No').val('');
@@ -97,8 +116,13 @@
                         $('#Stytem_address').val(data.Stytem_address);
                         $('#Stytem_tel').val(data.Stytem_tel);
                         $('#Stytem_radius').val(data.Stytem_radius);
-                        $('#Stytem_periodStest').val(data.Stytem_periodStest);
-                        $('#Stytem_periodEnd').val(data.Stytem_periodEnd);
+                        $('#System_latitude').val(data.System_latitude);
+                        $('#System_longitude').val(data.System_longitude);
+                        $('#System_period').val(data.System_period);
+                        $('#System_timeoff').val(data.System_timeoff);
+                        $('#Stytem_starttime').val(data.Stytem_starttime);
+                        $('#Stytem_endtime').val(data.Stytem_endtime);
+
                         $('#Stytem_No').val(data.Stytem_No);
                         $('#str').val('edticonstant');
                         $('#buttonY').text('แก้ไขข้อมูล');
@@ -110,10 +134,14 @@
         <!-- ======================================================================================================== -->
 
 
+        <br>
 
 
-
-
+        <div class="row">
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลบริษัท</h5>
+            </div>
+        </div>
 
 
 
@@ -129,9 +157,13 @@
                                     <th class="ml-5">ชื่อบริษัท</th>
                                     <th>ที่อยู่บริษัท</th>
                                     <th>เบอร์โทร</th>
-                                    <th>ตำแหน่งรัติจุ</th>
-                                    <th>เวลาเข้างาน</th>
-                                    <th>เวลาออกงาน</th>
+                                    <th>รัศมี</th>
+                                    <th>ละติจูด</th>
+                                    <th>ลองติจูด</th>
+                                    <th>ช่วงเวลาเข้าทำงาน</th>
+                                    <th>ช่วงเวลาสิ้นสุด</th>
+                                    <th>เวลาเริ่มต้นออกงาน</th>
+                                    <th>เวลาสิ้นสุดออกงาน</th>
 
                                 </tr>
                             </thead>
@@ -146,8 +178,14 @@
                                         <td><?php echo $Showconstant['Stytem_address'] ?></td>
                                         <td><?php echo $Showconstant['Stytem_tel'] ?></td>
                                         <td><?php echo $Showconstant['Stytem_radius'] ?></td>
-                                        <td><?php echo $Showconstant['Stytem_periodStest'] ?></td>
-                                        <td><?php echo $Showconstant['Stytem_periodEnd'] ?></td>
+
+                                        <td><?php echo $Showconstant['Stytem_radius'] ?></td>
+                                        <td><?php echo $Showconstant['System_longitude'] ?></td>
+                                        <td><?php echo $Showconstant['System_period'] ?></td>
+                                        <td><?php echo $Showconstant['System_timeoff'] ?></td>
+
+                                        <td><?php echo $Showconstant['Stytem_starttime'] ?></td>
+                                        <td><?php echo $Showconstant['Stytem_endtime'] ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <button type="button" data-toggle="modal" data-target="#addconstant" onclick="editConstant(Stytem_No =<?php echo $Showconstant['Stytem_No'] ?>)" class="btn btn-success btn-sm btn-icon-text mr-3">

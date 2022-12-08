@@ -54,3 +54,15 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
 @$SqlemployeeEmp = mysqli_query($con, $employeeEmp) or die("Error in query: $employeeEmp ");
 
 
+
+//timetable
+
+
+@$timetable = "SELECT * FROM timetable ORDER BY Ttb_date DESC    ";
+@$Sqltimetable = mysqli_query($con, $timetable) or die("Error in query: $timetable ");
+
+
+//leave
+
+/* @$leave = "SELECT * FROM leave ORDER BY Leave_date DESC    ";
+@$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave "); */

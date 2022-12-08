@@ -1,84 +1,73 @@
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
+      <!--   <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
                 <h5 class="mb-2 text-titlecase mb-4">ข้อมูลสิทธิ์การลา</h5>
             </div>
-        </div>
+        </div> -->
 
 
 
 
-
+        <!-- 
         <button type="button" onclick="nullPeleave()" class="btn btn-primary" data-toggle="modal" data-target="#addnullPeleave">
             เพิ่มข้อมูล
-        </button>
+        </button> -->
 
         <br> <br>
 
-        <div class="modal fade" id="addnullPeleave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลสิทธิ์การลา</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <form class="forms-sample" action="./api/api_system.php" method="POST">
-                                <input type="hidden" class="form-control" name="str" id="str" value="addnullPeleave">
-                                <input type="hidden" class="form-control" name="Type_id" id="Type_id2">
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลสิทธิ์การลา</h5>
+            <div class="card-body col-md-6">
 
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">รหัสการลา</label>
-                                    <input type="text" class="form-control" name="Type_id" id="Type_id" placeholder="รหัสผู้บริหาร" required>
-                                </div>
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <div class="form-row">
+                        <input type="hidden" class="form-control" name="str" id="str" value="addnullPeleave">
+                        <input type="hidden" class="form-control" name="Type_id" id="Type_id2">
 
-
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">เหตุลา</label>
-                                    <input type="text" class="form-control" name="Type_name" id="Type_name" placeholder="ชื่อพนักงาน" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">รายละเอียดการลา</label>
-                                    <textarea class="form-control" name="Type_details" id="Type_details" rows="5"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ตำแหน่ง</label>
-                                    <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
-                                        <option id="Pos_id" value="" selected> </option>
-                                        <?php
-                                        while ($Showposition = mysqli_fetch_array($Sqlposition)) {
-                                        ?>
-                                            <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
-                                        <?php }  ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">สิทธิ์การลา</label>
-                                    <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="ที่อยู่" required>
-                                </div>
-
-
-
-
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รหัสการลา</label>
+                            <input type="text" class="form-control" name="Type_id" id="Type_id" placeholder="รหัสผู้บริหาร" required>
                         </div>
+
+
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เหตุลา</label>
+                            <input type="text" class="form-control" name="Type_name" id="Type_name" placeholder="ชื่อพนักงาน" required>
+                        </div>
+
+                        <div class="form-group col-md-6  ">
+                            <label for="exampleInputUsername1">รายละเอียดการลา</label>
+                            <textarea class="form-control" name="Type_details" id="Type_details" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group col-md-6  ">
+                            <label for="exampleInputUsername1">ตำแหน่ง</label>
+                            <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
+                                <option id="Pos_id" value="" selected> </option>
+                                <?php
+                                while ($Showposition = mysqli_fetch_array($Sqlposition)) {
+                                ?>
+                                    <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
+                                <?php }  ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6  ">
+                            <label for="exampleInputUsername1">สิทธิ์การลา</label>
+                            <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="สิทธิ์การลา" required>
+                        </div>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-primary" id="buttonY"> </button>
-                    </div>
-                    </form>
-                </div>
+
+                    <button type="submit" class="btn btn-primary" id="buttonY">บันทึก </button>
+                    <a onclick="nullPeleave()" class="btn btn-info" i>รีเซ็ต </a>
+                </form>
+
             </div>
-        </div>
+        </center>
 
 
 
@@ -110,7 +99,7 @@
 
             function edtiPeleave(Type_id) {
                 event.preventDefault();
-                
+
                 $.ajax({
                     url: "./api/getData.php?str=Peleave&Type_id=" + Type_id,
                     type: 'get',
@@ -160,7 +149,11 @@
 
 
 
-
+        <div class="row">
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลสิทธิ์การลา</h5>
+            </div>
+        </div>
 
 
 

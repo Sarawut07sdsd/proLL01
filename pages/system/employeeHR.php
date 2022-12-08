@@ -1,106 +1,98 @@
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
+        <!--         <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
                 <h5 class="mb-2 text-titlecase mb-4">ข้อมูลหัวหน้าฝ่าย(HR)</h5>
             </div>
-        </div>
+        </div> -->
 
 
 
 
 
 
-
+        <!-- 
         <button type="button" onclick="nullEmployee()" class="btn btn-primary" data-toggle="modal" data-target="#addnullEmployee">
             เพิ่มข้อมูล
-        </button>
+        </button> -->
 
         <br> <br>
 
-        <div class="modal fade" id="addnullEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลหัวหน้าฝ่าย(HR)</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <form class="forms-sample" action="./api/api_system.php" method="POST">
-                                <input type="hidden" class="form-control" name="str" id="str" value="addnullEmployee">
-                                <input type="hidden" class="form-control" name="str2" id="str2" value="employeeHR">
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลหัวหน้าฝ่าย</h5>
+            <div class="card-body col-md-6">
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <div class="form-row">
+                        <input type="hidden" class="form-control" name="str" id="str" value="addnullEmployee">
+                        <input type="hidden" class="form-control" name="str2" id="str2" value="employeeHR">
 
-                                <input type="hidden" class="form-control" name="Emp_id" id="Emp_id45" placeholder="รหัสแผนก" required>
-                                <input type="hidden" class="form-control" name="Emp_iddd" id="Emp_id" placeholder="รหัสแผนก" required>
+                        <input type="hidden" class="form-control" name="Emp_id" id="Emp_id45" placeholder="รหัสแผนก" required>
+                        <input type="hidden" class="form-control" name="Emp_iddd" id="Emp_id" placeholder="รหัสแผนก" required>
 
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">รหัสผู้บริหาร</label>
-                                    <input type="text" class="form-control" name="Emp_id" id="Emp_id4" placeholder="รหัสผู้บริหาร" required>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ชื่อพนักงาน</label>
-                                    <input type="text" class="form-control" name="Emp_name" id="Emp_name" placeholder="ชื่อพนักงาน" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">เบอร์โทร</label>
-                                    <input type="text" class="form-control" name="Emp_tel" id="Emp_tel" placeholder="เบอร์โทร" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ที่อยู่</label>
-                                    <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">แผนก</label>
-                                    <!--  <input type="text" class="form-control" name="Dep_id" id="Dep_id" placeholder="ชื่อตำแหน่ง" required> -->
-
-
-                                    <select class="form-control form-control-lg" name="Dep_id" id="exampleFormControlSelect1">
-                                        <option id="Dep_id" value="" selected> </option>
-                                        <?php
-                                        while ($Showdepartment = mysqli_fetch_array($Sqldepartment)) {
-                                        ?>
-                                            <option value="<?php echo $Showdepartment['Dep_id'] ?>"><?php echo $Showdepartment['Dep_name'] ?> </option>
-                                        <?php }  ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ตำแหน่ง</label>
-                                    <!-- <input type="text" class="form-control" name="Pos_id" id="Pos_id" placeholder="ชื่อตำแหน่ง" required> -->
-                                    <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
-                                        <option id="Pos_id" value="" selected> </option>
-                                        <?php
-                                        while ($Showposition = mysqli_fetch_array($Sqlposition)) {
-                                        ?>
-                                            <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
-                                        <?php }  ?>
-                                    </select>
-                                </div>
-
-
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รหัสผู้บริหาร</label>
+                            <input type="text" class="form-control" name="Emp_id" id="Emp_id4" placeholder="รหัสผู้บริหาร" required>
                         </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รหัสผ่าน</label>
+                            <input type="password" class="form-control" name="Emp_pass" id="Emp_pass" placeholder="รหัสผ่าน" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ชื่อพนักงาน</label>
+                            <input type="text" class="form-control" name="Emp_name" id="Emp_name" placeholder="ชื่อพนักงาน" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เบอร์โทร</label>
+                            <input type="text" class="form-control" name="Emp_tel" id="Emp_tel" placeholder="เบอร์โทร" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ที่อยู่</label>
+                            <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">แผนก</label>
+                            <!--  <input type="text" class="form-control" name="Dep_id" id="Dep_id" placeholder="ชื่อตำแหน่ง" required> -->
+
+
+                            <select class="form-control form-control-lg" name="Dep_id" id="exampleFormControlSelect1">
+                                <option id="Dep_id" value="" selected> </option>
+                                <?php
+                                while ($Showdepartment = mysqli_fetch_array($Sqldepartment)) {
+                                ?>
+                                    <option value="<?php echo $Showdepartment['Dep_id'] ?>"><?php echo $Showdepartment['Dep_name'] ?> </option>
+                                <?php }  ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ตำแหน่ง</label>
+                            <!-- <input type="text" class="form-control" name="Pos_id" id="Pos_id" placeholder="ชื่อตำแหน่ง" required> -->
+                            <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
+                                <option id="Pos_id" value="" selected> </option>
+                                <?php
+                                while ($Showposition = mysqli_fetch_array($Sqlposition)) {
+                                ?>
+                                    <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
+                                <?php }  ?>
+                            </select>
+                        </div>
+
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-primary" id="buttonY"> </button>
-                    </div>
-                    </form>
-                </div>
+
+                    <button type="submit" class="btn btn-primary" id="buttonY"> บันทึก</button>
+                    <a onclick="nullEmployee()" class="btn btn-info" i>รีเซ็ต </a>
+                </form>
+
+
             </div>
-        </div>
-
-
-
+        </center>
 
 
 
@@ -122,7 +114,7 @@
 
                 $('#Emp_id4').val("");
                 document.getElementById("Emp_id4").readOnly = false;
-
+                document.getElementById("Emp_pass").readOnly = false;
                 $('#str').val('addnullEmployee');
                 $('#buttonY').text('เพิ่มข้อมูล');
                 $('#Pos_id').val('');
@@ -147,7 +139,7 @@
                         $('#Dep_id').text(data.Dep_name);
                         $('#Pos_id').val(data.Pos_id);
                         $('#Pos_id').text(data.Pos_name);
-
+                        document.getElementById("Emp_pass").readOnly = true;
 
                         $('#str').val('edtiEmployee');
                         $('#buttonY').text('แก้ไขข้อมูล');
@@ -172,7 +164,11 @@
 
 
 
-
+        <div class="row">
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลหัวหน้าฝ่าย(HR)</h5>
+            </div>
+        </div>
 
 
 

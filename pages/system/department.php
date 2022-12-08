@@ -1,58 +1,42 @@
 <!-- partial -->
 <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-xl-6 grid-margin stretch-card flex-column">
-                <h5 class="mb-2 text-titlecase mb-4">ข้อมลูแผนก</h5>
-            </div>
-        </div>
 
 
 
-        <button type="button" onclick="nullDepartment()" class="btn btn-primary" data-toggle="modal" data-target="#addnullDepartment">
+
+        <!--         <button type="button" onclick="nullDepartment()" class="btn btn-primary" data-toggle="modal" data-target="#addnullDepartment">
             เพิ่มข้อมูล
-        </button>
+        </button> -->
 
         <br> <br>
 
-        <div class="modal fade" id="addnullDepartment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลแผนก</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">ข้อมลูแผนก</h5>
+            <div class="card-body col-md-6">
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <input type="hidden" class="form-control" name="str" id="str" value="addnullDepartment">
+                    <input type="hidden" class="form-control" name="Dep_id" id="Dep_id45" placeholder="รหัสแผนก" required>
+
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">รหัสแผนก</label>
+                        <input type="text" class="form-control" name="Dep_id" id="Dep_id4" placeholder="รหัสแผนก" required>
                     </div>
-                    <div class="modal-body">
-                        <div class="card-body">
-                            <form class="forms-sample" action="./api/api_system.php" method="POST">
-                                <input type="hidden" class="form-control" name="str" id="str" value="addnullDepartment">
-                                <input type="hidden" class="form-control" name="Dep_id" id="Dep_id45" placeholder="รหัสแผนก" required>
-
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">รหัสแผนก</label>
-                                    <input type="text" class="form-control" name="Dep_id" id="Dep_id4" placeholder="รหัสแผนก" required>
-                                </div>
 
 
 
-                                <div class="form-group">
-                                    <label for="exampleInputUsername1">ชื่อแผนก</label>
-                                    <input type="text" class="form-control" name="Dep_name" id="Dep_name" placeholder="ชื่อแผนก" required>
-                                </div>
-
-
-                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">ชื่อแผนก</label>
+                        <input type="text" class="form-control" name="Dep_name" id="Dep_name" placeholder="ชื่อแผนก" required>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-                        <button type="submit" class="btn btn-primary" id="buttonY"> </button>
-                    </div>
-                    </form>
-                </div>
+
+
+                    <button type="submit" class="btn btn-primary" id="buttonY"> เพิ่มข้อมูล</button>
+                    <a onclick="nullDepartment()" class="btn btn-info" i>รีเซ็ต </a>
+                </form>
             </div>
-        </div>
+        </center>
+
 
 
 
@@ -64,6 +48,7 @@
         ?>
 
         <script type="text/javascript">
+           
             function nullDepartment() {
                 var random = Math.floor(Math.random() * 10000000000000);
                 $('#Dep_id4').val(random);
@@ -103,7 +88,11 @@
         <!-- ====================================================================================================== -->
 
 
-
+        <div class="row">
+            <div class="col-xl-6 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมลูแผนก</h5>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

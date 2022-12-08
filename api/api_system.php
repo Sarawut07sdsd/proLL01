@@ -28,10 +28,10 @@ if ($str == 'addconstant') {
         echo "</script>";
     } else {
 
-        $sql = "INSERT INTO constant
-            (Stytem_name, 	Stytem_address , Stytem_tel , Stytem_radius,Stytem_periodStest,Stytem_periodEnd)
+        echo    $sql = "INSERT INTO constant
+            (Stytem_name, 	Stytem_address , Stytem_tel , Stytem_radius,System_latitude ,System_longitude ,System_period ,System_timeoff , Stytem_starttime ,Stytem_endtime    )
             VALUES
-            ('$Stytem_name', '$Stytem_address' , '$Stytem_tel', '$Stytem_radius', '$Stytem_periodStest', '$Stytem_periodEnd')";
+            ('$Stytem_name', '$Stytem_address' , '$Stytem_tel', '$Stytem_radius' ,'$System_latitude' , '$System_longitude' , '$System_period' , '$System_timeoff' , '$Stytem_starttime' , '$Stytem_endtime')";
         $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
         mysqli_close($con);
     }
@@ -70,9 +70,17 @@ if ($str == 'addconstant') {
     Stytem_name = '$Stytem_name', 
     Stytem_address =  '$Stytem_address' , 
     Stytem_tel =  '$Stytem_tel' ,  
-    Stytem_radius =  '$Stytem_radius' ,  
-    Stytem_periodStest =  '$Stytem_periodStest' ,  
-    Stytem_periodEnd =  '$Stytem_periodEnd' 
+    Stytem_radius =  '$Stytem_radius'  ,  
+    System_latitude =  '$System_latitude'  ,  
+    System_longitude =  '$System_longitude'  ,  
+    System_period =  '$System_period'  ,  
+    System_timeoff =  '$System_timeoff'  ,  
+    Stytem_starttime =  '$Stytem_starttime'  ,  
+    Stytem_endtime =  '$Stytem_endtime' 
+
+
+
+
     WHERE Stytem_No = '$Stytem_No' ";
         $result = mysqli_query($con, $sql);
         mysqli_close($con);
@@ -319,9 +327,9 @@ else if ($str == 'addnullEmployee') {
     } else {
 
         $sql = "INSERT INTO employee
-            (Emp_id,Emp_name , Emp_tel , Emp_address , Dep_id , Pos_id)
+            (Emp_id,Emp_pass , Emp_name , Emp_tel , Emp_address , Dep_id , Pos_id)
             VALUES
-            ('$Emp_id' , '$Emp_name' , '$Emp_tel' , '$Emp_address' , '$Dep_id' , '$Pos_id')";
+            ('$Emp_id' , '$Emp_pass' , '$Emp_name' , '$Emp_tel' , '$Emp_address' , '$Dep_id' , '$Pos_id')";
         @$result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
         mysqli_close($con);
     }

@@ -48,7 +48,17 @@
         include('./pages/system/employeeCEO.php');
       } elseif ($p == 'employeeEmp') {
         include('./pages/system/employeeEmp.php');
-      }
+      } elseif ($p == 'timetable') {
+        include('./pages/system/timetable.php');
+      }elseif ($p == 'leave1') {
+        include('./pages/system/leave1.php');
+      } elseif ($p == 'leave2') {
+        include('./pages/system/leave2.php');
+      } elseif ($p == 'leave3') {
+        include('./pages/system/leave3.php');
+      }  
+      
+      
       
       
       
