@@ -8,47 +8,11 @@
         </div>
 
 
-
-
-
-
-
         <!--         <button type="button" onclick="nullPosition()" class="btn btn-primary" data-toggle="modal" data-target="#addnullPosition">
             เพิ่มข้อมูล
         </button> -->
 
         <br> <br>
-
-        <center>
-            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลตำแหน่ง</h5>
-            <div class="card-body col-md-6">
-                <form class="forms-sample" action="./api/api_system.php" method="POST">
-                    <input type="hidden" class="form-control" name="str" id="str" value="addnullPosition">
-                    <input type="hidden" class="form-control" name="Pos_id" id="Pos_id45" placeholder="รหัสแผนก" required>
-
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">รหัสตำแหน่ง</label>
-                        <input type="text" class="form-control" name="Pos_id" id="Pos_id4" placeholder="รหัสตำแหน่ง" required>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <label for="exampleInputUsername1">ชื่อตำแหน่ง</label>
-                        <input type="text" class="form-control" name="Pos_name" id="Pos_name" placeholder="ชื่อตำแหน่ง" required>
-                    </div>
-
-
-
-
-
-                    <button type="submit" class="btn btn-primary" id="buttonY" > เพิ่มข้อมูล</button>
-
-                    <a onclick="nullPosition()" class="btn btn-info" i>รีเซ็ต </a>
-
-                </form>
-            </div>
-        </center>
 
 
 
@@ -159,6 +123,42 @@
                 </div>
             </div>
         </div>
+
+
+
+        <br><br>
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" >จัดการข้อมูลตำแหน่ง</h5>
+            <div class="card-body col-md-6">
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <input type="hidden" class="form-control" name="str" id="str" value="addnullPosition">
+                    <input type="hidden" class="form-control" name="Pos_id" id="Pos_id45" placeholder="รหัสแผนก" required>
+
+                    <div class="form-group">
+                       <!--  <label for="exampleInputUsername1">รหัสตำแหน่ง</label> -->
+                        <input type="hidden" class="form-control" name="Pos_id" id="Pos_id4" placeholder="รหัสตำแหน่ง" required>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">ชื่อตำแหน่ง</label>
+                        <input type="text" class="form-control" name="Pos_name" id="Pos_name" placeholder="ชื่อตำแหน่ง" required>
+                    </div>
+
+
+
+
+
+                    <button type="submit" class="btn btn-primary" id="buttonY"> เพิ่มข้อมูล</button>
+
+              <!--       <a onclick="nullPosition()" class="btn btn-info" i>รีเซ็ต </a> -->
+
+                </form>
+            </div>
+        </center>
+
+
     </div>
 
 

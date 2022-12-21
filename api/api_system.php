@@ -7,7 +7,7 @@ extract(@$_GET);
 
 
 
-//////////constant/////////////////////////////////////////////////////////////////////////////
+//////////constant////////////////////////////////////////////////////////////////////////////
 
 if ($str == 'addconstant') {
 
@@ -21,6 +21,7 @@ if ($str == 'addconstant') {
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     }
+
     if ($numStytem_name > 0) {
         echo "<script type='text/javascript'>";
         echo "alert('ชื่อซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
@@ -28,7 +29,7 @@ if ($str == 'addconstant') {
         echo "</script>";
     } else {
 
-        echo    $sql = "INSERT INTO constant
+        $sql = "INSERT INTO constant
             (Stytem_name, 	Stytem_address , Stytem_tel , Stytem_radius,System_latitude ,System_longitude ,System_period ,System_timeoff , Stytem_starttime ,Stytem_endtime    )
             VALUES
             ('$Stytem_name', '$Stytem_address' , '$Stytem_tel', '$Stytem_radius' ,'$System_latitude' , '$System_longitude' , '$System_period' , '$System_timeoff' , '$Stytem_starttime' , '$Stytem_endtime')";
@@ -59,7 +60,7 @@ if ($str == 'addconstant') {
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     }
-    if ($numStytem_name > 0) {
+    if ($numStytem_name > 1) {
         echo "<script type='text/javascript'>";
         echo "alert('ชื่อซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
         echo "window.location = '../index.php?p=constant'; ";
@@ -124,6 +125,9 @@ if ($str == 'addconstant') {
 
 else if ($str == 'addnullDepartment') {
 
+    if ($Dep_id == null) {
+        $Dep_id = rand(1000000000000, 9999999999999);
+    }
     $sqlnum = " SELECT * FROM department where Dep_name = '$Dep_name' or Dep_id = '$Dep_id'  ";
     $q = mysqli_query($con, $sqlnum);
     $numDep_name = mysqli_num_rows($q);
@@ -205,10 +209,12 @@ else if ($str == 'addnullDepartment') {
 
 
 
-////////addnullPosition///////////////////////////////////////////////////////////////////////////////////////
+////////addnullPosition////////////////////////////////////////////////////////////////////////
 
 else if ($str == 'addnullPosition') {
-
+    if ($Pos_id == null) {
+        $Pos_id = rand(1000000000000, 9999999999999);
+    }
     $sqlnum = " SELECT * FROM position where Pos_id = '$Pos_id' or Pos_name = '$Pos_name'  ";
     $q = mysqli_query($con, $sqlnum);
     $numPos_name = mysqli_num_rows($q);
@@ -287,11 +293,11 @@ else if ($str == 'addnullPosition') {
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-////////addnullPosition///////////////////////////////////////////////////////////////////////////////////////
+////////addnullPosition////////////////////////////////////////////////////////////////////////
 else if ($str == 'addnullEmployee') {
 
 
@@ -423,23 +429,18 @@ else if ($str == 'addnullEmployee') {
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 
-////////addnullPeleave//////////////////////////////////////////////////////////////////////////////
-else if ($str == 'addnullPeleave') {
+////////addnullPeleave1//////////////////////////////////////////////////////////////////////////
+else if ($str == 'addnullPeleave1') {
+    $sqlnum = " SELECT * FROM typeleave where Type_name = '$Type_name' ";
+    $q = mysqli_query($con, $sqlnum);
+    $numPos_name1 = mysqli_num_rows($q);
 
-
-
-
-    @$typeleave = "SELECT typeleave.Type_id , typeleave.Type_name , typeleave.Type_details , leave_rights.Pos_id ,leave_rights.leave_maximum  
-  FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type_id WHERE Type_name = '$Type_name' and Pos_id = '$Pos_id';  ";
-    @$Sqltypeleave = mysqli_query($con, $typeleave) or die("Error in query: $typeleave ");
-    $numtypeleave = mysqli_num_rows($Sqltypeleave);
-
-    if ($numtypeleave > 1) {
+    if ($numPos_name1 >= 1) {
         echo "<script type='text/javascript'>";
         echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
-        echo "window.location = '../index.php?p=peleave'; ";
+        echo "window.location = '../index.php?p=peleave1'; ";
         echo "</script>";
     } else {
 
@@ -453,21 +454,20 @@ else if ($str == 'addnullPeleave') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "window.location = 'apiError.php?Type_id=$Type_id&Pos_id=$Pos_id&leave_maximum=$leave_maximum'; ";
+            echo "alert('เพิ่มข้้อมูลสำเสร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         } else {
             echo "<script type='text/javascript'>";
-            echo "window.location = 'apiError.php?Type_id=$Type_id&Pos_id=$Pos_id&leave_maximum=$leave_maximum'; ";
+            echo "alert('เพิ่มข้้อมูลไม่สำเสร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         }
     }
-} else if ($str == 'edtiPeleave') {
-
-
-
+} else if ($str == 'edtiPeleave1') {
 
     @$typeleave = "SELECT typeleave.Type_id , typeleave.Type_name , typeleave.Type_details , leave_rights.Pos_id ,leave_rights.leave_maximum  
-FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type_id WHERE Type_name = '$Type_name' and Pos_id = '$Pos_id';  ";
+  FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type_id WHERE Type_name = '$Type_name' and Pos_id = '$Pos_id';  ";
     @$Sqltypeleave = mysqli_query($con, $typeleave) or die("Error in query: $typeleave ");
 
     $numtypeleave = mysqli_num_rows($Sqltypeleave);
@@ -475,7 +475,7 @@ FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type
     if ($numtypeleave > 1) {
         echo "<script type='text/javascript'>";
         echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
-        echo "window.location = '../index.php?p=peleave'; ";
+        echo "window.location = '../index.php?p=peleave1'; ";
         echo "</script>";
     } else {
 
@@ -488,23 +488,123 @@ FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type
 
         if ($result) {
             echo "<script type='text/javascript'>";
-
-            echo "window.location = 'apiError.php?Type_id=$Type_id&str=leave_rights&Pos_id=$Pos_id&leave_maximum=$leave_maximum'; ";
+            echo "alert('อัปเดทข้้อมูลสำเสร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         } else {
             echo "<script type='text/javascript'>";
+            echo "alert('อัปเดทข้้อมูลไม่สำเสร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
+            echo "</script>";
+        }
+    }
+} else if ($str == 'deletePeleave1') {
 
+    $sqlnum = " SELECT * FROM leave_rights where Type_id = '$Type_id' ";
+    $q = mysqli_query($con, $sqlnum);
+    $numPos_name1 = mysqli_num_rows($q);
+
+    if ($numPos_name1 >= 1) {
+
+        echo "<script type='text/javascript'>";
+        echo "alert('ลบข้อมูลไม่สำเร็จ');";
+        echo "window.location = '../index.php?p=peleave1'; ";
+        echo "</script>";
+    } else {
+
+        $sql = "DELETE FROM typeleave WHERE Type_id='$Type_id' ";
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            echo "<script type='text/javascript'>";
+            echo "alert('ลบข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('ลบข้อมูลไม่สำเร็จ');";
+            echo "window.location = '../index.php?p=peleave1'; ";
+            echo "</script>";
+        }
+    }
+}
+
+
+////////addnullPeleave//////////////////////////////////////////////////////////////////////////
+else if ($str == 'addnullPeleave') {
+
+
+
+    $sqlnum = " SELECT * FROM leave_rights where Type_id = '$Type_id' and Pos_id = '$Pos_id'  ";
+    $q = mysqli_query($con, $sqlnum);
+    $numPos_name1 = mysqli_num_rows($q);
+
+    if ($numPos_name1 >= 1) {
+        echo "<script type='text/javascript'>";
+        echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
+        echo "window.location = '../index.php?p=peleave'; ";
+        echo "</script>";
+    } else {
+
+
+        $sql2 = "INSERT INTO leave_rights
+            (Type_id,Pos_id , leave_maximum )
+            VALUES
+            ('$Type_id' , '$Pos_id' , '$leave_maximum')";
+        @$result2 = mysqli_query($con, $sql2) or die("Error in query: $sql2 " . mysqli_error());
+        mysqli_close($con);
+        if (@$result) {
+            echo "<script type='text/javascript'>";
+            echo "alert('เพิ่มข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=peleave'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('เพิ่มข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=peleave'; ";
+            echo "</script>";
+        }
+    }
+} else if ($str == 'edtiPeleave') {
+
+
+
+    $sqlnum = " SELECT * FROM leave_rights where Type_id = '$Type_id' and Pos_id = '$Pos_id'  ";
+    $q = mysqli_query($con, $sqlnum);
+    $numPos_name1 = mysqli_num_rows($q);
+
+    if ($numPos_name1 >= 1) {
+        echo "<script type='text/javascript'>";
+        echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
+        echo "window.location = '../index.php?p=peleave'; ";
+        echo "</script>";
+    } else {
+
+        $sql = "UPDATE leave_rights SET 
+        Pos_id = '$Pos_id'  ,
+        leave_maximum = '$leave_maximum'   
+        WHERE Type_id = '$Type_id' ";
+        $result = mysqli_query($con, $sql);
+        mysqli_close($con);
+
+        if ($result) {
+            echo "<script type='text/javascript'>";
+            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=peleave'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave'; ";
             echo "</script>";
         }
     }
 } else if ($str == 'deletePeleave') {
 
-    $sql = "DELETE FROM leave_rights WHERE Type_id='$Type_id' ";
+    $sql = "DELETE FROM leave_rights WHERE Type_no='$Type_no' ";
     $result = mysqli_query($con, $sql);
 
-    $sql = "DELETE FROM typeleave WHERE Type_id='$Type_id' ";
-    $result = mysqli_query($con, $sql);
+
 
     if ($result) {
         echo "<script type='text/javascript'>";

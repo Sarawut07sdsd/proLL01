@@ -25,6 +25,7 @@
           <li class="nav-item"> <a class="nav-link" href="index.php?p=constant"> ข้อมูลบริษัท </a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?p=department"> ข้อมูลแผนก </a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?p=position"> ข้อมูลตำแหน่ง </a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave1"> ข้อมูลประเภทการลางาน </a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave"> ข้อมูลสิทธิ์การลา </a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeCEO"> ข้อมูลผู้บริหาร </a></li>
           <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeHR"> ข้อมูลหัวหน้าฝ่าย (HR) </a></li>

@@ -29,10 +29,15 @@ while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
 @$Sqlposition = mysqli_query($con, $position) or die("Error in query: $position ");
 
 //typeleave+leave_rights
-@$typeleave = "SELECT typeleave.Type_id , typeleave.Type_name , typeleave.Type_details , leave_rights.Pos_id ,leave_rights.leave_maximum  
+/* @$typeleave = "SELECT typeleave.Type_id , typeleave.Type_name , typeleave.Type_details , leave_rights.Pos_id ,leave_rights.leave_maximum  
 FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type_id ";
+@$Sqltypeleave = mysqli_query($con, $typeleave) or die("Error in query: $typeleave "); */
+
+@$typeleave = "SELECT * FROM typeleave  ";
 @$Sqltypeleave = mysqli_query($con, $typeleave) or die("Error in query: $typeleave ");
 
+@$leave_rights = "SELECT * FROM leave_rights  ";
+@$Sqltleave_rights = mysqli_query($con, $leave_rights) or die("Error in query: $leave_rights ");
 
 
 //employee

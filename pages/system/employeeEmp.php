@@ -20,84 +20,6 @@
             เพิ่มข้อมูล
         </button> -->
 
-        <br> <br>
-
-        <center>
-            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลผู้พนักงาน</h5>
-            <div class="card-body col-md-6">
-                <form class="forms-sample" action="./api/api_system.php" method="POST">
-                    <div class="form-row">
-                        <input type="hidden" class="form-control" name="str" id="str" value="addnullEmployee">
-                        <input type="hidden" class="form-control" name="str2" id="str2" value="employeeEmp">
-
-                        <input type="hidden" class="form-control" name="Emp_id" id="Emp_id45" placeholder="รหัสแผนก" required>
-                        <input type="hidden" class="form-control" name="Emp_iddd" id="Emp_id" placeholder="รหัสแผนก" required>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">รหัสผู้บริหาร</label>
-                            <input type="text" class="form-control" name="Emp_id" id="Emp_id4" placeholder="รหัสผู้บริหาร" required>
-                        </div>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">รหัสผ่าน</label>
-                            <input type="password" class="form-control" name="Emp_pass" id="Emp_pass" placeholder="รหัสผ่าน" required>
-                        </div>
-
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">ชื่อพนักงาน</label>
-                            <input type="text" class="form-control" name="Emp_name" id="Emp_name" placeholder="ชื่อพนักงาน" required>
-                        </div>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">เบอร์โทร</label>
-                            <input type="text" class="form-control" name="Emp_tel" id="Emp_tel" placeholder="เบอร์โทร" required>
-                        </div>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">ที่อยู่</label>
-                            <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required>
-                        </div>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">แผนก</label>
-                            <!--  <input type="text" class="form-control" name="Dep_id" id="Dep_id" placeholder="ชื่อตำแหน่ง" required> -->
-
-
-                            <select class="form-control form-control-lg" name="Dep_id" id="exampleFormControlSelect1">
-                                <option id="Dep_id" value="" selected> </option>
-                                <?php
-                                while ($Showdepartment = mysqli_fetch_array($Sqldepartment)) {
-                                ?>
-                                    <option value="<?php echo $Showdepartment['Dep_id'] ?>"><?php echo $Showdepartment['Dep_name'] ?> </option>
-                                <?php }  ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">ตำแหน่ง</label>
-                            <!-- <input type="text" class="form-control" name="Pos_id" id="Pos_id" placeholder="ชื่อตำแหน่ง" required> -->
-                            <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
-                                <option id="Pos_id" value="" selected> </option>
-                                <?php
-                                while ($Showposition = mysqli_fetch_array($Sqlposition)) {
-                                ?>
-                                    <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
-                                <?php }  ?>
-                            </select>
-                        </div>
-
-                    </div>
-
-
-                    <button type="submit" class="btn btn-primary" id="buttonY"> บันทึก</button>
-                    <a onclick="nullEmployee()" class="btn btn-info" i>รีเซ็ต </a>
-                </form>
-            </div>
-
-
-
-        </center>
 
 
         <?php
@@ -242,6 +164,90 @@
                 </div>
             </div>
         </div>
+
+
+
+        <br> <br>
+
+        <center>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลผู้พนักงาน</h5>
+            <div class="card-body col-md-6">
+                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                    <div class="form-row">
+                        <input type="hidden" class="form-control" name="str" id="str" value="addnullEmployee">
+                        <input type="hidden" class="form-control" name="str2" id="str2" value="employeeEmp">
+
+                        <input type="hidden" class="form-control" name="Emp_id" id="Emp_id45" placeholder="รหัสแผนก" required>
+                        <input type="hidden" class="form-control" name="Emp_iddd" id="Emp_id" placeholder="รหัสแผนก" required>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รหัสผู้บริหาร</label>
+                            <input type="text" class="form-control" name="Emp_id" id="Emp_id4" placeholder="รหัสผู้บริหาร" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">รหัสผ่าน</label>
+                            <input type="password" class="form-control" name="Emp_pass" id="Emp_pass" placeholder="รหัสผ่าน" required>
+                        </div>
+
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ชื่อพนักงาน</label>
+                            <input type="text" class="form-control" name="Emp_name" id="Emp_name" placeholder="ชื่อพนักงาน" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">เบอร์โทร</label>
+                            <input type="text" class="form-control" name="Emp_tel" id="Emp_tel" placeholder="เบอร์โทร" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ที่อยู่</label>
+                            <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">แผนก</label>
+                            <!--  <input type="text" class="form-control" name="Dep_id" id="Dep_id" placeholder="ชื่อตำแหน่ง" required> -->
+
+
+                            <select class="form-control form-control-lg" name="Dep_id" id="exampleFormControlSelect1">
+                                <option id="Dep_id" value="" selected> </option>
+                                <?php
+                                while ($Showdepartment = mysqli_fetch_array($Sqldepartment)) {
+                                ?>
+                                    <option value="<?php echo $Showdepartment['Dep_id'] ?>"><?php echo $Showdepartment['Dep_name'] ?> </option>
+                                <?php }  ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6 ">
+                            <label for="exampleInputUsername1">ตำแหน่ง</label>
+                            <!-- <input type="text" class="form-control" name="Pos_id" id="Pos_id" placeholder="ชื่อตำแหน่ง" required> -->
+                            <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
+                                <option id="Pos_id" value="" selected> </option>
+                                <?php
+                                while ($Showposition = mysqli_fetch_array($Sqlposition)) {
+                                ?>
+                                    <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
+                                <?php }  ?>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary" id="buttonY"> บันทึก</button>
+                    <a onclick="nullEmployee()" class="btn btn-info" i>รีเซ็ต </a>
+                </form>
+            </div>
+
+
+
+        </center>
+
+
+
     </div>
 
 

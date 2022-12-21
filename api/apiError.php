@@ -28,7 +28,7 @@ if (@$str == 'leave_rights') {
 } else {
 
 
-    echo  $sql2 = "INSERT INTO leave_rights
+      $sql2 = "INSERT INTO leave_rights
             (Type_id,Pos_id , leave_maximum )
             VALUES
             ('$Type_id' , '$Pos_id' , '$leave_maximum')";

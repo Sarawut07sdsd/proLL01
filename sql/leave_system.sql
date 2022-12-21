@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2022 at 02:44 PM
+-- Generation Time: Dec 21, 2022 at 05:36 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -46,7 +46,7 @@ CREATE TABLE `constant` (
 --
 
 INSERT INTO `constant` (`Stytem_No`, `Stytem_name`, `Stytem_address`, `Stytem_tel`, `Stytem_radius`, `System_latitude`, `System_longitude`, `System_period`, `System_timeoff`, `Stytem_starttime`, `Stytem_endtime`) VALUES
-(11, 'บริษัทราชมงคล จำกัด', 'ขอนแก่น', '0877218287', '4654654654321.2465465', '1243243243', '213123213213213', '14:33', '16:33', '19:33', '19:33');
+(11, 'บริษัทราชมงคล จำกัด', 'ขอนแก่น', '0877218287', '4654654654321.2465465', '1243243243', '45645654', '14:33', '16:33', '19:33', '19:33');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Dep_id`, `Dep_name`) VALUES
-('1225458965858', 'การจัดการก'),
+('1225458965858', 'การจัดการ'),
 ('1254256369857', 'บัญชี');
 
 -- --------------------------------------------------------
@@ -133,8 +133,9 @@ INSERT INTO `leave` (`Leave_id`, `Leave_date`, `Leave_start`, `Leave_end`, `App_
 --
 
 CREATE TABLE `leave_rights` (
-  `Type_id` varchar(13) NOT NULL,
-  `Pos_id` varchar(13) NOT NULL,
+  `Type_no` int(10) NOT NULL,
+  `Type_id` varchar(100) NOT NULL,
+  `Pos_id` varchar(100) NOT NULL,
   `leave_maximum` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -142,10 +143,9 @@ CREATE TABLE `leave_rights` (
 -- Dumping data for table `leave_rights`
 --
 
-INSERT INTO `leave_rights` (`Type_id`, `Pos_id`, `leave_maximum`) VALUES
-('1112223334445', '1111111111111', 6),
-('1254859658754', '222222222222', 10),
-('3279598475347', '222222222222', 23);
+INSERT INTO `leave_rights` (`Type_no`, `Type_id`, `Pos_id`, `leave_maximum`) VALUES
+(9, '1112223334445', '1111111111111', 8),
+(13, '1254859658754', '3333333333333', 2323);
 
 -- --------------------------------------------------------
 
@@ -165,8 +165,7 @@ CREATE TABLE `position` (
 INSERT INTO `position` (`Pos_id`, `Pos_name`) VALUES
 ('1111111111111', 'ผู้บริหาร'),
 ('222222222222', 'หัวหน้าฝ่าย (HR)'),
-('3333333333333', 'พนักงานทั่วไป'),
-('8017036745803', 'dddd');
+('3333333333333', 'พนักงานทั่วไป');
 
 -- --------------------------------------------------------
 
@@ -214,7 +213,7 @@ CREATE TABLE `typeleave` (
 INSERT INTO `typeleave` (`Type_id`, `Type_name`, `Type_details`) VALUES
 ('1112223334445', 'ลาพักร้อน', 'การลาพักร้อนจะลาได้ 5 วัน ต่อ ปี'),
 ('1254859658754', 'ลากิจ', 'จำนวนการลากิจ จะลาได้ ปีละ 10 วัน'),
-('3279598475347', 'ลาพักร้อนกหฟก', 'ฟหฟหก');
+('3279598475347', 'ลาพักร้อน', 'ฟหฟหก');
 
 --
 -- Indexes for dumped tables
@@ -250,8 +249,7 @@ ALTER TABLE `leave`
 -- Indexes for table `leave_rights`
 --
 ALTER TABLE `leave_rights`
-  ADD UNIQUE KEY `Type_id` (`Type_id`),
-  ADD KEY `Pos_id` (`Pos_id`);
+  ADD PRIMARY KEY (`Type_no`);
 
 --
 -- Indexes for table `position`
@@ -282,6 +280,12 @@ ALTER TABLE `constant`
   MODIFY `Stytem_No` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `leave_rights`
+--
+ALTER TABLE `leave_rights`
+  MODIFY `Type_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `timetable`
 --
 ALTER TABLE `timetable`
@@ -297,13 +301,6 @@ ALTER TABLE `timetable`
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`Dep_id`) REFERENCES `department` (`Dep_id`),
   ADD CONSTRAINT `employee_ibfk_2` FOREIGN KEY (`Pos_id`) REFERENCES `position` (`Pos_id`);
-
---
--- Constraints for table `leave_rights`
---
-ALTER TABLE `leave_rights`
-  ADD CONSTRAINT `leave_rights_ibfk_1` FOREIGN KEY (`Type_id`) REFERENCES `typeleave` (`Type_id`),
-  ADD CONSTRAINT `leave_rights_ibfk_2` FOREIGN KEY (`Pos_id`) REFERENCES `position` (`Pos_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
