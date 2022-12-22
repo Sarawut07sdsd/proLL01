@@ -17,7 +17,7 @@ if ($str == 'addconstant') {
 
     if (strlen($Stytem_tel) != 10) {
         echo "<script type='text/javascript'>";
-        echo "alert('เพิ่มข้อมูลไม่สำเร็จกรุณาใส่เบอร์โทร 10 หลัก');";
+       echo "alert('เพิ่มข้อมูลไม่สำเร็จกรุณาใส่เบอร์โทร 10 หลัก');";
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     }
@@ -38,7 +38,7 @@ if ($str == 'addconstant') {
     }
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('เพิ่มข้อมูลสำเร็จ');";
+        //echo "alert('เพิ่มข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     } else {
@@ -88,7 +88,7 @@ if ($str == 'addconstant') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=constant'; ";
             echo "</script>";
         } else {
@@ -107,7 +107,7 @@ if ($str == 'addconstant') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('Delete ข้อมูลสำเร็จ');";
+        //echo "alert('Delete ข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     } else {
@@ -148,7 +148,7 @@ else if ($str == 'addnullDepartment') {
     }
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('เพิ่มข้อมูลสำเร็จ');";
+        //echo "alert('เพิ่มข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=department'; ";
         echo "</script>";
     } else {
@@ -176,7 +176,7 @@ else if ($str == 'addnullDepartment') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=department'; ";
             echo "</script>";
         } else {
@@ -195,7 +195,7 @@ else if ($str == 'addnullDepartment') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('Delete ข้อมูลสำเร็จ');";
+        //echo "alert('Delete ข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=department'; ";
         echo "</script>";
     } else {
@@ -235,7 +235,7 @@ else if ($str == 'addnullPosition') {
     }
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('เพิ่มข้อมูลสำเร็จ');";
+        //echo "alert('เพิ่มข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=position'; ";
         echo "</script>";
     } else {
@@ -263,7 +263,7 @@ else if ($str == 'addnullPosition') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=position'; ";
             echo "</script>";
         } else {
@@ -282,7 +282,7 @@ else if ($str == 'addnullPosition') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('Delete ข้อมูลสำเร็จ');";
+        //echo "alert('Delete ข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=position'; ";
         echo "</script>";
     } else {
@@ -341,7 +341,7 @@ else if ($str == 'addnullEmployee') {
     }
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('เพิ่มข้อมูลสำเร็จ');";
+        //echo "alert('เพิ่มข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=$str2'; ";
         echo "</script>";
     } else {
@@ -398,7 +398,7 @@ else if ($str == 'addnullEmployee') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=$str2'; ";
             echo "</script>";
         } else {
@@ -417,7 +417,7 @@ else if ($str == 'addnullEmployee') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('Delete ข้อมูลสำเร็จ');";
+       // echo "alert('Delete ข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=$str2'; ";
         echo "</script>";
     } else {
@@ -454,7 +454,7 @@ else if ($str == 'addnullPeleave1') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('เพิ่มข้้อมูลสำเสร็จ');";
+            //echo "alert('เพิ่มข้้อมูลสำเสร็จ');";
             echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         } else {
@@ -488,7 +488,7 @@ else if ($str == 'addnullPeleave1') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้้อมูลสำเสร็จ');";
+            //echo "alert('อัปเดทข้้อมูลสำเสร็จ');";
             echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         } else {
@@ -517,7 +517,7 @@ else if ($str == 'addnullPeleave1') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('ลบข้อมูลสำเร็จ');";
+            //echo "alert('ลบข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave1'; ";
             echo "</script>";
         } else {
@@ -555,7 +555,7 @@ else if ($str == 'addnullPeleave') {
         mysqli_close($con);
         if (@$result) {
             echo "<script type='text/javascript'>";
-            echo "alert('เพิ่มข้อมูลสำเร็จ');";
+           // echo "alert('เพิ่มข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave'; ";
             echo "</script>";
         } else {
@@ -589,7 +589,7 @@ else if ($str == 'addnullPeleave') {
 
         if ($result) {
             echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
+            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave'; ";
             echo "</script>";
         } else {
@@ -608,7 +608,7 @@ else if ($str == 'addnullPeleave') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-        echo "alert('ลบข้อมูลสำเร็จ');";
+        //echo "alert('ลบข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=peleave'; ";
         echo "</script>";
     } else {

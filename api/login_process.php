@@ -37,7 +37,7 @@ if (@$result->num_rows > 0) {
             $_SESSION['Pos_id'] = $Pos_id;
             $_SESSION['Emp_pass'] = $Emp_pass;
             echo "<script>";
-            echo "alert('ล็อดอินสำเสร็จ');";
+            /* echo "alert('ล็อดอินสำเสร็จ');"; */
             echo "</script>";
             echo "<meta  http-equiv='refresh' content='0;URL=../'>";
         } else {
