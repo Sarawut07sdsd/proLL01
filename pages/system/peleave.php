@@ -93,15 +93,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
         <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
                 <h5 class="mb-2 text-titlecase mb-4">ข้อมูลสิทธิ์การลา</h5>
@@ -120,10 +111,10 @@
                         <table class="table table-striped project-orders-table">
                             <thead>
                                 <tr>
-                                    <th class="ml-5">รหัสการลา</th>
-                                    <th class="ml-5">เหตุลา</th>
+                                    <!--      <th class="ml-5">รหัสการลา</th> -->
                                     <th>ตำแหน่ง</th>
-                                    <th>สิทธิ์การลา</th>
+                                    <th class="ml-5">ประเภทการลา</th>
+                                    <th>ลาได้สูงสุด (วัน)</th>
 
                                 </tr>
                             </thead>
@@ -135,7 +126,21 @@
                                 ?>
                                     <tr>
 
-                                        <td><?php echo $Showpeleave['Type_id'] ?></td>
+                                        <!--    <td><?php echo $Showpeleave['Type_id'] ?></td> -->
+
+
+
+                                        <td><?php
+                                            $Pos_id = $Showpeleave['Pos_id'];
+                                            @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
+                                            @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
+                                            while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
+                                                @$Pos_name = $Showposition['Pos_name'];
+                                            }
+                                            echo $Pos_name;
+
+
+                                            ?></td>
 
                                         <td><?php
                                             $Type_id =  $Showpeleave['Type_id'];
@@ -149,17 +154,6 @@
 
                                             ?></td>
 
-                                        <td><?php
-                                            $Pos_id = $Showpeleave['Pos_id'];
-                                            @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
-                                            @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
-                                            while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
-                                                @$Pos_name = $Showposition['Pos_name'];
-                                            }
-                                            echo $Pos_name;
-
-
-                                            ?></td>
                                         <td><?php echo $Showpeleave['leave_maximum'] ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -176,6 +170,53 @@
                                     </tr>
                                 <?php } ?>
 
+                                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                                    <input type="hidden" class="form-control" name="str" id="str" value="addnullPeleave">
+                                    <tr>
+
+
+                                        <td>
+                                            <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
+                                                <option id="Pos_id" value="" selected> </option>
+                                                <?php
+                                                while ($Showposition = mysqli_fetch_array($Sqlposition)) {
+                                                ?>
+                                                    <option value="<?php echo $Showposition['Pos_id'] ?>"><?php echo $Showposition['Pos_name'] ?> </option>
+                                                <?php }  ?>
+                                            </select>
+                                        </td>
+
+                                        <td> <select class="form-control form-control-lg" name="Type_id" id="exampleFormControlSelect1">
+                                                <option id="Type_id" value="" selected> </option>
+                                                <?php
+                                                while ($ShowSqltypeleave = mysqli_fetch_array($Sqltypeleave)) {
+                                                ?>
+                                                    <option value="<?php echo $ShowSqltypeleave['Type_id'] ?>"><?php echo $ShowSqltypeleave['Type_name'] ?> </option>
+                                                <?php }  ?>
+                                            </select> </td>
+
+
+                                        <td>
+                                            <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="สิทธิ์การลา" required>
+                                        </td>
+
+
+                                        <td>
+                                            <button type="submit" class="btn btn-primary" id="buttonY">บันทึก </button>
+                                            <a onclick="nullPeleave()" class="btn btn-info" i>รีเซ็ต </a>
+                                        </td>
+                                      
+                                            
+                                      
+                                    </tr>
+
+                                </form>
+
+
+
+
+
+
                             </tbody>
                         </table>
                     </div>
@@ -187,8 +228,8 @@
         <br><br>
 
 
-        <center>
-            <h5 class="mb-2 text-titlecase mb-4">จัดการข้อมูลสิทธิ์การลา</h5>
+        <!--  <center>
+          
             <div class="card-body col-md-6">
 
                 <form class="forms-sample" action="./api/api_system.php" method="POST">
@@ -197,8 +238,8 @@
 
 
                         <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">เหตุการลา</label>
-                            <!--  <input type="text" class="form-control" name="Type_id" id="Type_id" placeholder="รหัสผู้บริหาร" required> -->
+                            <label for="exampleInputUsername1">ประเภทการลา</label>
+                            
 
                             <select class="form-control form-control-lg" name="Type_id" id="exampleFormControlSelect1">
                                 <option id="Type_id" value="" selected> </option>
@@ -223,7 +264,7 @@
                         </div>
 
                         <div class="form-group col-md-12  ">
-                            <label for="exampleInputUsername1">จำนวนสิทธิ์การลา</label>
+                            <label for="exampleInputUsername1">ลาได้สูงสุด (วัน)</label>
                             <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="สิทธิ์การลา" required>
                         </div>
 
@@ -234,7 +275,7 @@
                 </form>
 
             </div>
-        </center>
+        </center> -->
 
     </div>
 

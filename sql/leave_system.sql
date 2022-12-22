@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 12:19 PM
+-- Generation Time: Dec 22, 2022 at 07:28 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -64,8 +64,7 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Dep_id`, `Dep_name`) VALUES
-('1225458965858', 'การจัดการ'),
-('1254256369857', 'บัญชี');
+('DEP1359', 'บัญชี');
 
 -- --------------------------------------------------------
 
@@ -88,12 +87,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`Emp_id`, `Emp_name`, `Emp_tel`, `Emp_address`, `Dep_id`, `Pos_id`, `Emp_pass`) VALUES
-('6666666666666', 'วันชัย  มีชัย', '0856325421', 'ขอนแก่น', '1225458965858', '3333333333333', '1234'),
-('7777777777777', 'กิตติชัย  ดีใจจัง', '0877218287', 'ขอนแก่น', '1225458965858', '222222222222', '1234'),
-('7777777777778', 'asdasdas', '0854215874', 'xxxxxx', '1225458965858', '222222222222', '3232321'),
-('8888888888888', 'มานะ  ยินดี', '896525421', 'ขอนแก่น', '1254256369857', '222222222222', '1234'),
-('9999999999999', 'มังกร ไฟกก', '0854215874', 'ขอนแก่น', '1254256369857', '1111111111111', '1234'),
-('admin', 'test', '0877542185', 'ooooo', '1225458965858', '1111111111111', '1234');
+('admin', 'test', '0877542185', 'ooooo', 'DEP1359', 'POS1254', '1234');
 
 -- --------------------------------------------------------
 
@@ -114,18 +108,6 @@ CREATE TABLE `leave` (
   `Type_id` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `leave`
---
-
-INSERT INTO `leave` (`Leave_id`, `Leave_date`, `Leave_start`, `Leave_end`, `App_date`, `Leave_status`, `Leave_reason`, `App_note`, `Emp_id`, `Type_id`) VALUES
-('1525698585463', '2022-12-09', '2022-12-10', '2022-12-15', '2022-12-10', 2, 'ไปทำธุระ', 'ได้ไปทำธุระจริง', '6666666666666', '1254859658754'),
-('152598585463', '2022-12-09', '2022-12-10', '2022-12-15', '2022-12-10', 2, 'ไปนา', 'ได้ไปทำธุระจริง', '6666666666666', '1254859658754'),
-('2548565856956', '2022-12-09', '2022-12-10', '2022-12-13', '0000-00-00', 1, 'ป่วยเป็นไข', '', '8888888888888', '1254859658754'),
-('254856585956', '2022-12-09', '2022-12-10', '2022-12-13', '0000-00-00', 1, 'ไม่สบาย', '', '8888888888888', '1254859658754'),
-('5889658547542', '2022-12-10', '2022-12-11', '2022-12-16', '2022-12-11', 3, 'อากาศหนาว', 'ไม่สมเหตุสมผล', '9999999999999', '1112223334445'),
-('588968547542', '2022-12-10', '2022-12-11', '2022-12-16', '2022-12-11', 3, 'อากาศร้อน', 'ไม่สมเหตุสมผล', '9999999999999', '1112223334445');
-
 -- --------------------------------------------------------
 
 --
@@ -138,15 +120,6 @@ CREATE TABLE `leave_rights` (
   `Pos_id` varchar(100) NOT NULL,
   `leave_maximum` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `leave_rights`
---
-
-INSERT INTO `leave_rights` (`Type_no`, `Type_id`, `Pos_id`, `leave_maximum`) VALUES
-(9, '1112223334445', '1111111111111', 8),
-(13, '1254859658754', '3333333333333', 2323),
-(14, '1254859658754', '222222222222', 5);
 
 -- --------------------------------------------------------
 
@@ -164,9 +137,9 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`Pos_id`, `Pos_name`) VALUES
-('1111111111111', 'ผู้บริหาร'),
-('222222222222', 'หัวหน้าฝ่าย (HR)'),
-('3333333333333', 'พนักงานทั่วไป');
+('POS1254', 'ผู้บริหาร'),
+('POS2991', 'พนักงานทั่วไป'),
+('POS6400', 'หัวหน้าพนักงาน HR');
 
 -- --------------------------------------------------------
 
@@ -186,15 +159,6 @@ CREATE TABLE `timetable` (
   `Ttb_statusout` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `timetable`
---
-
-INSERT INTO `timetable` (`Ttb_no`, `Emp_id`, `Ttb_date`, `Ttb_timein`, `Ttb_radiusin`, `Ttb_statusin`, `Ttb_timeinout`, `Ttb_radiusout`, `Ttb_statusout`) VALUES
-(1, '6666666666666', '2022-12-24', '08:00:41', '456421215.22121', 1, '17:39:41', '545212.215', 1),
-(2, '6666666666666', '2022-12-23', '08:30:41', '456421215.22121', 2, '15:39:41', '545212.215', 2),
-(3, '9999999999999', '2022-12-22', '09:00:41', '456421215.22121', 3, '19:39:41', '545212.215', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -206,15 +170,6 @@ CREATE TABLE `typeleave` (
   `Type_name` varchar(50) NOT NULL,
   `Type_details` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `typeleave`
---
-
-INSERT INTO `typeleave` (`Type_id`, `Type_name`, `Type_details`) VALUES
-('1112223334445', 'ลาพักร้อน', 'การลาพักร้อนจะลาได้ 5 วัน ต่อ ปี'),
-('1254859658754', 'ลากิจ', 'จำนวนการลากิจ จะลาได้ ปีละ 10 วัน'),
-('3279598475347', 'ลาพักร้อน', 'ฟหฟหก');
 
 --
 -- Indexes for dumped tables
@@ -284,7 +239,7 @@ ALTER TABLE `constant`
 -- AUTO_INCREMENT for table `leave_rights`
 --
 ALTER TABLE `leave_rights`
-  MODIFY `Type_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Type_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `timetable`

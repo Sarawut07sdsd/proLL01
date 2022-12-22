@@ -15,14 +15,15 @@
                             <thead>
                                 <tr align='center'>
                                     <th class="ml-5">ลำดับ</th>
-                                    <th>รหัสการลา</th>
+                                    <!--  <th>รหัสการลา</th> -->
+                                    <th>วันที่ยื่นใบลา</th>
                                     <th>ชื่อพนักงาน</th>
                                     <th>ตำแหน่ง</th>
                                     <th>ประเภทการลา</th>
-                                    <th>วันที่ยื่นใบลา</th>
+
                                     <th>วันเริ่มต้นลา</th>
                                     <th>วันสิ้นสุดลา</th>
-                                    <th>เหตุผลการลา</th>
+                                    <!--  <th>เหตุผลการลา</th> -->
                                     <th>สถานะการอนุมัติการลา</th>
 
 
@@ -63,14 +64,14 @@
 
                                     <tr align='center'>
                                         <td><?php echo $i ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_id'] ?></td>
+                                        <!-- <td><?php echo $ShowSqlleave['Leave_id'] ?></td> -->
+                                        <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
                                         <td><?php echo $Emp_name; ?></td>
                                         <td><?php echo $Pos_name; ?></td>
                                         <td><?php echo $Type_name; ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_start'] ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_end'] ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_reason'] ?></td>
+                                        <!--     <td><?php echo $ShowSqlleave['Leave_reason'] ?></td> -->
 
                                         <td><?php
                                             $Leave_status =  $ShowSqlleave['Leave_status'];
@@ -91,9 +92,17 @@
 
                                             ?></td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                               ดูสิทธิ์การลา
-                                            </button>
+                                            <a type="button" href="index.php?p=showleave&Emp_name=<?php echo $Emp_name; ?> 
+                                            &Pos_name=<?php echo $Emp_name; ?>
+                                            &Type_name=<?php echo $Type_name; ?>
+                                            &Type_id=<?php echo $Type_id; ?>
+                                            &Emp_id=<?php echo $Emp_id; ?>
+                                            
+                                            " class="btn btn-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </a>
                                         </td>
 
                                         <!--  <td>

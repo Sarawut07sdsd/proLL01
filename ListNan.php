@@ -23,7 +23,7 @@
       <div class="collapse" id="auth">
         <ul class="nav flex-column sub-menu">
           <?php
-          if ($_SESSION['Pos_id'] == '1111111111111') { ?>
+          if ($_SESSION['Pos_id'] == 'POS1254') { ?>
             <li class="nav-item"> <a class="nav-link" href="index.php?p=constant"> ข้อมูลบริษัท </a></li>
           <?php  }  ?>
 
@@ -33,7 +33,7 @@
           <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave"> ข้อมูลสิทธิ์การลา </a></li>
 
           <?php
-          if ($_SESSION['Pos_id'] == '1111111111111') { ?>
+          if ($_SESSION['Pos_id'] == 'POS1254') { ?>
             <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeCEO"> ข้อมูลผู้บริหาร </a></li>
           <?php  }  ?>
 

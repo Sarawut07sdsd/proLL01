@@ -24,7 +24,7 @@
             <br>
             <h4>ค่าคงที่ของระบบ </h4>
             <br>
-            <div class="card-body col-md-6">
+            <div class="card-body col-md-8">
                 <form class="forms-sample" action="./api/api_system.php" method="POST">
                     <div class="form-group row">
                         <input type="hidden" class="form-control" name="str" id="str" value="edticonstant">

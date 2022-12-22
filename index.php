@@ -58,7 +58,10 @@
         include('./pages/system/leave3.php');
       } elseif ($p == 'peleave1') {
         include('./pages/system/peleave1.php');
+      }   elseif ($p == 'showleave') {
+        include('./pages/system/showleave.php');
       }  
+      
       
       
       

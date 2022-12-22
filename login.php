@@ -27,13 +27,14 @@
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
                 <!-- <img src="images/logo-dark.svg" alt="logo"> -->
-                รอใส่โลโก้
               </div>
-              <h4>ยินดีต้อนรับเข้าสู่หน้า ล็อดอิน เข้าสู่ระบบการใช้งาน</h4>
+              <center>
+              <h3>ระบบบันทึกเวลาเข้าทำงาน</h3>
+              </center>
               <h6 class="font-weight-light">..</h6>
               <form class="pt-3" name="formlogin" action="api/login_process.php" method="POST">
                 <div class="form-group">
-                  <input type="text" name="Emp_id" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="รหัสพนักงาน">
+                  <input type="text" name="Emp_id" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="ตรวจสอบสิทธิ์ผู้ใช้">
                 </div>
                 <div class="form-group">
                   <input type="password" name="Emp_pass" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="รหัสผ่าน">
@@ -49,7 +50,6 @@
                   <div class="form-check">
                     <label class="form-check-label text-muted">
                       <input type="checkbox" class="form-check-input">
-                      หากผิดรหัสผ่านติดต่อู้บริหาร
                     </label>
                   </div>
                   <a href="#" class="auth-link text-black">..</a>

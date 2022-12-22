@@ -116,8 +116,8 @@
                         <table class="table table-striped project-orders-table">
                             <thead>
                                 <tr>
-                                    <th class="ml-5">รหัสการลา</th>
-                                    <th>เหตุลา</th>
+                                   <!--  <th class="ml-5">รหัสการลา</th> -->
+                                    <th>ประเภทลา</th>
                                     <th>รายละเอียดการลา</th>
 
 
@@ -131,7 +131,7 @@
                                 ?>
                                     <tr>
 
-                                        <td><?php echo $Showpeleave['Type_id'] ?></td>
+                                        <!-- <td><?php echo $Showpeleave['Type_id'] ?></td> -->
                                         <td><?php echo $Showpeleave['Type_name'] ?></td>
                                         <td><?php echo $Showpeleave['Type_details'] ?></td>
                                         <td>

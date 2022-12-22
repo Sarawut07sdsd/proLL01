@@ -126,7 +126,7 @@ if ($str == 'addconstant') {
 else if ($str == 'addnullDepartment') {
 
     if ($Dep_id == null) {
-        $Dep_id = rand(1000000000000, 9999999999999);
+        $Dep_id = "DEP".rand(1000, 9999);
     }
     $sqlnum = " SELECT * FROM department where Dep_name = '$Dep_name' or Dep_id = '$Dep_id'  ";
     $q = mysqli_query($con, $sqlnum);
@@ -213,7 +213,8 @@ else if ($str == 'addnullDepartment') {
 
 else if ($str == 'addnullPosition') {
     if ($Pos_id == null) {
-        $Pos_id = rand(1000000000000, 9999999999999);
+        $Pos_id = "POS".rand(1000, 9999);
+   
     }
     $sqlnum = " SELECT * FROM position where Pos_id = '$Pos_id' or Pos_name = '$Pos_name'  ";
     $q = mysqli_query($con, $sqlnum);
@@ -433,6 +434,8 @@ else if ($str == 'addnullEmployee') {
 
 ////////addnullPeleave1//////////////////////////////////////////////////////////////////////////
 else if ($str == 'addnullPeleave1') {
+
+
     $sqlnum = " SELECT * FROM typeleave where Type_name = '$Type_name' ";
     $q = mysqli_query($con, $sqlnum);
     $numPos_name1 = mysqli_num_rows($q);
