@@ -17,6 +17,7 @@
                                     <th class="ml-5">ลำดับ</th>
                                     <th>รหัสการลา</th>
                                     <th>ชื่อพนักงาน</th>
+                                    <th>ตำแหน่ง</th>
                                     <th>ประเภทการลา</th>
                                     <th>วันที่ยื่นใบลา</th>
                                     <th>วันเริ่มต้นลา</th>
@@ -42,6 +43,7 @@
                                     @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql ");
                                     while ($namesql = mysqli_fetch_array($sqlshow)) {
                                         @$Emp_name = $namesql['Emp_name'];
+                                        @$Pos_id = $namesql['Pos_id'];
                                     }
 
                                     @$Type_id =   $ShowSqlleave['Type_id'];
@@ -50,12 +52,20 @@
                                     while ($namesql = mysqli_fetch_array($sqlshow)) {
                                         @$Type_name = $namesql['Type_name'];
                                     }
+
+                                    @$sql = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
+                                    @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql ");
+                                    while ($namesql = mysqli_fetch_array($sqlshow)) {
+                                        @$Pos_name = $namesql['Pos_name'];
+                                    }
+
                                 ?>
 
                                     <tr align='center'>
                                         <td><?php echo $i ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_id'] ?></td>
                                         <td><?php echo $Emp_name; ?></td>
+                                        <td><?php echo $Pos_name; ?></td>
                                         <td><?php echo $Type_name; ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_start'] ?></td>
@@ -81,11 +91,14 @@
 
                                             ?></td>
                                         <td>
-                                            <a class="btn btn-info" i>อนุมัติ </a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                               ดูสิทธิ์การลา
+                                            </button>
                                         </td>
-                                        <td>
+
+                                        <!--  <td>
                                             <a class="btn btn-danger" i>ไม่อนุมัติ </a>
-                                        </td>
+                                        </td>  -->
 
 
                                         <!--  <td align='center'>
@@ -134,4 +147,39 @@
             </div>
         </div>
     </footer>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
