@@ -64,7 +64,7 @@
 
                                     <tr align='center'>
                                         <td><?php echo $i ?></td>
-                                        <!-- <td><?php echo $ShowSqlleave['Leave_id'] ?></td> -->
+                                        <!-- <td><?php echo $Leave_id = $ShowSqlleave['Leave_id'] ?></td> -->
                                         <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
                                         <td><?php echo $Emp_name; ?></td>
                                         <td><?php echo $Pos_name; ?></td>
@@ -97,6 +97,7 @@
                                             &Type_name=<?php echo $Type_name; ?>
                                             &Type_id=<?php echo $Type_id; ?>
                                             &Emp_id=<?php echo $Emp_id; ?>
+                                            &Leave_id=<?php echo $Leave_id; ?>
                                             
                                             " class="btn btn-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

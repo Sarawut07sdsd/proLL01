@@ -21,11 +21,11 @@ while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
 
 
 //department
-@$department = "SELECT * FROM department  ";
+@$department = "SELECT * FROM department ORDER BY Dep_name ASC   ";
 @$Sqldepartment = mysqli_query($con, $department) or die("Error in query: $department ");
 
 //position
-@$position = "SELECT * FROM position  ";
+@$position = "SELECT * FROM position ORDER BY Pos_name ASC ";
 @$Sqlposition = mysqli_query($con, $position) or die("Error in query: $position ");
 
 //typeleave+leave_rights

@@ -91,18 +91,16 @@
                     <h4>ตำแหน่งจุดศูนกลางบริษัท </h4>
                     <br><br>
 
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" class="col-sm-2 col-form-label" for="exampleInputUsername1">รัศมี</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="Stytem_radius" id="Stytem_radius" value="<?php echo $Stytem_radius; ?>" placeholder="ตำแหน่งรัติจุ" required>
-                        </div>
-                    </div>
+
+
+
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="exampleInputUsername1">ละติจูด</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="System_latitude" id="System_latitude" value="<?php echo $System_latitude; ?>" placeholder="ตำแหน่งรัติจุ" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="exampleInputUsername1">ลองติจูด</label>
                         <div class="col-sm-8">
@@ -110,6 +108,13 @@
                         </div>
                     </div>
 
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" class="col-sm-2 col-form-label" for="exampleInputUsername1">ระยะห่างสูงสุดจากจุดศูนย์กลางที่จะอนุญาตให้ลงเวลาได้(เมตร)</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="Stytem_radius" id="Stytem_radius" value="<?php echo $Stytem_radius; ?>" placeholder="ตำแหน่งรัติจุ" required>
+                        </div>
+                    </div>
 
 
             </div>

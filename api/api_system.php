@@ -17,7 +17,7 @@ if ($str == 'addconstant') {
 
     if (strlen($Stytem_tel) != 10) {
         echo "<script type='text/javascript'>";
-       echo "alert('เพิ่มข้อมูลไม่สำเร็จกรุณาใส่เบอร์โทร 10 หลัก');";
+        echo "alert('เพิ่มข้อมูลไม่สำเร็จกรุณาใส่เบอร์โทร 10 หลัก');";
         echo "window.location = '../index.php?p=constant'; ";
         echo "</script>";
     }
@@ -126,8 +126,9 @@ if ($str == 'addconstant') {
 else if ($str == 'addnullDepartment') {
 
     if ($Dep_id == null) {
-        $Dep_id = "DEP".rand(1000, 9999);
+        $Dep_id = "$Dep_id" . rand(1000, 9999);
     }
+    $Dep_id = "$Dep_id" . rand(1000, 9999);
     $sqlnum = " SELECT * FROM department where Dep_name = '$Dep_name' or Dep_id = '$Dep_id'  ";
     $q = mysqli_query($con, $sqlnum);
     $numDep_name = mysqli_num_rows($q);
@@ -213,8 +214,7 @@ else if ($str == 'addnullDepartment') {
 
 else if ($str == 'addnullPosition') {
     if ($Pos_id == null) {
-        $Pos_id = "POS".rand(1000, 9999);
-   
+        $Pos_id = "POS" . rand(1000, 9999);
     }
     $sqlnum = " SELECT * FROM position where Pos_id = '$Pos_id' or Pos_name = '$Pos_name'  ";
     $q = mysqli_query($con, $sqlnum);
@@ -418,7 +418,7 @@ else if ($str == 'addnullEmployee') {
 
     if ($result) {
         echo "<script type='text/javascript'>";
-       // echo "alert('Delete ข้อมูลสำเร็จ');";
+        // echo "alert('Delete ข้อมูลสำเร็จ');";
         echo "window.location = '../index.php?p=$str2'; ";
         echo "</script>";
     } else {
@@ -435,6 +435,8 @@ else if ($str == 'addnullEmployee') {
 ////////addnullPeleave1//////////////////////////////////////////////////////////////////////////
 else if ($str == 'addnullPeleave1') {
 
+
+    $Type_id = "PEL" . rand(1000, 9999);
 
     $sqlnum = " SELECT * FROM typeleave where Type_name = '$Type_name' ";
     $q = mysqli_query($con, $sqlnum);
@@ -558,7 +560,7 @@ else if ($str == 'addnullPeleave') {
         mysqli_close($con);
         if (@$result) {
             echo "<script type='text/javascript'>";
-           // echo "alert('เพิ่มข้อมูลสำเร็จ');";
+            // echo "alert('เพิ่มข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave'; ";
             echo "</script>";
         } else {
@@ -618,6 +620,45 @@ else if ($str == 'addnullPeleave') {
         echo "<script type='text/javascript'>";
         echo "alert('ลบข้อมูลไม่สำเร็จ');";
         echo "window.location = '../index.php?p=peleave'; ";
+        echo "</script>";
+    }
+} else if ($str == 'approve') {
+
+    echo $sql = "UPDATE  `leave` SET 
+Leave_status = '2'  
+WHERE Leave_id = '$Leave_id' ";
+    $result = mysqli_query($con, $sql);
+    mysqli_close($con);
+
+    if ($result) {
+        echo "<script type='text/javascript'>";
+        //echo "alert('อัปเดทข้อมูลสำเร็จ');";
+        echo "window.location = '../index.php?p=leave2'; ";
+        echo "</script>";
+    } else {
+        echo "<script type='text/javascript'>";
+        echo "alert('อัปเดทข้อมูลไม่สำเร็จ');";
+        echo "window.location = '../index.php?p=leave1'; ";
+        echo "</script>";
+    }
+} else if ($str == 'noapprove') {
+
+    echo $sql = "UPDATE  `leave` SET 
+    Leave_status = '3'  ,
+    App_note = '$App_note'
+    WHERE Leave_id = '$Leave_id' ";
+    $result = mysqli_query($con, $sql);
+    mysqli_close($con);
+
+    if ($result) {
+        echo "<script type='text/javascript'>";
+        //echo "alert('อัปเดทข้อมูลสำเร็จ');";
+        echo "window.location = '../index.php?p=leave3'; ";
+        echo "</script>";
+    } else {
+        echo "<script type='text/javascript'>";
+        echo "alert('อัปเดทข้อมูลไม่สำเร็จ');";
+        echo "window.location = '../index.php?p=leave1'; ";
         echo "</script>";
     }
 }

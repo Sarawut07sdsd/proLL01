@@ -177,7 +177,7 @@
 
                                         <td>
                                             <select class="form-control form-control-lg" name="Pos_id" id="exampleFormControlSelect1">
-                                                <option id="Pos_id" value="" selected> </option>
+                                                <option id="Pos_id" value="" required selected> </option>
                                                 <?php
                                                 while ($Showposition = mysqli_fetch_array($Sqlposition)) {
                                                 ?>
@@ -187,7 +187,7 @@
                                         </td>
 
                                         <td> <select class="form-control form-control-lg" name="Type_id" id="exampleFormControlSelect1">
-                                                <option id="Type_id" value="" selected> </option>
+                                                <option id="Type_id" value="" required selected> </option>
                                                 <?php
                                                 while ($ShowSqltypeleave = mysqli_fetch_array($Sqltypeleave)) {
                                                 ?>
@@ -203,7 +203,7 @@
 
                                         <td>
                                             <button type="submit" class="btn btn-primary" id="buttonY">บันทึก </button>
-                                            <a onclick="nullPeleave()" class="btn btn-info" i>รีเซ็ต </a>
+                                            <!-- <a onclick="nullPeleave()" class="btn btn-info" i>รีเซ็ต </a> -->
                                         </td>
                                       
                                             

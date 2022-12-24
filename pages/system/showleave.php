@@ -45,7 +45,7 @@
             <br>
             <h4> ของคุณ :: <?php echo $Emp_name; ?> </h4>
             <br>
-            <button type="button" class="btn btn-primary">อนุมัติ</button>
+            <a type="button" href="api/api_system.php?Leave_id=<?php echo $Leave_id; ?>&str=approve" class="btn btn-primary">อนุมัติ</a>
 
             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                 ไม่อนุมัติ
@@ -141,6 +141,7 @@
         <center>
             <h4> ประวัติลางาน </h4>
         </center>
+
         <br><br>
         <table class="table table-striped project-orders-table">
             <thead>
@@ -273,18 +274,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">สาเหตุที่ไม่อนุมัติ</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputEmail3" >
+            <form class="forms-sample" action="./api/api_system.php" method="POST">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">สาเหตุที่ไม่อนุมัติ</label>
+                        <div class="col-sm-8">
+                            <input type="hidden" name="str" value="noapprove" class="form-control" id="inputEmail3">
+                            <input type="hidden" name="Leave_id" value="<?php echo $Leave_id;  ?>"class="form-control" id="inputEmail3">
+                            <input type="text" name="App_note" class="form-control" id="inputEmail3">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                <button type="button" class="btn btn-primary">ยืนยันการไม่อนุมัติ</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    <button type="submit" class="btn btn-primary">ยืนยันการไม่อนุมัติ</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

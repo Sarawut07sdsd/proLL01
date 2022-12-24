@@ -183,7 +183,7 @@
                         <input type="hidden" class="form-control" name="Emp_iddd" id="Emp_id" placeholder="รหัสแผนก" required>
 
                         <div class="form-group col-md-6 ">
-                            <label for="exampleInputUsername1">รหัสผู้บริหาร</label>
+                            <label for="exampleInputUsername1">รหัสบัตรประชาชร</label>
                             <input type="text" class="form-control" name="Emp_id" id="Emp_id4" placeholder="รหัสผู้บริหาร" required>
                         </div>
 

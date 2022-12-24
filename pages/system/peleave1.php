@@ -116,8 +116,8 @@
                         <table class="table table-striped project-orders-table">
                             <thead>
                                 <tr>
-                                   <!--  <th class="ml-5">รหัสการลา</th> -->
-                                    <th>ประเภทลา</th>
+                                    <!--  <th class="ml-5">รหัสการลา</th> -->
+                                    <th>ชื่อประเภทการลา</th>
                                     <th>รายละเอียดการลา</th>
 
 
@@ -136,7 +136,7 @@
                                         <td><?php echo $Showpeleave['Type_details'] ?></td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <button type="button" data-toggle="modal" data-target="#addnullPeleave" onclick="edtiPeleave(Type_id =<?php echo $Showpeleave['Type_id'] ?>)" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                                <button type="button" data-toggle="modal" data-target="#addnullPeleave" onclick="edtiPeleave(Type_id ='<?php echo $Showpeleave['Type_id'] ?>')" class="btn btn-success btn-sm btn-icon-text mr-3">
                                                     แก้ไข
                                                     <i class="typcn typcn-edit btn-icon-append"></i>
                                                 </button>
@@ -149,6 +149,16 @@
                                     </tr>
                                 <?php } ?>
 
+                                <form class="forms-sample" action="./api/api_system.php" method="POST">
+                                    <input type="hidden" class="form-control" name="str" id="str" value="addnullPeleave1">
+                                    <input type="hidden" class="form-control" name="Type_id" id="Type_id2">
+                                    <input type="hidden" class="form-control" name="Type_id" id="Type_id" placeholder="รหัสผู้บริหาร" required>
+                                    <td> <input type="text" class="form-control" name="Type_name" id="Type_name" placeholder="" required> </td>
+                                    <td> <textarea class="form-control" name="Type_details" id="Type_details" rows="5"></textarea></td>
+                                    <td> <button type="submit" class="btn btn-primary" id="buttonY">บันทึก </button> </td>
+                                </form>
+
+
                             </tbody>
                         </table>
                     </div>
@@ -159,7 +169,7 @@
 
         <br><br>
 
-        <center>
+        <!--   <center>
             <h5 class="mb-2 text-titlecase mb-4">จัดการข้อมูลประเภทการลางาน</h5>
             <div class="card-body col-md-6">
                 <form class="forms-sample" action="./api/api_system.php" method="POST">
@@ -187,7 +197,7 @@
                 </form>
 
             </div>
-        </center>
+        </center> -->
 
     </div>
 
