@@ -624,8 +624,12 @@ else if ($str == 'addnullPeleave') {
     }
 } else if ($str == 'approve') {
 
-    echo $sql = "UPDATE  `leave` SET 
-Leave_status = '2'  
+    $dateNow = date("Y-m-d");
+
+     $sql = "UPDATE  `leave` SET 
+Leave_status = '2'  ,
+App_note = 'อนุมัติ' ,
+App_date = '$dateNow'
 WHERE Leave_id = '$Leave_id' ";
     $result = mysqli_query($con, $sql);
     mysqli_close($con);

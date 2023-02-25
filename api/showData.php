@@ -36,7 +36,7 @@ FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type
 @$typeleave = "SELECT * FROM typeleave ORDER BY Type_name DESC ";
 @$Sqltypeleave = mysqli_query($con, $typeleave) or die("Error in query: $typeleave ");
 
-@$leave_rights = "SELECT * FROM leave_rights ORDER BY Type_id DESC";
+@$leave_rights = "SELECT * FROM leave_rights ORDER BY Pos_id ASC";
 @$Sqltleave_rights = mysqli_query($con, $leave_rights) or die("Error in query: $leave_rights ");
 
 

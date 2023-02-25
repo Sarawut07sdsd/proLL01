@@ -72,13 +72,14 @@
                                     $k = 0;
                                     /*    @$sql = "SELECT * FROM  `leave` WHERE  Leave_status =  '2' and Emp_id = '$Emp_id' ";
                                     @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql "); */
-
+                                    
                                     @$sql = "SELECT * FROM  `typeleave`  ";
                                     @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql ");
                                     while ($namesql = mysqli_fetch_array($sqlshow)) {
                                         $Type_id =  $namesql['Type_id'];
                                         $k++;
                                         $datesom = 0;
+                                        $datesomSum = 0 ;
                                         @$sql1 = "SELECT * FROM  `leave_rights` where Type_id = '$Type_id'  ";
                                         @$sqlshow1 = mysqli_query($con, $sql1) or die("Error in query: $sql1 ");
                                         while ($namesql1 = mysqli_fetch_array($sqlshow1)) {
@@ -91,17 +92,15 @@
                                             $Leave_start =   $ShowSqlleave['Leave_start'];
                                             $Leave_end =   $ShowSqlleave['Leave_end'];
                                             $datesom =  substr($Leave_end, 8) - substr($Leave_start, 8);
+                                            $datesomSum = $datesomSum + $datesom;
                                         }
-
-
                                     ?>
                                         <tr align='center'>
-
                                             <td><?php echo $k;  ?></td>
                                             <td><?php echo $namesql['Type_name'];  ?></td>
                                             <td><?php echo $leave_maximum;  ?></td>
-                                            <td><?php echo @$datesom;  ?></td>
-                                            <td><?php echo @$leave_maximum - $datesom;  ?></td>
+                                            <td><?php echo @$datesomSum;  ?></td>
+                                            <td><?php echo @$leave_maximum - $datesomSum;  ?></td>
                                         </tr>
 
 
@@ -218,11 +217,7 @@
                                 echo '<div class="alert alert-success" role="alert">
                     อนุมัติการลางานแล้ว
                   </div>';
-                            } else if ($Leave_status == 3) {
-                                echo '<div class="alert alert-danger" role="alert">
-                    เข้างานสาย
-                  </div>';
-                            }
+                            } 
 
                             ?></td>
 
@@ -280,7 +275,7 @@
                         <label for="inputEmail3" class="col-sm-2 col-form-label">สาเหตุที่ไม่อนุมัติ</label>
                         <div class="col-sm-8">
                             <input type="hidden" name="str" value="noapprove" class="form-control" id="inputEmail3">
-                            <input type="hidden" name="Leave_id" value="<?php echo $Leave_id;  ?>"class="form-control" id="inputEmail3">
+                            <input type="hidden" name="Leave_id" value="<?php echo $Leave_id;  ?>" class="form-control" id="inputEmail3">
                             <input type="text" name="App_note" class="form-control" id="inputEmail3">
                         </div>
                     </div>

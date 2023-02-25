@@ -1,5 +1,6 @@
 <?php
 include "../confix/DB.php";
+session_start();
 
 extract(@$_GET);
 
@@ -75,18 +76,18 @@ if ($str == 'Peleave') {
     @$ShowPosition = "SELECT * FROM typeleave WHERE  Type_id =  '$Type_id' ";
     @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
     while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
-         @$Type_name = $Showposition['Type_name'];
+        @$Type_name = $Showposition['Type_name'];
     }
 
 
     @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
     @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
     while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
-         @$Pos_name = $Showposition['Pos_name'];
+        @$Pos_name = $Showposition['Pos_name'];
     }
 
 
-   $data = array(
+    $data = array(
         'Type_id' => $Type_id,
         'Pos_name' => $Pos_name,
         'Type_name' => $Type_name,
@@ -105,6 +106,17 @@ if ($str == 'Peleave1') {
 }
 
 
+if ($str == 'PeleaveSUM') {
+    @$department = "SELECT * FROM typeleave  ";
+    @$Sqldepartment = mysqli_query($con, $department) or die("Error in query: $department ");
+    // $ShowSqldepartment[] = mysqli_fetch_array($Sqldepartment);
+    // echo json_encode($ShowSqldepartment);
+    $data = array();
+    while ($Showposition = mysqli_fetch_array($Sqldepartment)) {
+        @$data[] =array('Type_id'=> $Showposition['Type_id'], 'name'=> $Showposition['Type_name'] , 'Type_details'=> $Showposition['Type_details'] , 'test' => $_SESSION['Emp_name'] ); 
+   }
+   echo json_encode($data);
+}
 
 
 
