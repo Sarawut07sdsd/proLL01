@@ -9,17 +9,23 @@ include "confix.php";
 @$Ttb_date = date("Y-m-d");
 @$Ttb_timein =  date("h:i:s"); // เวลาแสกนเข้า
 @$Ttb_radiusin = $latitude . ',' . $longitude;
-@$Ttb_statusin = 1; //สถานะ
+@$Ttb_statusin = 2; //สถานะ
 
 @$Ttb_timeinout = date("h:i:s"); //เวลาแสกนออก
 @$Ttb_radiusout = $latitude . ',' . $longitude;
-@$Ttb_statusout = 1; //สถานะ
+@$Ttb_statusout = 2; //สถานะ
 
 @$sql = "SELECT * FROM  `constant`  ";
 @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql ");
 while ($namesql = mysqli_fetch_array($sqlshow)) {
   @$la =  $namesql['System_latitude'];
   @$lo =  $namesql['System_longitude'];
+
+  @$System_period =  $namesql['System_period'];
+  @$System_timeoff =  $namesql['System_timeoff'];
+
+  @$Stytem_starttime =  $namesql['Stytem_starttime'];
+  @$Stytem_endtime =  $namesql['Stytem_endtime'];
 }
 
 $lat1 = $latitude; // ละติจูดของจุดที่หนึ่ง
@@ -39,9 +45,15 @@ if ($str == 'in') {
   if ($numPos_name1 >= 1) {
 
     @$data = array("success" => '0', "text" => '1');
-  } else if ($distance > 200) {
+  } else if ($distance < 200) {
     @$data = array("success" => '0', "text" => '2');
   } else {
+
+    if ($System_period < $Ttb_timein) {
+      $Ttb_statusin = 1;
+    } else if ($System_timeoff > $Ttb_timein) {
+      $Ttb_statusin = 3;
+    }
 
     @$sql = "INSERT INTO `timetable`
     (Emp_id,Ttb_date,Ttb_timein,Ttb_radiusin,Ttb_statusin,
@@ -53,7 +65,7 @@ if ($str == 'in') {
     )";
     @$result = mysqli_query($con, $sql);
     mysqli_close($con);
-    @$data = array("success" => '1', "text" =>''); 
+    @$data = array("success" => '1', "text" => '');
   }
 }
 
@@ -74,29 +86,26 @@ if ($str == 'out') {
     @$T6 = $namesql['Ttb_statusout'];
   }
 
-  if ($T4 == '' || $T5 == '' || $T6 == '' && $distance > 200) {
+  if ($T1 == '' || $T2 == '' || $T3 == '' && $distance < 200) {
     @$data = array("success" => '0', "text" => '3');
+  } else if ($T4 == '' || $T5 == '') {
+    if ($Stytem_starttime < $Ttb_timeinout) {
+      $Ttb_statusin = 1;
+    } else if ($Stytem_endtime > $Ttb_timeinout) {
+      $Ttb_statusin = 3;
+    }
 
-
-
-
-  }else if($T4 != '' || $T5 != '' || $T6 != ''){
-    @$data = array("success" => '0', "text" => '4');
-  }
-  
-  else {
     $sql = "UPDATE  `timetable` SET 
     Ttb_timeinout = '$Ttb_timeinout' ,
     Ttb_radiusout = '$Ttb_radiusout' ,
     Ttb_statusout = '$Ttb_statusout'
     WHERE Emp_id = '$Emp_id' ";
-      $result = mysqli_query($con, $sql);
-      mysqli_close($con);
-      @$data = array("success" => '1', "text" => '');
+    $result = mysqli_query($con, $sql);
+    mysqli_close($con);
+    @$data = array("success" => '1', "text" => '');
+  } else {
+    @$data = array("success" => '0', "text" => '4');
   }
-
-
-
 }
 
 

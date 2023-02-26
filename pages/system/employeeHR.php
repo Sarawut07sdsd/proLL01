@@ -109,7 +109,6 @@
                                     <th>ที่อยู่</th>
                                     <th>แผนก</th>
                                     <th>ตำแหน่ง</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,14 +140,11 @@
                                                 @$Pos_name = $Showposition['Pos_name'];
                                             }
                                             echo $Pos_name;
-
-
                                             ?></td>
-
 
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <button type="button" data-toggle="modal" data-target="#addnullEmployee" onclick="edtiEmployee(Emp_id =<?php echo $ShowmployeetHR['Emp_id'] ?>)" class="btn btn-success btn-sm btn-icon-text mr-3">
+                                                <button type="button" data-toggle="modal" data-target="#addnullEmployee" onclick="edtiEmployee(<?php echo $ShowmployeetHR['Emp_id'] ?>)" class="btn btn-success btn-sm btn-icon-text mr-3">
                                                     แก้ไข
                                                     <i class="typcn typcn-edit btn-icon-append"></i>
                                                 </button>
@@ -167,8 +163,6 @@
                 </div>
             </div>
         </div>
-
-
         <br> <br>
 
         <center>

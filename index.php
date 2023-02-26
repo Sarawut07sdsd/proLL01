@@ -50,7 +50,7 @@
         include('./pages/system/employeeEmp.php');
       } elseif ($p == 'timetable') {
         include('./pages/system/timetable.php');
-      }elseif ($p == 'leave1') {
+      } elseif ($p == 'leave1') {
         include('./pages/system/leave1.php');
       } elseif ($p == 'leave2') {
         include('./pages/system/leave2.php');
@@ -58,9 +58,15 @@
         include('./pages/system/leave3.php');
       } elseif ($p == 'peleave1') {
         include('./pages/system/peleave1.php');
-      }   elseif ($p == 'showleave') {
+      } elseif ($p == 'showleave') {
         include('./pages/system/showleave.php');
-      }  
+      } elseif ($p == 'ReportEmp') {
+        include('./pages/system/ReportEmp.php');
+      } elseif ($p == 'ReportLeave') {
+        include('./pages/system/ReportLeave.php');
+      } elseif ($p == 'Reporttimetable') {
+        include('./pages/system/Reporttimetable.php');
+      } 
       
       
       
@@ -68,10 +74,11 @@
       
       
       
-      
-      
-      
-      else {
+      elseif ($p == 'ReportEmp1') {
+
+       @$str = $_GET['str'];
+        include('./pages/system/ReportEmp1.php');
+      } else {
         /*  include(''); */
       }
     }

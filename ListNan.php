@@ -9,7 +9,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="typcn typcn-device-desktop menu-icon"></i>
-        <span class="menu-title">สถิติการลางาน</span>
+     <!--    <span class="menu-title">สถิติการลางาน</span> -->
         <div class="badge badge-danger">new</div>
       </a>
     </li>
@@ -85,9 +85,9 @@
       </a>
       <div class="collapse" id="icons">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="#">รายงานพนักงาน</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">รายงานการลางาน</a></li>
-          <li class="nav-item"> <a class="nav-link" href="#">รายงานการเข้าออกงาน</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=ReportEmp">รายงานพนักงาน</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=ReportLeave">รายงานการลางาน</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=Reporttimetable">รายงานการเข้าออกงาน</a></li>
         </ul>
       </div>
     </li>
