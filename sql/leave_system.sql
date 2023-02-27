@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2022 at 07:28 PM
+-- Generation Time: Feb 27, 2023 at 04:49 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.3.29
 
@@ -46,7 +46,7 @@ CREATE TABLE `constant` (
 --
 
 INSERT INTO `constant` (`Stytem_No`, `Stytem_name`, `Stytem_address`, `Stytem_tel`, `Stytem_radius`, `System_latitude`, `System_longitude`, `System_period`, `System_timeoff`, `Stytem_starttime`, `Stytem_endtime`) VALUES
-(11, 'บริษัทราชมงคล จำกัด', 'ขอนแก่น', '0877218287', '4654654654321.2465465', '1243243243', '45645654', '14:33', '16:33', '19:33', '19:33');
+(11, 'บริษัทราชมงคล จำกัด', 'ขอนแก่น', '0877218287', '100', '1243243243', '45645654', '08:10', '08:30', '17:00', '23:59');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,11 @@ CREATE TABLE `department` (
 --
 
 INSERT INTO `department` (`Dep_id`, `Dep_name`) VALUES
-('DEP1359', 'บัญชี');
+('DD6989', 'ผู้บริหาร'),
+('DEP1359', 'บัญชี'),
+('FF3809', 'การจัดการ'),
+('OE8195', 'พนักงานทั่วไป'),
+('OR2003', 'ช่าง');
 
 -- --------------------------------------------------------
 
@@ -87,7 +91,10 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`Emp_id`, `Emp_name`, `Emp_tel`, `Emp_address`, `Dep_id`, `Pos_id`, `Emp_pass`) VALUES
-('admin', 'test', '0877542185', 'ooooo', 'DEP1359', 'POS1254', '1234');
+('1409901673971', 'ลูกนก นะ', '0877542185', 'ขอนแก่น', 'DEP1359', 'POS2991', '1234'),
+('1409901673972', 'วิลา', '0877542185', 'ขอนแก่น', 'OE8195', 'POS1254', '1234'),
+('7777777777777', 'มังกร ไฟ', '0877542185', 'ขอนแก่น', 'DEP1359', 'POS6400', '1234'),
+('admin', 'admin', '0877542185', 'ขอนแก่น', 'DEP1359', 'POS1254', '1234');
 
 -- --------------------------------------------------------
 
@@ -108,6 +115,23 @@ CREATE TABLE `leave` (
   `Type_id` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `leave`
+--
+
+INSERT INTO `leave` (`Leave_id`, `Leave_date`, `Leave_start`, `Leave_end`, `App_date`, `Leave_status`, `Leave_reason`, `App_note`, `Emp_id`, `Type_id`) VALUES
+('132081', '2023-02-24', '2023-02-24', '2023-02-24', '2023-02-24', 2, '55555', 'อนุมัติ', 'admin', 'PEL2397'),
+('306517', '2023-02-24', '2023-02-24', '2023-02-28', '0000-00-00', 3, '4545', '', 'admin', 'PEL9652'),
+('447476', '2023-02-24', '2023-02-24', '2023-02-25', '0000-00-00', 1, 'xcxcxc', '', 'admin', '654654'),
+('509497', '2023-02-26', '2023-02-26', '2023-02-28', '0000-00-00', 1, '555', '', 'admin', '654654'),
+('536043', '2023-02-24', '2023-02-24', '2023-02-28', '2023-02-24', 2, '444', 'อนุมัติ', 'admin', 'PEL2397'),
+('585583', '2023-02-24', '2023-02-24', '2023-02-28', '2023-02-24', 2, 'xxxxx', 'อนุมัติ', '7777777777777', 'PEL2397'),
+('696006', '2023-02-24', '2023-02-24', '2023-02-28', '0000-00-00', 1, 'sdsds', '', '7777777777777', 'PEL2397'),
+('756237', '2023-02-24', '2023-02-24', '2023-02-25', '0000-00-00', 1, '55565', '', 'admin', 'PEL9652'),
+('834218', '2023-02-24', '2023-02-24', '2023-02-25', '2023-02-24', 2, 'xxxxx', 'อนุมัติ', '7777777777777', 'PEL2397'),
+('931746', '2023-02-26', '2023-02-26', '2023-02-26', '0000-00-00', 1, 'xxxxx', '', 'admin', 'PEL9652'),
+('940065', '2023-02-24', '2023-02-24', '2023-02-25', '0000-00-00', 1, 'xxxxx', '', '7777777777777', 'PEL2397');
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +144,24 @@ CREATE TABLE `leave_rights` (
   `Pos_id` varchar(100) NOT NULL,
   `leave_maximum` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `leave_rights`
+--
+
+INSERT INTO `leave_rights` (`Type_no`, `Type_id`, `Pos_id`, `leave_maximum`) VALUES
+(16, '654654', 'POS1254', 45),
+(18, 'PEL2397', 'POS6400', 5),
+(19, 'PEL9652', 'POS1254', 5),
+(20, 'PEL8317', 'POS1254', 7),
+(21, 'PEL2397', 'POS1254', 8),
+(22, '654654', 'POS6400', 4),
+(23, 'PEL8317', 'POS6400', 50),
+(24, 'PEL9652', 'POS6400', 10),
+(25, 'PEL9652', 'POS2991', 10),
+(26, 'PEL8317', 'POS2991', 4),
+(27, '654654', 'POS2991', 10),
+(28, 'PEL2397', 'POS2991', 2);
 
 -- --------------------------------------------------------
 
@@ -137,9 +179,9 @@ CREATE TABLE `position` (
 --
 
 INSERT INTO `position` (`Pos_id`, `Pos_name`) VALUES
-('POS1254', 'ผู้บริหาร'),
+('POS1254', 'หัวหน้าฝ่ายพนักงาน HR'),
 ('POS2991', 'พนักงานทั่วไป'),
-('POS6400', 'หัวหน้าพนักงาน HR');
+('POS6400', 'ผู้บริหาร');
 
 -- --------------------------------------------------------
 
@@ -159,6 +201,15 @@ CREATE TABLE `timetable` (
   `Ttb_statusout` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `timetable`
+--
+
+INSERT INTO `timetable` (`Ttb_no`, `Emp_id`, `Ttb_date`, `Ttb_timein`, `Ttb_radiusin`, `Ttb_statusin`, `Ttb_timeinout`, `Ttb_radiusout`, `Ttb_statusout`) VALUES
+(4, '1409901673972', '2022-12-25', '08:00:41', 'xxxxxxxxxxx', 1, '17:39:41', 'xxxxxxxxxxxx', 1),
+(5, 'admin', '2023-02-25', '01:45:37', '16.4962994,102.5412873', 1, '11:38:32', '16.4340201,102.8505715', 2),
+(6, 'admin', '2023-02-26', '11:31:44', '16.4339417,102.8505619', 1, '11:38:32', '16.4340201,102.8505715', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -170,6 +221,16 @@ CREATE TABLE `typeleave` (
   `Type_name` varchar(50) NOT NULL,
   `Type_details` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `typeleave`
+--
+
+INSERT INTO `typeleave` (`Type_id`, `Type_name`, `Type_details`) VALUES
+('654654', 'ลาป่วย', 'ลาได้ไม่เกิน เวลาที่กำหนด'),
+('PEL2397', 'ลานอน', 'ลาได้ไม่เกิน เวลาที่กำหนด'),
+('PEL8317', 'ลาพักร้อน', 'ลาได้ไม่เกิน เวลาที่กำหนด'),
+('PEL9652', 'ไม่สบาย', 'ลาได้ไม่เกิน เวลาที่กำหนด');
 
 --
 -- Indexes for dumped tables
@@ -239,13 +300,13 @@ ALTER TABLE `constant`
 -- AUTO_INCREMENT for table `leave_rights`
 --
 ALTER TABLE `leave_rights`
-  MODIFY `Type_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Type_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `Ttb_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Ttb_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
