@@ -10,8 +10,6 @@ if ($end_date == null || $end_date == '') {
     $end_date = $start_date;
 }
 
-
-
 require_once __DIR__ . '../../../vendor/autoload.php';
 
 @$defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
@@ -90,7 +88,7 @@ ob_start();
                         </select>
 
                         <label class="input-group-text" for="inputGroupSelect03">สถานะออกงาน</label>
-                        <select class="form-select" id="Ttb_statusout" name="Ttb_statusoutห" aria-label="Example select with button addon">
+                        <select class="form-select" id="Ttb_statusout" name="Ttb_statusout" aria-label="Example select with button addon">
                             <option value="">ทั้งหมด</option>
                             <option value="1">ออกงานปกติ</option>
                             <option value="2">ออกงานก่อน</option>
@@ -124,9 +122,76 @@ ob_start();
                 </svg>
             </a>
         </div>
-        
 
-        <?php ob_start(); ?>
+
+        <?php
+        @$timetable = "SELECT * 
+         FROM `timetable`
+         INNER JOIN `employee` ON `timetable`.`Emp_id` = `employee`.`Emp_id`
+         WHERE `timetable`.`Emp_id` LIKE '%$Emp_id%'
+         AND `timetable`.`Ttb_statusin` LIKE '%$Ttb_statusin%'
+         AND `timetable`.`Ttb_statusout` LIKE '%$Ttb_statusout%'
+         AND (`timetable`.`Ttb_date` >= '$start_date' AND (`timetable`.`Ttb_date` <= '$end_date' OR '$end_date' = '$start_date'))
+         ORDER BY `timetable`.`Ttb_date` DESC
+         ";
+
+        @$Sqltimetable = mysqli_query($con, $timetable) or die("Error in query: $timetable ");
+        while ($ShowSqltimetable = mysqli_fetch_array($Sqltimetable)) {
+            @$Emp_name = $ShowSqlleave['Emp_name'];
+        }
+
+
+        if ($Emp_id == '') {
+            $Emp_name = 'ทั้งหมด';
+        }
+
+
+
+
+        if ($Ttb_statusin == '') {
+            $Ttb_statusinName = 'ทั้งหมด';
+        } else  if ($Ttb_statusin == '1') {
+            $Ttb_statusinName = 'เข้างานก่อน';
+        } else  if ($Ttb_statusin == '2') {
+            $Ttb_statusinName = 'เข้างานปกติ';
+        } else  if ($Ttb_statusin == '3') {
+            $Ttb_statusinName = 'เข้างานสาย';
+        }
+
+        if ($Ttb_statusout == '') {
+            $Ttb_statusoutName = 'ทั้งหมด';
+        } else  if ($Ttb_statusout == '1') {
+            $Ttb_statusoutName = 'ออกงานปกติ';
+        } else  if ($Ttb_statusout == '2') {
+            $Ttb_statusoutName = 'ออกงานก่อน';
+        } else  if ($Ttb_statusout == '3') {
+            $Ttb_statusoutName = 'ออกงานช้า';
+        }
+
+
+        if ($start_date == '') {
+            $nameDate = 'ทั้งหมด';
+            $nameDate2 = ' - ';
+        } else if ($start_date != '' &&  $end_date == $start_date) {
+            $nameDate = $start_date;
+            $nameDate2 = ' - ';
+        } else if ($start_date != '' &&  $end_date != '') {
+            $nameDate = $start_date;
+            $nameDate2 = $end_date;
+        }
+
+
+
+        ob_start(); ?>
+
+
+
+        <center>
+            <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo $Emp_name; ?> : สถานะเข้างาน : <?php echo $Ttb_statusinName; ?>
+                : สถานะออกงาน : <?php echo $Ttb_statusoutName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
+        </center>
+
+        <br>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -161,7 +226,7 @@ ob_start();
                                 $strr2 = 0;
                                 $strr3 = 0;
                                 $strrSum = 0;
-                               @$timetable = "SELECT * 
+                                @$timetable = "SELECT * 
                                 FROM `timetable`
                                 INNER JOIN `employee` ON `timetable`.`Emp_id` = `employee`.`Emp_id`
                                 WHERE `timetable`.`Emp_id` LIKE '%$Emp_id%'
@@ -171,9 +236,8 @@ ob_start();
                                 ORDER BY `timetable`.`Ttb_date` DESC
                                 ";
 
-
-
                                 @$Sqltimetable = mysqli_query($con, $timetable) or die("Error in query: $timetable ");
+                                $numPos_name1 = mysqli_num_rows($Sqltimetable);
                                 while ($ShowSqltimetable = mysqli_fetch_array($Sqltimetable)) {
                                     $i++;
 
@@ -244,6 +308,19 @@ ob_start();
 
                             </tbody>
                         </table>
+                        <?php
+                        if ($numPos_name1 <= 0) {
+                        ?>
+
+                            <center>
+                                <div class="alert alert-danger" role="alert">
+                                    <h3> ไม่พบข้อมูล! </h3>
+                                </div>
+                            </center>
+
+                        <?php } ?>
+
+
                     </div>
                 </div>
             </div>
@@ -333,7 +410,7 @@ ob_start();
 
     </div>
 
-    
+
     <?php
     @$html = ob_get_contents();
     @$mpdf->WriteHTML(@$html);

@@ -126,6 +126,65 @@ ob_start();
 
         <?php ob_start(); ?>
 
+
+        <?php
+
+        @$leave = "SELECT *
+        FROM `leave`
+        INNER JOIN `employee` ON `leave`.`Emp_id` = `employee`.`Emp_id`
+        INNER JOIN `typeleave` ON `leave`.`Type_id` = `typeleave`.`Type_id`
+        WHERE `leave`.`Emp_id` LIKE '%$Emp_id%'
+        AND `leave`.`Type_id` LIKE '%$Type_id%'
+        AND `leave`.`Leave_status` LIKE '%$Leave_status%'
+        AND (`leave`.`Leave_date` >= '$start_date' AND (`leave`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
+        ORDER BY `leave`.`Leave_date` DESC
+        ";
+        @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
+        while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
+            @$Emp_name = $ShowSqlleave['Emp_name'];
+            @$Type_name = $ShowSqlleave['Type_name'];
+        }
+
+        if ($Emp_id == '') {
+            $Emp_name = 'ทั้งหมด';
+        }
+
+        if ($Type_id == '') {
+            $Type_name = 'ทั้งหมด';
+        }
+
+
+        if ($Leave_status == '') {
+            $Leave_statusName = 'ทั้งหมด';
+        } else  if ($Leave_status == '1') {
+            $Leave_statusName = 'รออนุมัติ';
+        } else  if ($Leave_status == '2') {
+            $Leave_statusName = 'อนุมัติแล้ว';
+        } else  if ($Leave_status == '3') {
+            $Leave_statusName = 'ไม่อนุมัติ';
+        }
+
+
+        if ($start_date == '') {
+            $nameDate = 'ทั้งหมด';
+            $nameDate2 = ' - ';
+        } else if ($start_date != '' &&  $end_date == $start_date) {
+            $nameDate = $start_date;
+            $nameDate2 = ' - ';
+        } else if ($start_date != '' &&  $end_date != '') {
+            $nameDate = $start_date;
+            $nameDate2 = $end_date;
+        }
+
+
+
+        ?>
+        <center>
+            <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo $Emp_name; ?> : ประเภทการลา : <?php echo $Type_name; ?>
+                : สถานะ : <?php echo $Leave_statusName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
+        </center>
+
+        <br>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -169,7 +228,11 @@ ob_start();
                                 AND (`leave`.`Leave_date` >= '$start_date' AND (`leave`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
                                 ORDER BY `leave`.`Leave_date` DESC
                                 ";
+
+
+
                                 @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
+                                $numPos_name1 = mysqli_num_rows($Sqlleave);
                                 while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
                                     $i++;
                                     $Leave_status1 = $ShowSqlleave['Leave_status'];
@@ -216,6 +279,20 @@ ob_start();
                                 <?php } ?>
                             </tbody>
                         </table>
+
+                        <?php
+                        if ($numPos_name1 <= 0) {
+                        ?>
+
+                            <center>
+                                <div class="alert alert-danger" role="alert">
+                                    <h3> ไม่พบข้อมูล! </h3>
+                                </div>
+                            </center>
+
+                        <?php } ?>
+
+
                     </div>
                 </div>
             </div>
@@ -269,7 +346,7 @@ ob_start();
 
                     <h4> สรุปยอดรวมประเภทลางาน </h4>
 
-                    <table class="table" style="width: 30%;">
+                    <table class="table" style="width: 40%;">
                         <thead>
                         </thead>
                         <tbody>
@@ -281,7 +358,7 @@ ob_start();
                             // GROUP BY typeleave.Type_name
                             // ORDER BY typeleave.Type_id ASC; ";
 
-                             @$sql = "SELECT `typeleave`.`Type_name`, COUNT(`leave`.`Type_id`) as count
+                            @$sql = "SELECT `typeleave`.`Type_name`, COUNT(`leave`.`Type_id`) as count
                             FROM `leave`
                             INNER JOIN `employee` ON `leave`.`Emp_id` = `employee`.`Emp_id`
                             INNER JOIN `typeleave` ON `leave`.`Type_id` = `typeleave`.`Type_id`

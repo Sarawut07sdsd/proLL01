@@ -104,7 +104,7 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
                             <tbody>
                                 <?php
                                 if ($str == '1') {
-                                    $dataAll = $SqlemployeeHR;
+                                    $dataAll = $SqlemployeeCEO;
                                 } else  if ($str == '2') {
                                     $dataAll = $SqlemployeeEmp;
                                 } else {

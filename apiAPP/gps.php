@@ -90,9 +90,9 @@ if ($str == 'out') {
     @$data = array("success" => '0', "text" => '3');
   } else if ($T4 == '' || $T5 == '') {
     if ($Stytem_starttime < $Ttb_timeinout) {
-      $Ttb_statusin = 1;
+      $Ttb_statusout = 1;
     } else if ($Stytem_endtime > $Ttb_timeinout) {
-      $Ttb_statusin = 3;
+      $Ttb_statusout = 3;
     }
 
     $sql = "UPDATE  `timetable` SET 
