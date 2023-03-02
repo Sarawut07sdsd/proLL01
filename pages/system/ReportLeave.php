@@ -266,7 +266,7 @@ ob_start();
                                             } else if ($Leave_status1 == 3) {
                                                 $str3++;
                                                 echo '<div class="alert alert-danger" role="alert">
-                                                เข้างานสาย
+                                                เข้างานสาย 
                                               </div>';
                                             }
 
