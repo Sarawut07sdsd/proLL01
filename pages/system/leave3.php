@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
-                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลการลางานที่อนุมัติแล้ว</h5>
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลการลาที่พิจารณาไม่ผ่าน</h5>
             </div>
         </div>
 
@@ -14,15 +14,18 @@
                         <table class="table table-striped project-orders-table">
                             <thead>
                                 <tr align='center'>
-                                    <th class="ml-5">ลำดับ</th>
-                                    <th>รหัสการลา</th>
+                                    <!--  <th class="ml-5">ลำดับ</th> -->
+                                    <!--  <th>รหัสการลา</th> -->
                                     <th>ชื่อพนักงาน</th>
-                                    <th>ประเภทการลา</th>
-                                    <th>วันที่ยื่นใบลา</th>
+                                    <th> ตำแหน่ง</th>
+                                    <th> แผนก</th>
+                                    <!--     <th>ประเภทการลา</th> -->
+                                    <!-- <th>วันที่ยื่นใบลา</th> -->
                                     <th>วันเริ่มต้นลา</th>
                                     <th>วันสิ้นสุดลา</th>
-                                    <th>เหตุผลการลา</th>
-                                    <th>หมายเหตุการอนุมัติ</th>
+                                    <!-- <th>วันที่การอนุมัติ</th> -->
+                                    <!-- <th>เหตุผลการลา</th>
+                                    <th>หมายเหตุการอนุมัต</th> -->
                                     <th>สถานะการอนุมัติการลา</th>
 
 
@@ -43,7 +46,12 @@
                                     @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql ");
                                     while ($namesql = mysqli_fetch_array($sqlshow)) {
                                         @$Emp_name = $namesql['Emp_name'];
+                                        @$Dep_id = $namesql['Dep_id'];
+                                        @$Pos_id = $namesql['Pos_id'];
                                     }
+
+
+
 
                                     @$Type_id =   $ShowSqlleave['Type_id'];
                                     @$sql = "SELECT * FROM typeleave WHERE  Type_id =  '$Type_id' ";
@@ -51,18 +59,33 @@
                                     while ($namesql = mysqli_fetch_array($sqlshow)) {
                                         @$Type_name = $namesql['Type_name'];
                                     }
+
+
+                                    @$SqlsDep = "SELECT * FROM department WHERE  Dep_id =  '$Dep_id' ";
+                                    @$SqlsDepData = mysqli_query($con, $SqlsDep) or die("Error in query: $SqlsDep ");
+                                    while ($ShowSqlsDepData = mysqli_fetch_array($SqlsDepData)) {
+                                        @$Dep_name = $ShowSqlsDepData['Dep_name'];
+                                    }
+                                    @$ShowPosition = "SELECT * FROM position WHERE  Pos_id =  '$Pos_id' ";
+                                    @$SQLShowPosition = mysqli_query($con, $ShowPosition) or die("Error in query: $ShowPosition ");
+                                    while ($Showposition = mysqli_fetch_array($SQLShowPosition)) {
+                                        @$Pos_name = $Showposition['Pos_name'];
+                                    }
                                 ?>
 
                                     <tr align='center'>
-                                        <td><?php echo $i ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_id'] ?></td>
+                                        <!-- <td><?php echo $i ?></td> -->
+                                        <!-- <td><?php echo $ShowSqlleave['Leave_id'] ?></td> -->
                                         <td><?php echo $Emp_name; ?></td>
-                                        <td><?php echo $Type_name; ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
+                                        <td><?php echo $Dep_name; ?></td>
+                                        <td><?php echo $Pos_name; ?></td>
+                                        <!--  <td><?php echo $Type_name; ?></td> -->
+                                        <!--  <td><?php echo $ShowSqlleave['Leave_date'] ?></td> -->
                                         <td><?php echo $ShowSqlleave['Leave_start'] ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_end'] ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_reason'] ?></td>
-                                        <td><?php echo $ShowSqlleave['App_note'] ?></td>
+                                        <!--  <td><?php echo $ShowSqlleave['App_date'] ?></td> -->
+                                        <!--     <td><?php echo $ShowSqlleave['Leave_reason'] ?></td> -->
+                                        <!--  <td><?php echo $ShowSqlleave['App_note'] ?></td> -->
 
                                         <td><?php
                                             $Leave_status =  $ShowSqlleave['Leave_status'];
@@ -77,13 +100,28 @@
                                               </div>';
                                             } else if ($Leave_status == 3) {
                                                 echo '<div class="alert alert-danger" role="alert">
-                                                ไม่อนุมัติการลางาน
+                                                เข้างานสาย
                                               </div>';
                                             }
 
                                             ?></td>
 
+                                        <td>
 
+                                            <!--  <td>
+                                            <a type="button" href="index.php?p=showleave&Emp_name=<?php echo $Emp_name; ?> 
+                                            &Pos_name=<?php echo $Emp_name; ?>
+                                            &Type_name=<?php echo $Type_name; ?>
+                                            &Type_id=<?php echo $Type_id; ?>
+                                            &Emp_id=<?php echo $Emp_id; ?>
+                                            
+                                            " class="btn btn-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </a>
+                                        </td> -->
+                                        </td>
 
 
 

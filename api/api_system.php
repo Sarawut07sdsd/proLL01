@@ -228,10 +228,10 @@ else if ($str == 'addnullPosition') {
     } else {
 
         $sql = "INSERT INTO position
-            (Pos_id,Pos_name)
+            (Pos_id,Pos_name ,user_group)
             VALUES
-            ('$Pos_id', '$Pos_name')";
-        $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+            ('$Pos_id', '$Pos_name', '$user_group' )";
+       $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
         mysqli_close($con);
     }
     if ($result) {
@@ -258,7 +258,7 @@ else if ($str == 'addnullPosition') {
     } else {
 
 
-        $sql = "UPDATE position SET Pos_name = '$Pos_name'  WHERE Pos_id = '$Pos_id' ";
+        $sql = "UPDATE position SET Pos_name = '$Pos_name' , user_group = '$user_group' WHERE Pos_id = '$Pos_id' ";
         $result = mysqli_query($con, $sql);
         mysqli_close($con);
 
@@ -477,7 +477,7 @@ else if ($str == 'addnullPeleave1') {
 
     $numtypeleave = mysqli_num_rows($Sqltypeleave);
 
-    if ($numtypeleave > 1) {
+    if ($numtypeleave >= 1) {
         echo "<script type='text/javascript'>";
         echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
         echo "window.location = '../index.php?p=peleave1'; ";
@@ -578,12 +578,6 @@ else if ($str == 'addnullPeleave') {
     $q = mysqli_query($con, $sqlnum);
     $numPos_name1 = mysqli_num_rows($q);
 
-    if ($numPos_name1 >= 1) {
-        echo "<script type='text/javascript'>";
-        echo "alert('ชื่อและตำแหน่งซ้ำกันกรุณาทำรายการใหม่อีกครั้ง');";
-        echo "window.location = '../index.php?p=peleave'; ";
-        echo "</script>";
-    } else {
 
         $sql = "UPDATE leave_rights SET 
         Pos_id = '$Pos_id'  ,
@@ -602,7 +596,7 @@ else if ($str == 'addnullPeleave') {
             echo "alert('อัปเดทข้อมูลสำเร็จ');";
             echo "window.location = '../index.php?p=peleave'; ";
             echo "</script>";
-        }
+        
     }
 } else if ($str == 'deletePeleave') {
 

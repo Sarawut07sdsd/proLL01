@@ -89,7 +89,7 @@
                                 <tr>
                                   <!--   <th class="ml-5">รหัสตำแหน่ง</th> -->
                                     <th>ชื่อตำแหน่ง</th>
-
+                                    <th>สิทธิ์การใช้ระบบ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,6 +102,17 @@
 
                                         <!-- <td><?php echo $Showposition['Pos_id'] ?></td> -->
                                         <td><?php echo $Showposition['Pos_name'] ?></td>
+                                        <td>
+                                            
+                                        <?php 
+                                        if($Showposition['user_group']== 1 )
+                                            echo "HR";
+                                        elseif($Showposition['user_group']== 2 )
+                                            echo "Employee";
+                                        else
+                                            echo "CEO";
+                                        ?>
+                                        </td>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <button type="button" data-toggle="modal" data-target="#addnullPosition" onclick="edtiPosition(Pos_id ='<?php echo $Showposition['Pos_id'] ?>')" class="btn btn-success btn-sm btn-icon-text mr-3">
@@ -122,7 +133,15 @@
                                     <input type="hidden" class="form-control" name="Pos_id" id="Pos_id45" placeholder="รหัสแผนก" required>
                                     <input type="hidden" class="form-control" name="Pos_id" id="Pos_id4" placeholder="รหัสตำแหน่ง" required>
                                    
-                                    <td><input type="text" class="form-control" name="Pos_name" id="Pos_name" placeholder="ชื่อตำแหน่ง" required> </td>
+                                    <td>
+                       
+                                        <input type="text" class="form-control" name="Pos_name" id="Pos_name" placeholder="ชื่อตำแหน่ง" required> </td>
+                                    <td>            
+                            <select class="form-select" id="user_group" name="user_group" aria-label="Example select with button addon">
+                            <option value="3">CEO</option>
+                            <option value="1">HR</option>
+                            <option value="2">Employee</option>
+                        </select> </td>
                                     <td> <button type="submit" class="btn btn-primary" id="buttonY"> บันทึก</button> </td>
                                 </form>
 

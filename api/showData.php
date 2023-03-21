@@ -43,20 +43,21 @@ FROM typeleave INNER JOIN leave_rights  ON typeleave.Type_id = leave_rights.Type
 //employee
 $ps = 0;
 $DataPos = [];
-@$Sqlposition1 = mysqli_query($con, $position) or die("Error in query: $position ");
+@$position1 = "SELECT * FROM position ORDER BY user_group ASC ";
+@$Sqlposition1 = mysqli_query($con, $position1) or die("Error in query: $position ");
 while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
     $ps++;
     $DataPos[$ps]  =  $Showposition1['Pos_id'];
     
 }
 
-@$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[1]'   ";
+/* @$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[3]'   ";
 @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
 
-@$employeeHR = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[3]'   ";
+@$employeeHR = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[1]'   ";
 @$SqlemployeeHR = mysqli_query($con, $employeeHR) or die("Error in query: $employeeHR ");
-
-@$employeeEmp = "SELECT * FROM employee  WHERE Pos_id != '$DataPos[1]' and  Pos_id != '$DataPos[3]'  ";
+ */
+ @$employeeEmp = "SELECT * FROM employee ORDER BY Pos_id ASC   ";
 @$SqlemployeeEmp = mysqli_query($con, $employeeEmp) or die("Error in query: $employeeEmp ");
 
 

@@ -197,7 +197,7 @@
 
 
                                         <td>
-                                            <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="สิทธิ์การลา" required>
+                                            <input type="number" class="form-control" name="leave_maximum" id="leave_maximum" placeholder="สิทธิ์การลา" required min="1" max="10">
                                         </td>
 
 

@@ -88,7 +88,7 @@
 
         <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
-                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลผู้บริหาร</h5>
+                <h5 class="mb-2 text-titlecase mb-4">ข้อมูลบุคลากร</h5>
             </div>
         </div>
 
@@ -112,6 +112,7 @@
                             <tbody>
 
                                 <?php
+                         
                                 while ($ShowmployeetEmp = mysqli_fetch_array($SqlemployeeEmp)) {
 
                                 ?>

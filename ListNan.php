@@ -15,65 +15,53 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+    <?php
+    if ($_SESSION['user_group'] != '2') { ?>
+    <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
         <i class="typcn typcn-user-add-outline menu-icon"></i>
         <span class="menu-title">จัดการข้อมูลพื้นฐาน</span>
         <i class="menu-arrow"></i>
       </a>
+      <?php  } ?>
       <div class="collapse" id="auth">
         <ul class="nav flex-column sub-menu">
           <?php
-          if ($_SESSION['Pos_id'] == 'POS1254') { ?>
+          if ($_SESSION['user_group'] == '3') { ?>
             <li class="nav-item"> <a class="nav-link" href="index.php?p=constant"> ข้อมูลบริษัท </a></li>
-          <?php  }  ?>
-
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=department"> ข้อมูลแผนก </a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=position"> ข้อมูลตำแหน่ง </a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave1"> ข้อมูลประเภทการลางาน </a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave"> ข้อมูลสิทธิ์การลา </a></li>
-
-          <?php
-          if ($_SESSION['Pos_id'] == 'POS1254') { ?>
-            <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeCEO"> ข้อมูลผู้บริหาร </a></li>
-          <?php  }  ?>
-
-
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeHR"> ข้อมูลหัวหน้าฝ่าย (HR) </a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeEmp"> ข้อมูลพนักงาน </a></li>
+          <?php  }  
+          if ($_SESSION['user_group'] == '1') { ?>
+            <li class="nav-item"> <a class="nav-link" href="index.php?p=department"> ข้อมูลแผนก </a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php?p=position"> ข้อมูลตำแหน่ง </a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave1"> ข้อมูลประเภทการลางาน </a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php?p=peleave"> ข้อมูลสิทธิ์การลา </a></li>
+            <li class="nav-item"> <a class="nav-link" href="index.php?p=employeeEmp"> ข้อมูลบุคลากร </a></li>
+          <?php  } ?>
         </ul>
       </div>
     </li>
+    
+    
 
-
-    <li class="nav-item">
-      <a class="nav-link" href="index.php?p=timetable">
-        <i class="typcn typcn-chart-pie-outline menu-icon"></i>
-        <span class="menu-title">ข้อมูลการลงเวลา</span>
-      </a>
-
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="index.php?p=leave1">
-        <i class="typcn typcn-chart-pie-outline menu-icon"></i>
-        <span class="menu-title">อนุมัติลางาน</span>
-        <div class="badge badge-danger"><?php echo $numd ?></div>
-      </a>
-
-
-
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+    <?php 
+    if ($_SESSION['user_group'] == '1') { ?>
+    <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
         <i class="typcn typcn-th-small-outline menu-icon"></i>
         <span class="menu-title">ข้อมูลการลางาน</span>
         <i class="menu-arrow"></i>
       </a>
+    <li class="nav-item">
+      <a class="nav-link" href="index.php?p=leave1">
+        <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+        <span class="menu-title">การลาที่รอพิจารณา </span>
+     
+        <div class="badge badge-danger"><?php echo $numd ?></div>
+      </a>
+    </li>
 
       <div class="collapse" id="tables">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave2">รายการขอลางานที่อนุมัติ</a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave3">รายการที่ไม่อนุมัติ</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave2">ข้อมูลการลาที่พิจารณาแล้ว</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave3">ข้อมูลการลาที่พิจารณา<br>แล้วไม่ผ่าน</a></li>
         </ul>
       </div>
     </li>
@@ -91,7 +79,22 @@
         </ul>
       </div>
     </li>
+    <?php } ?>
 
+
+
+
+
+
+    <?php if ($_SESSION['user_group'] == '2') { ?>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+        <i class="typcn typcn-th-small-outline menu-icon"></i>
+        <span class="menu-title">รายงานสำหรับพนักงาน</span>
+        <i class="menu-arrow"></i>
+      </a>
+    </li>
+    <?php } ?>
 
   </ul>
 </nav>

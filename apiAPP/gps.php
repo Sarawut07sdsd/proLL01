@@ -28,12 +28,29 @@ while ($namesql = mysqli_fetch_array($sqlshow)) {
   @$Stytem_endtime =  $namesql['Stytem_endtime'];
 }
 
-$lat1 = $latitude; // ละติจูดของจุดที่หนึ่ง
-$lon1 = $longitude; // ลองจิจูดของจุดที่หนึ่ง
-$lat2 = $la; // ละติจูดของจุดที่สอง
-$lon2 = $lo; // ลองจิจูดของจุดที่สอง
+$lat1 = $latitude; // ละติจูดที่ส่งมาจากแอพ
+$lon1 = $longitude; // ลองจิจูดที่ส่งมาจากแอพ
+$lat2 = $la; // ละติจูดในข้อมูลบริษัท
+$lon2 = $lo; // ลองจิจูดในข้อมูลบริษัท
+$distance = haversineDistance($lat1, $lon1, $lat2, $lon2); //คำนวนระยะทาง
 
-$distance = haversineDistance($lat1, $lon1, $lat2, $lon2); //ระยะทาง
+
+
+function haversineDistance($lat1, $lon1, $lat2, $lon2)
+{
+  $earthRadius = 6371; // ค่าคงที่ความยาวของรัศมีโลก (หน่วยเป็นกิโลเมตร)
+  $dLat = deg2rad($lat2 - $lat1);
+  $dLon = deg2rad($lon2 - $lon1);
+  $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon / 2) * sin($dLon / 2);
+  $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+  $distance = $earthRadius * $c; // ระยะทางระหว่างจุดสองจุดในหน่วยกิโลเมตร
+  return $distance;
+}
+
+
+
+
+
 
 
 if ($str == 'in') {
@@ -114,32 +131,3 @@ if ($str == 'out') {
 
 
 echo json_encode(@$data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function haversineDistance($lat1, $lon1, $lat2, $lon2)
-{
-  $earthRadius = 6371; // ค่าคงที่ความยาวของรัศมีโลก (หน่วยเป็นกิโลเมตร)
-  $dLat = deg2rad($lat2 - $lat1);
-  $dLon = deg2rad($lon2 - $lon1);
-  $a = sin($dLat / 2) * sin($dLat / 2) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * sin($dLon / 2) * sin($dLon / 2);
-  $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-  $distance = $earthRadius * $c; // ระยะทางระหว่างจุดสองจุดในหน่วยกิโลเมตร
-  return $distance;
-}
