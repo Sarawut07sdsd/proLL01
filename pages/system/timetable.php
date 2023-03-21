@@ -78,29 +78,36 @@
                                         <td><?php echo $ShowSqltimetable['Ttb_radiusout'] ?></td>
 
                                         <td align='center'><?php
-                                            $Ttb_statusout =  $ShowSqltimetable['Ttb_statusout'];
+                                                            $Ttb_statusout =  $ShowSqltimetable['Ttb_statusout'];
 
-                                            if ($Ttb_statusout == 1) {
-                                                echo '<div class="alert alert-success" role="alert">
+                                                            if ($Ttb_statusout == 1) {
+                                                                echo '<div class="alert alert-success" role="alert">
                                                 ออกงานปกติ
                                               </div>';
-                                            } else if ($Ttb_statusout == 2) {
-                                                echo '<div class="alert alert-danger" role="alert">
+                                                            } else if ($Ttb_statusout == 2) {
+                                                                echo '<div class="alert alert-danger" role="alert">
                                             ออกงานก่อน
                                           </div>';
-                                            } else if ($Ttb_statusout == 3) {
-                                                echo '<div class="alert alert-primary" role="alert">
+                                                            } else if ($Ttb_statusout == 3) {
+                                                                echo '<div class="alert alert-primary" role="alert">
                                             ออกงานช้า
                                           </div>';
-                                            }
+                                                            }
 
 
-                                            ?></td>
+                                                            ?></td>
                                     </tr>
                                 <?php } ?>
 
                             </tbody>
                         </table>
+
+                        <center>
+                            <div class="alert alert-danger" role="alert">
+                                <b> ไม่พบข้อมูล !!</b>
+                            </div>
+                        </center>
+
                     </div>
                 </div>
             </div>

@@ -47,6 +47,9 @@ ob_start();
         <center>
             <h2 align="center" class="mb-2 text-titlecase mb-4">ระบบบันทึกเวลาเข้าออกงาน</h2>
             <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมลการลงเวลาของพนักงาน</h3>
+            <?php if ($_SESSION['user_group'] == '2') { ?>
+                <h3 align="center" class="mb-2 text-titlecase mb-4">ชื่อ : <?php echo $_SESSION['Emp_name'];  ?></h3>
+            <?php } ?>
         </center>
         <?php
         $html = ob_get_contents();
@@ -58,58 +61,59 @@ ob_start();
 
 
         <center>
-            <div class="col-sm-10">
-                <br>
-                <form name="register" action="index.php?p=Reporttimetable" method="POST" class="form-horizontal">
+            <?php if ($_SESSION['user_group'] != '2') { ?>
+                <div class="col-sm-10">
+                    <br>
+                    <form name="register" action="index.php?p=Reporttimetable" method="POST" class="form-horizontal">
 
-                    <div class="input-group">
+                        <div class="input-group">
 
-                        <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
-                        <!-- <input id="Emp_name" type="text"  value="" name="Emp_name" width="300" /> -->
-                        <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
-                            <?php
-                            @$employeeCEO = "SELECT * FROM employee    ";
-                            @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
-                            while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
-                            ?>
-                                <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
-                            <?php } ?>
-                        </select>
-
-
-
-                        <label class="input-group-text" for="inputGroupSelect03">สถานะเข้างาน</label>
-                        <select class="form-select" id="Ttb_statusin" name="Ttb_statusin" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมด</option>
-                            <option value="1">เข้างานก่อน</option>
-                            <option value="2">เข้างานปกติ</option>
-                            <option value="3">เข้างานสาย</option>
-                        </select>
-
-                        <label class="input-group-text" for="inputGroupSelect03">สถานะออกงาน</label>
-                        <select class="form-select" id="Ttb_statusout" name="Ttb_statusout" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมด</option>
-                            <option value="1">ออกงานปกติ</option>
-                            <option value="2">ออกงานก่อน</option>
-                            <option value="3">ออกงานช้า</option>
-                        </select>
-
-                        <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
-                        <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
-                        <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
-                        <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
+                            <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
+                            <!-- <input id="Emp_name" type="text"  value="" name="Emp_name" width="300" /> -->
+                            <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
+                                <?php
+                                @$employeeCEO = "SELECT * FROM employee    ";
+                                @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
+                                while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
+                                ?>
+                                    <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
+                                <?php } ?>
+                            </select>
 
 
 
+                            <label class="input-group-text" for="inputGroupSelect03">สถานะเข้างาน</label>
+                            <select class="form-select" id="Ttb_statusin" name="Ttb_statusin" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมด</option>
+                                <option value="1">เข้างานก่อน</option>
+                                <option value="2">เข้างานปกติ</option>
+                                <option value="3">เข้างานสาย</option>
+                            </select>
 
-                        <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
+                            <label class="input-group-text" for="inputGroupSelect03">สถานะออกงาน</label>
+                            <select class="form-select" id="Ttb_statusout" name="Ttb_statusout" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมด</option>
+                                <option value="1">ออกงานปกติ</option>
+                                <option value="2">ออกงานก่อน</option>
+                                <option value="3">ออกงานช้า</option>
+                            </select>
 
-                    </div>
+                            <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
+                            <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
+                            <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
+                            <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
 
-                </form>
-            </div>
 
+
+
+                            <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            <?php } ?>
         </center>
 
 
@@ -185,12 +189,12 @@ ob_start();
         ob_start(); ?>
 
 
-
-        <center>
-            <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo $Emp_name; ?> : สถานะเข้างาน : <?php echo $Ttb_statusinName; ?>
-                : สถานะออกงาน : <?php echo $Ttb_statusoutName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
-        </center>
-
+        <?php if ($_SESSION['user_group'] != '2') { ?>
+            <center>
+                <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo $Emp_name; ?> : สถานะเข้างาน : <?php echo $Ttb_statusinName; ?>
+                    : สถานะออกงาน : <?php echo $Ttb_statusoutName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
+            </center>
+        <?php } ?>
         <br>
         <div class="row">
             <div class="col-md-12">
@@ -226,6 +230,12 @@ ob_start();
                                 $strr2 = 0;
                                 $strr3 = 0;
                                 $strrSum = 0;
+
+                                if ($_SESSION['user_group'] == '2') {
+                                    $Emp_id = $_SESSION['Emp_id'];
+                                }
+
+
                                 @$timetable = "SELECT * 
                                 FROM `timetable`
                                 INNER JOIN `employee` ON `timetable`.`Emp_id` = `employee`.`Emp_id`

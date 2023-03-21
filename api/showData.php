@@ -48,7 +48,6 @@ $DataPos = [];
 while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
     $ps++;
     $DataPos[$ps]  =  $Showposition1['Pos_id'];
-    
 }
 
 /* @$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[3]'   ";
@@ -57,15 +56,20 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
 @$employeeHR = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[1]'   ";
 @$SqlemployeeHR = mysqli_query($con, $employeeHR) or die("Error in query: $employeeHR ");
  */
- @$employeeEmp = "SELECT * FROM employee ORDER BY Pos_id ASC   ";
+@$employeeEmp = "SELECT * FROM employee ORDER BY Pos_id ASC   ";
 @$SqlemployeeEmp = mysqli_query($con, $employeeEmp) or die("Error in query: $employeeEmp ");
 
 
 
 //timetable
+$ls = "";
 
+if ($_SESSION['user_group'] == '2') {
+    $Emp_id = $_SESSION['Emp_id'];
+    @$ls =  "where Emp_id = " . " '$Emp_id' ";
+}
 
-@$timetable = "SELECT * FROM timetable ORDER BY Ttb_date DESC    ";
+@$timetable = "SELECT * FROM timetable $ls ORDER BY Ttb_date DESC    ";
 @$Sqltimetable = mysqli_query($con, $timetable) or die("Error in query: $timetable ");
 
 

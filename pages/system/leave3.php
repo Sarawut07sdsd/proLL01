@@ -100,7 +100,7 @@
                                               </div>';
                                             } else if ($Leave_status == 3) {
                                                 echo '<div class="alert alert-danger" role="alert">
-                                                เข้างานสาย
+                                                ไม่อนุมัติ
                                               </div>';
                                             }
 

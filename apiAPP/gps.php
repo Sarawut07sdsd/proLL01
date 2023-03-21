@@ -30,11 +30,11 @@ while ($namesql = mysqli_fetch_array($sqlshow)) {
 
 $lat1 = $latitude; // ละติจูดที่ส่งมาจากแอพ
 $lon1 = $longitude; // ลองจิจูดที่ส่งมาจากแอพ
+
 $lat2 = $la; // ละติจูดในข้อมูลบริษัท
 $lon2 = $lo; // ลองจิจูดในข้อมูลบริษัท
+
 $distance = haversineDistance($lat1, $lon1, $lat2, $lon2); //คำนวนระยะทาง
-
-
 
 function haversineDistance($lat1, $lon1, $lat2, $lon2)
 {

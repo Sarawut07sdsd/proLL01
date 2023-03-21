@@ -66,6 +66,8 @@
         include('./pages/system/ReportLeave.php');
       } elseif ($p == 'Reporttimetable') {
         include('./pages/system/Reporttimetable.php');
+      } elseif ($p == 'Home') {
+        include('./pages/system/Home.php');
       } 
       
       

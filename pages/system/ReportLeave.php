@@ -46,6 +46,19 @@ ob_start();
         <center>
             <h2 align="center" class="mb-2 text-titlecase mb-4">ระบบบันทึกเวลาเข้าออกงาน</h2>
             <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมูลการลาของพนักงาน</h3>
+            <?php if ($_SESSION['user_group'] == '2') { ?>
+                <h3 align="center" class="mb-2 text-titlecase mb-4">ชื่อ : <?php echo $_SESSION['Emp_name'];  ?></h3>
+            <?php } ?>
+            <?php if ($Emp_id != '') {
+                @$employeeCEO = "SELECT * FROM employee where  Emp_id = '$Emp_id'  ";
+                @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
+                while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
+                  $Emp_name =   $row['Emp_name'];
+                }
+
+            ?>
+                <h3 align="center" class="mb-2 text-titlecase mb-4">ชื่อ : <?php echo @$Emp_name;  ?></h3>
+            <?php } ?>
         </center>
 
         <?php
@@ -56,60 +69,64 @@ ob_start();
 
         <br>
         <center>
-            <div class="col-sm-10">
-                <br>
-                <form name="register" action="index.php?p=ReportLeave" method="POST" class="form-horizontal">
+            <?php if ($_SESSION['user_group'] != '2') { ?>
+                <div class="col-sm-10">
+                    <br>
+                    <form name="register" action="index.php?p=ReportLeave" method="POST" class="form-horizontal">
 
-                    <div class="input-group">
-
-                        <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
-                        <!-- <input id="Emp_name" type="text"  value="" name="Emp_name" width="300" /> -->
-                        <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
-                            <?php
-                            @$employeeCEO = "SELECT * FROM employee    ";
-                            @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
-                            while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
-                            ?>
-                                <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
-                            <?php } ?>
-                        </select>
+                        <div class="input-group">
 
 
 
-                        <label class="input-group-text" for="inputGroupSelect03">ประเภทการลา</label>
-                        <select class="form-select" id="Type_id" name="Type_id" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมด</option>
-                            <?php
-                            while ($row = mysqli_fetch_array($Sqltypeleave)) {
-                            ?>
-                                <option value="<?php echo $row['Type_id']; ?>"><?php echo $row['Type_name']; ?></option>
-                            <?php } ?>
-                        </select>
-
-                        <label class="input-group-text" for="inputGroupSelect03">สถานะ</label>
-                        <select class="form-select" id="Leave_status" name="Leave_status" aria-label="Example select with button addon">
-                            <option value="">ทั้งหมด</option>
-                            <option value="1">รออนุมัติ</option>
-                            <option value="2">อนุมัติแล้ว</option>
-                            <option value="3">ไม่อนุมัติ</option>
-                        </select>
-
-                        <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
-                        <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
-                        <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
-                        <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
+                            <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
+                            <!-- <input id="Emp_name" type="text"  value="" name="Emp_name" width="300" /> -->
+                            <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
+                                <?php
+                                @$employeeCEO = "SELECT * FROM employee    ";
+                                @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
+                                while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
+                                ?>
+                                    <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
+                                <?php } ?>
+                            </select>
 
 
 
 
-                        <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
+                            <label class="input-group-text" for="inputGroupSelect03">ประเภทการลา</label>
+                            <select class="form-select" id="Type_id" name="Type_id" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมด</option>
+                                <?php
+                                while ($row = mysqli_fetch_array($Sqltypeleave)) {
+                                ?>
+                                    <option value="<?php echo $row['Type_id']; ?>"><?php echo $row['Type_name']; ?></option>
+                                <?php } ?>
+                            </select>
 
-                    </div>
+                            <label class="input-group-text" for="inputGroupSelect03">สถานะ</label>
+                            <select class="form-select" id="Leave_status" name="Leave_status" aria-label="Example select with button addon">
+                                <option value="">ทั้งหมด</option>
+                                <option value="1">รออนุมัติ</option>
+                                <option value="2">อนุมัติแล้ว</option>
+                                <option value="3">ไม่อนุมัติ</option>
+                            </select>
 
-                </form>
-            </div>
+                            <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
+                            <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
+                            <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
+                            <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
 
+
+
+
+                            <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
+
+                        </div>
+
+                    </form>
+                </div>
+            <?php } ?>
         </center>
 
         <br><br>
@@ -179,11 +196,12 @@ ob_start();
 
 
         ?>
-        <center>
-            <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo $Emp_name; ?> : ประเภทการลา : <?php echo $Type_name; ?>
-                : สถานะ : <?php echo $Leave_statusName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
-        </center>
-
+        <?php if ($_SESSION['user_group'] != '2') { ?>
+            <center>
+                <h4 align='center'>ผลการรายงาน : ชื่อ : <?php echo @$Emp_name; ?> : ประเภทการลา : <?php echo @$Type_name; ?>
+                    : สถานะ : <?php echo $Leave_statusName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
+            </center>
+        <?php } ?>
         <br>
         <div class="row">
             <div class="col-md-12">
@@ -192,17 +210,18 @@ ob_start();
                         <table class="table table-striped project-orders-table">
                             <thead>
                                 <tr align='center'>
-                                    <th class="ml-5">ลำดับ</th>
+                                    <!-- <th class="ml-5">ลำดับ</th> -->
                                     <th>รหัสการลา</th>
-                                    <th>ชื่อพนักงาน</th>
+                                    <!--   <th>ชื่อพนักงาน</th> -->
                                     <th>ประเภทการลา</th>
-                                    <th>วันที่ยื่นใบลา</th>
+                                    <!--  <th>วันที่ยื่นใบลา</th> -->
                                     <th>วันเริ่มต้นลา</th>
                                     <th>วันสิ้นสุดลา</th>
-                                    <th>วันที่การอนุมัติ</th>
+                                    <!--  <th>วันที่การอนุมัติ</th> -->
+                                    <th>สถานะการอนุมัติการลา</th>
                                     <th>เหตุผลการลา</th>
                                     <th>หมายเหตุการอนุมัต</th>
-                                    <th>สถานะการอนุมัติการลา</th>
+
 
 
 
@@ -217,6 +236,11 @@ ob_start();
                                 $str2 = 0;
                                 $str3 = 0;
                                 $strSum = 0;
+
+                                if ($_SESSION['user_group'] == '2') {
+                                    $Emp_id = $_SESSION['Emp_id'];
+                                }
+
 
                                 @$leave = "SELECT *
                                 FROM `leave`
@@ -239,17 +263,14 @@ ob_start();
                                 ?>
 
                                     <tr align='center'>
-                                        <td><?php echo $i ?></td>
+                                        <!-- <td><?php echo $i ?></td> -->
                                         <td><?php echo $ShowSqlleave['Leave_id'] ?></td>
-                                        <td><?php echo $ShowSqlleave['Emp_name']; ?></td>
+                                        <!-- <td><?php echo $ShowSqlleave['Emp_name']; ?></td> -->
                                         <td><?php echo $ShowSqlleave['Type_name']; ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_date'] ?></td>
+                                        <!-- <td><?php echo $ShowSqlleave['Leave_date'] ?></td> -->
                                         <td><?php echo $ShowSqlleave['Leave_start'] ?></td>
                                         <td><?php echo $ShowSqlleave['Leave_end'] ?></td>
-                                        <td><?php echo $ShowSqlleave['App_date'] ?></td>
-                                        <td><?php echo $ShowSqlleave['Leave_reason'] ?></td>
-                                        <td><?php echo $ShowSqlleave['App_note'] ?></td>
-
+                                        <!-- <td><?php echo $ShowSqlleave['App_date'] ?></td> -->
                                         <td><?php
 
 
@@ -272,7 +293,11 @@ ob_start();
 
                                             ?></td>
 
-                                        <td>
+
+                                        <td><?php echo $ShowSqlleave['Leave_reason'] ?></td>
+                                        <td><?php echo $ShowSqlleave['App_note'] ?></td>
+
+
 
 
                                     </tr>
