@@ -35,7 +35,7 @@
 
                                 <?php
                                 $i = 0;
-                                @$leave = "SELECT * FROM `leave` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;    ";
+                                @$leave = "SELECT * FROM `leaves` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;    ";
                                 @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
                                 while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
                                     $i++;

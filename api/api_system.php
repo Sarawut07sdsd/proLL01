@@ -189,21 +189,34 @@ else if ($str == 'addnullDepartment') {
     }
 } else if ($str == 'deleteDepartment') {
 
-    $sql = "DELETE FROM department WHERE Dep_id='$Dep_id' ";
+    $sql = "SELECT * FROM employee WHERE Dep_id ='$Dep_id' ";
     $result = mysqli_query($con, $sql);
-
-
-
-    if ($result) {
+    $numDep_id = mysqli_num_rows($result);
+    if ($numDep_id > 0) {
         echo "<script type='text/javascript'>";
-        //echo "alert('Delete ข้อมูลสำเร็จ');";
+        echo "alert('ไม่สามารถลบได้');";
         echo "window.location = '../index.php?p=department'; ";
         echo "</script>";
     } else {
-        echo "<script type='text/javascript'>";
-        echo "alert('Error ข้อมูลไม่สำเร็จ');";
-        echo "window.location = '../index.php?p=department'; ";
-        echo "</script>";
+
+
+
+        $sql = "DELETE FROM department WHERE Dep_id='$Dep_id' ";
+        $result = mysqli_query($con, $sql);
+
+
+
+        if ($result) {
+            echo "<script type='text/javascript'>";
+            //echo "alert('Delete ข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=department'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('Error ข้อมูลไม่สำเร็จ');";
+            echo "window.location = '../index.php?p=department'; ";
+            echo "</script>";
+        }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,7 +244,7 @@ else if ($str == 'addnullPosition') {
             (Pos_id,Pos_name ,user_group)
             VALUES
             ('$Pos_id', '$Pos_name', '$user_group' )";
-       $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
+        $result = mysqli_query($con, $sql) or die("Error in query: $sql " . mysqli_error());
         mysqli_close($con);
     }
     if ($result) {
@@ -276,21 +289,38 @@ else if ($str == 'addnullPosition') {
     }
 } else if ($str == 'deletePosition') {
 
-    $sql = "DELETE FROM position WHERE Pos_id='$Pos_id' ";
+    $sql = "SELECT * FROM Employee WHERE Pos_id='$Pos_id' ";
     $result = mysqli_query($con, $sql);
-
-
-
-    if ($result) {
+    $numrows1 = mysqli_num_rows($result);
+    $sql = "SELECT * FROM leave_rights WHERE Pos_id='$Pos_id' ";
+    $result = mysqli_query($con, $sql);
+    $numrows2 = mysqli_num_rows($result);
+    if ($numrows1 > 0) {
         echo "<script type='text/javascript'>";
-        //echo "alert('Delete ข้อมูลสำเร็จ');";
-        echo "window.location = '../index.php?p=position'; ";
+        echo "alert('ไม่สามารถลบได้เนื่องจากมีบุคลากรในตำแหน่งที่เลือก');";
+        echo "window.location = '../index.php?p=department'; ";
+        echo "</script>";
+    } elseif ($numrows2 > 0) {
+        echo "<script type='text/javascript'>";
+        echo "alert('ไม่สามารถลบได้เนื่องจากมีสิทธิ์การลาของบุคลากรคนนั้นอยู่');";
+        echo "window.location = '../index.php?p=department'; ";
         echo "</script>";
     } else {
-        echo "<script type='text/javascript'>";
-        echo "alert('Error ข้อมูลไม่สำเร็จ');";
-        echo "window.location = '../index.php?p=position'; ";
-        echo "</script>";
+
+        $sql = "DELETE FROM position WHERE Pos_id='$Pos_id' ";
+        $result = mysqli_query($con, $sql);
+
+        if ($result) {
+            echo "<script type='text/javascript'>";
+            //echo "alert('Delete ข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=position'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('Error ข้อมูลไม่สำเร็จ');";
+            echo "window.location = '../index.php?p=position'; ";
+            echo "</script>";
+        }
     }
 }
 
@@ -298,7 +328,7 @@ else if ($str == 'addnullPosition') {
 
 
 
-////////addnullPosition////////////////////////////////////////////////////////////////////////
+////////addnullEmployee////////////////////////////////////////////////////////////////////////
 else if ($str == 'addnullEmployee') {
 
 
@@ -411,21 +441,45 @@ else if ($str == 'addnullEmployee') {
     }
 } else if ($str == 'deleteEmployee') {
 
-    $sql = "DELETE FROM employee WHERE Emp_id='$Emp_id' ";
+
+    $sql = "SELECT *  FROM leaves WHERE Emp_id='$Emp_id' ";
     $result = mysqli_query($con, $sql);
+    $numrows1 = mysqli_num_rows($result);
 
 
+    $sql = "SELECT *  FROM timetable WHERE Emp_id='$Emp_id' ";
+    $result = mysqli_query($con, $sql);
+    $numrows2 = mysqli_num_rows($result);
 
-    if ($result) {
+    if ($numrows1 > 0) {
         echo "<script type='text/javascript'>";
-        // echo "alert('Delete ข้อมูลสำเร็จ');";
-        echo "window.location = '../index.php?p=$str2'; ";
+        echo "alert('ไม่สามารถลบได้เนื่องจากบุคลากรรายนี้มีการลาในระบบแล้ว');";
+        echo "window.location = '../index.php?p=employeeEmp'; ";
+        echo "</script>";
+    } elseif ($numrows2 > 0) {
+        echo "<script type='text/javascript'>";
+        echo "window.location = '../index.php?p=employeeEmp'; ";
+        echo "alert('ไม่สามารถลบได้เนื่องจากบุคลากรรายนี้มีการลงเวลาในระบบแล้ว');";
         echo "</script>";
     } else {
-        echo "<script type='text/javascript'>";
-        echo "alert('Error ข้อมูลไม่สำเร็จ');";
-        echo "window.location = '../index.php?p=$str2'; ";
-        echo "</script>";
+
+
+        $sql = "DELETE FROM employee WHERE Emp_id='$Emp_id' ";
+        $result = mysqli_query($con, $sql);
+
+
+
+        if ($result) {
+            echo "<script type='text/javascript'>";
+            // echo "alert('Delete ข้อมูลสำเร็จ');";
+            echo "window.location = '../index.php?p=$str2'; ";
+            echo "</script>";
+        } else {
+            echo "<script type='text/javascript'>";
+            echo "alert('ลบข้อมูลพนักงานไม่สำเร็จ');";
+            echo "window.location = '../index.php?p=$str2'; ";
+            echo "</script>";
+        }
     }
 }
 
@@ -505,6 +559,11 @@ else if ($str == 'addnullPeleave1') {
     }
 } else if ($str == 'deletePeleave1') {
 
+    $sql = "SELECT *  FROM leaves WHERE Type_id='$Type_id' ";
+    $result = mysqli_query($con, $sql);
+    $numrows1 = mysqli_num_rows($result);
+
+
     $sqlnum = " SELECT * FROM leave_rights where Type_id = '$Type_id' ";
     $q = mysqli_query($con, $sqlnum);
     $numPos_name1 = mysqli_num_rows($q);
@@ -512,8 +571,13 @@ else if ($str == 'addnullPeleave1') {
     if ($numPos_name1 >= 1) {
 
         echo "<script type='text/javascript'>";
-        echo "alert('ลบข้อมูลไม่สำเร็จ');";
+        echo "alert('ลบข้อมูลไม่สำเร็จเนื่องจากประเภทการลาได้ถูกกำหนดสิทธิ์การลาแล้ว');";
         echo "window.location = '../index.php?p=peleave1'; ";
+        echo "</script>";
+    } else if ($numrows1 > 0) {
+        echo "<script type='text/javascript'>";
+        echo "alert('ไม่สามารถลบได้เนื่องจากประเภทการลารายนี้มีการลาในระบบแล้ว');";
+        echo "window.location = '../index.php?p=employeeEmp'; ";
         echo "</script>";
     } else {
 
@@ -579,24 +643,23 @@ else if ($str == 'addnullPeleave') {
     $numPos_name1 = mysqli_num_rows($q);
 
 
-        $sql = "UPDATE leave_rights SET 
+    $sql = "UPDATE leave_rights SET 
         Pos_id = '$Pos_id'  ,
         leave_maximum = '$leave_maximum'   
         WHERE Type_id = '$Type_id' ";
-        $result = mysqli_query($con, $sql);
-        mysqli_close($con);
+    $result = mysqli_query($con, $sql);
+    mysqli_close($con);
 
-        if ($result) {
-            echo "<script type='text/javascript'>";
-            //echo "alert('อัปเดทข้อมูลสำเร็จ');";
-            echo "window.location = '../index.php?p=peleave'; ";
-            echo "</script>";
-        } else {
-            echo "<script type='text/javascript'>";
-            echo "alert('อัปเดทข้อมูลสำเร็จ');";
-            echo "window.location = '../index.php?p=peleave'; ";
-            echo "</script>";
-        
+    if ($result) {
+        echo "<script type='text/javascript'>";
+        //echo "alert('อัปเดทข้อมูลสำเร็จ');";
+        echo "window.location = '../index.php?p=peleave'; ";
+        echo "</script>";
+    } else {
+        echo "<script type='text/javascript'>";
+        echo "alert('อัปเดทข้อมูลสำเร็จ');";
+        echo "window.location = '../index.php?p=peleave'; ";
+        echo "</script>";
     }
 } else if ($str == 'deletePeleave') {
 
@@ -620,7 +683,7 @@ else if ($str == 'addnullPeleave') {
 
     $dateNow = date("Y-m-d");
 
-     $sql = "UPDATE  `leave` SET 
+    $sql = "UPDATE  `leaves` SET 
 Leave_status = '2'  ,
 App_note = 'อนุมัติ' ,
 App_date = '$dateNow'
@@ -641,7 +704,7 @@ WHERE Leave_id = '$Leave_id' ";
     }
 } else if ($str == 'noapprove') {
 
-    echo $sql = "UPDATE  `leave` SET 
+    echo $sql = "UPDATE  `leaves` SET 
     Leave_status = '3'  ,
     App_note = '$App_note'
     WHERE Leave_id = '$Leave_id' ";

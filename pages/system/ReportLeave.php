@@ -147,14 +147,14 @@ ob_start();
         <?php
 
         @$leave = "SELECT *
-        FROM `leave`
-        INNER JOIN `employee` ON `leave`.`Emp_id` = `employee`.`Emp_id`
-        INNER JOIN `typeleave` ON `leave`.`Type_id` = `typeleave`.`Type_id`
-        WHERE `leave`.`Emp_id` LIKE '%$Emp_id%'
-        AND `leave`.`Type_id` LIKE '%$Type_id%'
-        AND `leave`.`Leave_status` LIKE '%$Leave_status%'
-        AND (`leave`.`Leave_date` >= '$start_date' AND (`leave`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
-        ORDER BY `leave`.`Leave_date` DESC
+        FROM `leaves`
+        INNER JOIN `employee` ON `leaves`.`Emp_id` = `employee`.`Emp_id`
+        INNER JOIN `typeleave` ON `leaves`.`Type_id` = `typeleave`.`Type_id`
+        WHERE `leaves`.`Emp_id` LIKE '%$Emp_id%'
+        AND `leaves`.`Type_id` LIKE '%$Type_id%'
+        AND `leaves`.`Leave_status` LIKE '%$Leave_status%'
+        AND (`leaves`.`Leave_date` >= '$start_date' AND (`leaves`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
+        ORDER BY `leaves`.`Leave_date` DESC
         ";
         @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
         while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
@@ -243,14 +243,14 @@ ob_start();
 
 
                                 @$leave = "SELECT *
-                                FROM `leave`
-                                INNER JOIN `employee` ON `leave`.`Emp_id` = `employee`.`Emp_id`
-                                INNER JOIN `typeleave` ON `leave`.`Type_id` = `typeleave`.`Type_id`
-                                WHERE `leave`.`Emp_id` LIKE '%$Emp_id%'
-                                AND `leave`.`Type_id` LIKE '%$Type_id%'
-                                AND `leave`.`Leave_status` LIKE '%$Leave_status%'
-                                AND (`leave`.`Leave_date` >= '$start_date' AND (`leave`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
-                                ORDER BY `leave`.`Leave_date` DESC
+                                FROM leaves
+                                INNER JOIN `employee` ON leaves.`Emp_id` = `employee`.`Emp_id`
+                                INNER JOIN `typeleave` ON leaves.`Type_id` = `typeleave`.`Type_id`
+                                WHERE leaves.`Emp_id` LIKE '%$Emp_id%'
+                                AND leaves.`Type_id` LIKE '%$Type_id%'
+                                AND leaves.`Leave_status` LIKE '%$Leave_status%'
+                                AND (leaves.`Leave_date` >= '$start_date' AND (leaves.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
+                                ORDER BY leaves.`Leave_date` DESC
                                 ";
 
 
@@ -377,21 +377,21 @@ ob_start();
                         <tbody>
 
                             <?php
-                            // @$sql = "SELECT typeleave.Type_name, COUNT(`leave`.Type_id) AS Type_Count
+                            // @$sql = "SELECT typeleave.Type_name, COUNT(leaves.Type_id) AS Type_Count
                             // FROM typeleave
-                            // INNER JOIN `leave` ON typeleave.Type_id = `leave`.Type_id
+                            // INNER JOIN leaves ON typeleave.Type_id = leaves.Type_id
                             // GROUP BY typeleave.Type_name
                             // ORDER BY typeleave.Type_id ASC; ";
 
-                            @$sql = "SELECT `typeleave`.`Type_name`, COUNT(`leave`.`Type_id`) as count
-                            FROM `leave`
-                            INNER JOIN `employee` ON `leave`.`Emp_id` = `employee`.`Emp_id`
-                            INNER JOIN `typeleave` ON `leave`.`Type_id` = `typeleave`.`Type_id`
-                            WHERE `leave`.`Emp_id` LIKE '%$Emp_id%'
-                            AND `leave`.`Type_id` LIKE '%$Type_id%'
-                            AND `leave`.`Leave_status` LIKE '%$Leave_status%'
-                            AND (`leave`.`Leave_date` >= '$start_date' AND (`leave`.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
-                            GROUP BY `leave`.`Type_id`
+                            @$sql = "SELECT `typeleave`.`Type_name`, COUNT(leaves.`Type_id`) as count
+                            FROM leaves
+                            INNER JOIN `employee` ON leaves.`Emp_id` = `employee`.`Emp_id`
+                            INNER JOIN `typeleave` ON leaves.`Type_id` = `typeleave`.`Type_id`
+                            WHERE leaves.`Emp_id` LIKE '%$Emp_id%'
+                            AND leaves.`Type_id` LIKE '%$Type_id%'
+                            AND leaves.`Leave_status` LIKE '%$Leave_status%'
+                            AND (leaves.`Leave_date` >= '$start_date' AND (leaves.`Leave_date` <= '$end_date' OR '$end_date' = '$start_date'))
+                            GROUP BY leaves.`Type_id`
                             
 ";
 

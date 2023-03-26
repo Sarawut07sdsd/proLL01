@@ -24,7 +24,7 @@ while ($namesql = mysqli_fetch_array($sqlshow)) {
     @$leave_maximum =   @$namesql1['leave_maximum'];
   }
 
-  @$leave = "SELECT * FROM `leave` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
+  @$leave = "SELECT * FROM `leaves` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
   @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
   while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
     @$Leave_start =   $ShowSqlleave['Leave_start'];
@@ -42,7 +42,7 @@ while ($namesql = mysqli_fetch_array($sqlshow)) {
 
 
 if ($strcheck == true) {
-  @$sql = "INSERT INTO `leave`
+  @$sql = "INSERT INTO `leaves`
   (Leave_id,Leave_date,Leave_start,Leave_end,Leave_status,Leave_reason
   ,Type_id,Emp_id
   )

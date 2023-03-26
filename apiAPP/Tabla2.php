@@ -20,7 +20,7 @@ if ($str == 'datala') {
             $leave_maximum =   $namesql1['leave_maximum'];
         }
 
-        @$leave = "SELECT * FROM `leave` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
+        @$leave = "SELECT * FROM `leaves` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
         @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
         while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
             @$Leave_start =   $ShowSqlleave['Leave_start'];
@@ -41,7 +41,7 @@ if ($str == 'datala') {
     echo json_encode($data);
 } else if ($str == 'laYa') {
 
-    @$leave = "SELECT * FROM `leave` WHERE  Leave_status = 2 ORDER BY Leave_date DESC;    ";
+    @$leave = "SELECT * FROM `leaves` WHERE  Leave_status = 2 ORDER BY Leave_date DESC;    ";
     @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
     while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
         @$i++;
@@ -76,7 +76,7 @@ if ($str == 'datala') {
     }
     echo json_encode($data);
 } else if ($str == 'laNo') {
-    @$leave = "SELECT * FROM `leave` WHERE  Leave_status = 3 ORDER BY Leave_date DESC;    ";
+    @$leave = "SELECT * FROM `leaves` WHERE  Leave_status = 3 ORDER BY Leave_date DESC;    ";
     @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
     while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
         @$i++;
@@ -111,7 +111,7 @@ if ($str == 'datala') {
     }
     echo json_encode($data);
 } else if ($str == 'lalo') {
-    @$leave = "SELECT * FROM `leave` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;    ";
+    @$leave = "SELECT * FROM `leaves` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;    ";
     @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
     while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
         @$i++;

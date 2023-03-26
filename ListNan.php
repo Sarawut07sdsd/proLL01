@@ -1,5 +1,5 @@
 <?php
-@$leavefd = "SELECT * FROM `leave` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;   ";
+@$leavefd = "SELECT * FROM `leaves` WHERE  Leave_status = 1 ORDER BY Leave_date DESC;   ";
 @$Sqlleavefd = mysqli_query($con, $leavefd) or die("Error in query: $leavefd ");
 @$numd = mysqli_num_rows($Sqlleavefd);
 ?>

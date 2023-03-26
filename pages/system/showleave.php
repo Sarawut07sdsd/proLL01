@@ -64,7 +64,7 @@
 
                                 <?php
                                 $k = 0;
-                                /*    @$sql = "SELECT * FROM  `leave` WHERE  Leave_status =  '2' and Emp_id = '$Emp_id' ";
+                                /*    @$sql = "SELECT * FROM  leaves WHERE  Leave_status =  '2' and Emp_id = '$Emp_id' ";
                                     @$sqlshow = mysqli_query($con, $sql) or die("Error in query: $sql "); */
 
                                 @$sql = "SELECT * FROM  `typeleave`  ";
@@ -80,7 +80,7 @@
                                         $leave_maximum =   $namesql1['leave_maximum'];
                                     }
 
-                                    @$leave = "SELECT * FROM `leave` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
+                                    @$leave = "SELECT * FROM leaves WHERE  Emp_id = '$Emp_id' and Leave_status = '2'  and Type_id = '$Type_id';    ";
                                     @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
                                     while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
                                         $Leave_start =   $ShowSqlleave['Leave_start'];
@@ -158,7 +158,7 @@
 
                 <?php
                 $i = 0;
-                @$leave = "SELECT * FROM `leave` WHERE  Emp_id = '$Emp_id' and Leave_status = '2'   ORDER BY Leave_status DESC;    ";
+                @$leave = "SELECT * FROM leaves WHERE  Emp_id = '$Emp_id' and Leave_status = '2'   ORDER BY Leave_status DESC;    ";
                 @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
                 while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
                     $i++;

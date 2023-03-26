@@ -171,7 +171,7 @@
         <br> <br>
 
         <center>
-            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลผู้พนักงาน</h5>
+            <h5 class="mb-2 text-titlecase mb-4" id="buttonY">เพิ่มข้อมูลพนักงาน</h5>
             <div class="card-body col-md-6">
                 <form class="forms-sample" action="./api/api_system.php" method="POST">
                     <div class="form-row">
