@@ -81,7 +81,7 @@
        @$str = $_GET['str'];
         include('./pages/system/ReportEmp1.php');
       } else {
-        include('./pages/system/constant.php');
+        include('./pages/system/Home.php');
       }
     }
 

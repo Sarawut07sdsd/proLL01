@@ -68,8 +68,8 @@
 
       <div class="collapse" id="tables">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave2">ข้อมูลการลาที่พิจารณาแล้ว</a></li>
-          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave3">ข้อมูลการลาที่พิจารณา<br>แล้วไม่ผ่าน</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave2">ข้อมลการลาที่อนุมัติ</a></li>
+          <li class="nav-item"> <a class="nav-link" href="index.php?p=leave3">ข้อมลการลาที่ไม่อนุมัติ</a></li>
         </ul>
       </div>
       </li>
