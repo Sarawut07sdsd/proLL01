@@ -204,7 +204,8 @@
 
                         <div class="form-group col-md-6 ">
                             <label for="exampleInputUsername1">ที่อยู่</label>
-                            <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required>
+<!--                             <input type="text" class="form-control" name="Emp_address" id="Emp_address" placeholder="ที่อยู่" required> -->
+                            <textarea class="form-control"  rows="2" name="Emp_address" id="Emp_address"  placeholder="ที่อยู่" required > </textarea>
                         </div>
 
                         <div class="form-group col-md-6 ">

@@ -43,7 +43,8 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label" for="exampleInputUsername1">ที่อยู่บริษัท</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="Stytem_address" id="Stytem_address" value="<?php echo $Stytem_address; ?>" placeholder="ที่อยู่บริษัท" required>
+                           <!--  <input type="text" class="form-control" name="Stytem_address" id="Stytem_address" value="<?php echo $Stytem_address; ?>" placeholder="ที่อยู่บริษัท" required> -->
+                            <textarea class="form-control" ช rows="2" name="Stytem_address" id="Stytem_address"  placeholder="ที่อยู่บริษัท" required > <?php echo $Stytem_address; ?></textarea>
                         </div>
                     </div>
 

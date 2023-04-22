@@ -31,6 +31,7 @@ if ($str == 'datala') {
 
         @$data[] = array(
             'num' => @$k,
+            'Type_id' => $Type_id,
             'Type_name' => @$namesql['Type_name'],
             'leave_maximum' => @$leave_maximum,
             'datesomSum' => @$datesomSum,
