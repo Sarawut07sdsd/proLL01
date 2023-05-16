@@ -26,12 +26,12 @@ while ($ShowSqlconstant = mysqli_fetch_array($Sqlconstant)) {
             <div class="row">
                 <div class="col-xl-12 grid-margin stretch-card flex-column">
                     <h1 class="mb-2 text-titlecase mb-4 text-primary"><?php echo $Stytem_name; ?> </h1>
-                    <h2 class="mb-2 text-titlecase mb-4 text-primary">ระบบบันทึกเวลาด้วยระบบพิสูจน์ตัวตน 2 ชั้น ผ่านสมาร์ทโฟน</h2>
+                    <h2 class="mb-2 text-titlecase mb-4 text-primary">ระบบบันทึกเวลาด้วยระบบพิสูจน์ตัวตน 2 ชั้น ผ่านสมาร์ทโฟน </h2>
                     <h3>ที่อยู่ : <?php echo $Stytem_address; ?> <br><br> เบอร์โทรติดต่อ : <?php echo $Stytem_tel; ?> </h3>
                 </div>
             </div>
             <br> <br> <br>
-            <img src="https://www.jobbkk.com/upload/employer/04/684/00B684/images/46724.png">
+            <img src="https://th.hrnote.asia/wp/wp-content/uploads/2019/03/shutterstock_583771270.png">
         </center>
         <br><br>
     </div>

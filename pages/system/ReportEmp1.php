@@ -31,7 +31,13 @@ $DataPos = [];
 @$Sqlposition1 = mysqli_query($con, $position) or die("Error in query: $position ");
 while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
     $ps++;
-    $DataPos[$ps]  =  $Showposition1['Pos_id'];
+
+    @$position1 = "SELECT * FROM position WHERE Pos_id = '$Pos_id' ";
+    @$Sqlposition1 = mysqli_query($con, $position1) or die("Error in query: $position ");
+    while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
+        @$user_group  =  $Showposition1['user_group'];
+    }
+    @$DataPos[$ps]  =  $Showposition1['Pos_id'];
 }
 
 
@@ -52,13 +58,13 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
 
             <?php
             if ($str == '1') {
-                $dataAll = $SqlemployeeHR;
+                $dataAll = @$SqlemployeeHR;
                 echo "<h2 align='center' class='mb-2 text-titlecase mb-4'>รายงานข้อมูลผู้บริหาร</h2>";
             } else  if ($str == '2') {
-                $dataAll = $SqlemployeeEmp;
+                $dataAll = @$SqlemployeeEmp2;
                 echo "<h2 align='center' class='mb-2 text-titlecase mb-4'>รายงานข้อมูลพนักงานทั่วไป</h2>";
             } else {
-                $dataAll = $SqlemployeeHR;
+                $dataAll = @$SqlemployeeHR;
                 echo "<h2 align='center' class='mb-2 text-titlecase mb-4'>รายงานข้อมูลหัวหน้าฝ่ายพนักงาน HR</h2>";
             }
 
@@ -104,14 +110,14 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
                             <tbody>
                                 <?php
                                 if ($str == '1') {
-                                    $dataAll = $SqlemployeeCEO;
+                                    @$dataAll = @$SqlemployeeCEO;
                                 } else  if ($str == '2') {
-                                    $dataAll = $SqlemployeeEmp;
+                                    @$dataAll = @$SqlemployeeEmp2;
                                 } else {
-                                    $dataAll = $SqlemployeeHR;
+                                    @$dataAll = @$SqlemployeeHR;
                                 }
                                 $j = 0;
-                                while ($ShowmployeetEmp = mysqli_fetch_array($dataAll)) {
+                                while (@$ShowmployeetEmp = mysqli_fetch_array(@$dataAll)) {
                                     $j++;
                                 ?>
                                     <tr>
@@ -148,9 +154,9 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
                                 <br>
                                 <tr>
                                     <th scope="row" colspan="8" align="right">
-                                    <?php echo 'ยอดรวมทั้งหมด' . @$j ?> คน 
+                                        <?php echo 'ยอดรวมทั้งหมด' . @$j ?> คน
                                     </th>
-                                 
+
                                 </tr>
                             </tbody>
                         </table>

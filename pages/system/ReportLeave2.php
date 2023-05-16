@@ -1,9 +1,20 @@
 <?php
-@$Emp_id = $_POST['Emp_id'];
-@$Type_id = $_POST['Type_id'];
-@$Leave_status = $_POST['Leave_status'];
-@$start_date = $_POST['start_date'];
-@$end_date = $_POST['end_date'];
+
+@$Leave_status = $_GET['Leave_status'];
+@$start_date =  date("Y-m-d");
+@$end_date =  date("Y-m-d");
+
+
+if ($Leave_status == 1) {
+    $Leave_statusName = 'รออนุมัติ';
+} else  if ($Leave_status == 2) {
+    $Leave_statusName = 'อนุมัติแล้ว';
+} else  if ($Leave_status == 3) {
+    $Leave_statusName = 'ไม่อนุมัติ';
+}
+
+
+
 
 if ($end_date == null || $end_date == '') {
     $end_date = $start_date;
@@ -32,7 +43,6 @@ require_once __DIR__ . '../../../vendor/autoload.php';
     'default_font' => 'sarabun'
 ]);
 
-
 ob_start();
 
 ?>
@@ -45,11 +55,12 @@ ob_start();
 
         <center>
             <h2 align="center" class="mb-2 text-titlecase mb-4">ระบบบันทึกเวลาเข้าออกงาน</h2>
-            <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมูลการลาของพนักงาน</h3>
+            <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมูลการลาของพนักงาน ประจำวันที่ <?php echo  date("Y-m-d"); ?> </h3>
+            <h3 align="center" class="mb-2 text-titlecase mb-4">รายงานข้อมูลพนักงานที่ : <?php echo $Leave_statusName; ?> </h3>
             <?php if ($_SESSION['user_group'] == '2') { ?>
                 <h3 align="center" class="mb-2 text-titlecase mb-4">ชื่อ : <?php echo $_SESSION['Emp_name'];  ?></h3>
             <?php } ?>
-            <?php if ($Emp_id != '') {
+            <?php if (@$Emp_id != '') {
                 @$employeeCEO = "SELECT * FROM employee where  Emp_id = '$Emp_id'  ";
                 @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
                 while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
@@ -66,166 +77,13 @@ ob_start();
         $mpdf->WriteHTML($html);
         ob_end_flush();
         ?>
-        <?php
-        $str1 = 0;
-        $str2 = 0;
-        $str3 = 0;
-        $strSum = 0;
-        @$start_date4 =  date("Y-m-d");
-        @$end_date4 =  date("Y-m-d");
-
-        @$leave = "SELECT *
-        FROM leaves
-        INNER JOIN `employee` ON leaves.`Emp_id` = `employee`.`Emp_id`
-        INNER JOIN `typeleave` ON leaves.`Type_id` = `typeleave`.`Type_id`
-        WHERE leaves.`Emp_id` LIKE '%$Emp_id%'
-        AND leaves.`Type_id` LIKE '%$Type_id%'
-        AND leaves.`Leave_status` LIKE '%$Leave_status%'
-        AND (leaves.`Leave_date` >= '$start_date4' AND (leaves.`Leave_date` <= '$end_date4' OR '$end_date4' = '$start_date4'))
-        ORDER BY leaves.`Leave_date` DESC
-        ";
-
-
-
-        @$Sqlleave = mysqli_query($con, $leave) or die("Error in query: $leave ");
-        $numPos_name1 = mysqli_num_rows($Sqlleave);
-        while ($ShowSqlleave = mysqli_fetch_array($Sqlleave)) {
-            $Leave_status1 = $ShowSqlleave['Leave_status'];
-            if ($Leave_status1 == 1) {
-                @$str2++;
-            } else if ($Leave_status1 == 2) {
-                @$str1++;
-            } else if ($Leave_status1 == 3) {
-                @$str3++;
-            }
-        }
-        ?>
-        <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <center>
-                            <h4> สรุปยอดรวมรายการ ประจำวันที่<?php echo date("Y-m-d"); ?> </h4>
-
-                            <table class="table" style="width: 30%;">
-                                <thead>
-
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th align="left" scope="row">รายการที่อนุมัติแล้ว</th>
-                                        <td><?php echo $str1; ?> </td>
-                                        <td>
-                                            <a href="index.php?p=ReportLeave2&Leave_status=2" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                                <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                            </a>
-
-
-                                    </tr>
-                                    <tr>
-                                        <th align="left" scope="row">รายการที่ไม่อนุมัติ</th>
-                                        <td><?php echo $str2; ?> </td>
-                                        <td>
-                                            <a href="index.php?p=ReportLeave2&Leave_status=3" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                                <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                            </a>
-
-                                    </tr>
-                                    <tr>
-                                        <th align="left" scope="row">รายการรออนุมัติ</th>
-                                        <td><?php echo $str3; ?> </td>
-                                        <td>
-                                            <a href="index.php?p=ReportLeave2&Leave_status=1" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                                <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                            </a>
-
-                                    </tr>
-
-                                    <tr>
-                                        <th align="left" scope="row">รวมยอดรายการทั้งหมด</th>
-                                        <td><?php echo $strSum = $str1 + $str2 + $str3; ?> </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </center>
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
 
 
 
 
 
         <br>
-        <center>
-            <?php if ($_SESSION['user_group'] != '2') { ?>
-                <div class="col-sm-10">
-                    <br>
-                    <form name="register" action="index.php?p=ReportLeave" method="POST" class="form-horizontal">
 
-                        <div class="input-group">
-
-
-
-                            <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
-                            <!-- <input id="Emp_name" type="text"  value="" name="Emp_name" width="300" /> -->
-                            <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
-                                <?php
-                                @$employeeCEO = "SELECT * FROM employee    ";
-                                @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
-                                while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
-                                ?>
-                                    <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
-                                <?php } ?>
-                            </select>
-
-
-
-
-                            <label class="input-group-text" for="inputGroupSelect03">ประเภทการลา</label>
-                            <select class="form-select" id="Type_id" name="Type_id" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมด</option>
-                                <?php
-                                while ($row = mysqli_fetch_array($Sqltypeleave)) {
-                                ?>
-                                    <option value="<?php echo $row['Type_id']; ?>"><?php echo $row['Type_name']; ?></option>
-                                <?php } ?>
-                            </select>
-
-                            <label class="input-group-text" for="inputGroupSelect03">สถานะ</label>
-                            <select class="form-select" id="Leave_status" name="Leave_status" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมด</option>
-                                <option value="1">รออนุมัติ</option>
-                                <option value="2">อนุมัติแล้ว</option>
-                                <option value="3">ไม่อนุมัติ</option>
-                            </select>
-
-                            <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
-                            <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
-                            <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
-                            <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
-
-
-
-
-                            <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
-
-                        </div>
-
-                    </form>
-                </div>
-            <?php } ?>
-        </center>
-
-        <br><br>
 
 
         <div align="right">
@@ -258,45 +116,14 @@ ob_start();
             @$Type_name = $ShowSqlleave['Type_name'];
         }
 
-        if ($Emp_id == '') {
-            $Emp_name = 'ทั้งหมด';
-        }
-
-        if ($Type_id == '') {
-            $Type_name = 'ทั้งหมด';
-        }
 
 
-        if ($Leave_status == '') {
-            $Leave_statusName = 'ทั้งหมด';
-        } else  if ($Leave_status == '1') {
-            $Leave_statusName = 'รออนุมัติ';
-        } else  if ($Leave_status == '2') {
-            $Leave_statusName = 'อนุมัติแล้ว';
-        } else  if ($Leave_status == '3') {
-            $Leave_statusName = 'ไม่อนุมัติ';
-        }
-
-
-        if ($start_date == '') {
-            $nameDate = 'ทั้งหมด';
-            $nameDate2 = ' - ';
-        } else if ($start_date != '' &&  $end_date == $start_date) {
-            $nameDate = $start_date;
-            $nameDate2 = ' - ';
-        } else if ($start_date != '' &&  $end_date != '') {
-            $nameDate = $start_date;
-            $nameDate2 = $end_date;
-        }
 
 
 
         ?>
         <?php if ($_SESSION['user_group'] != '2') { ?>
-            <center>
-                <h4 align='center'>เฉพาะ : ชื่อ : <?php echo @$Emp_name; ?> : ประเภทการลา : <?php echo @$Type_name; ?>
-                    : สถานะ : <?php echo $Leave_statusName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
-            </center>
+
         <?php } ?>
         <br>
         <div class="row">
@@ -317,6 +144,10 @@ ob_start();
                                     <th>สถานะการอนุมัติการลา</th>
                                     <th>เหตุผลการลา</th>
                                     <th>หมายเหตุการอนุมัต</th>
+
+
+
+
 
                                 </tr>
                             </thead>

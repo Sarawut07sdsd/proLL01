@@ -68,17 +68,13 @@
         include('./pages/system/Reporttimetable.php');
       } elseif ($p == 'Home') {
         include('./pages/system/Home.php');
-      } 
-      
-      
-      
-      
-      
-      
-      
-      elseif ($p == 'ReportEmp1') {
+      } elseif ($p == 'Reporttimetable2') {
+        include('./pages/system/Reporttimetable2.php');
+      } elseif ($p == 'ReportLeave2') {
+        include('./pages/system/ReportLeave2.php');
+      } elseif ($p == 'ReportEmp1') {
 
-       @$str = $_GET['str'];
+        @$str = $_GET['str'];
         include('./pages/system/ReportEmp1.php');
       } else {
         include('./pages/system/Home.php');

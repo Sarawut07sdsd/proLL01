@@ -61,7 +61,16 @@ if ($str == 'datala') {
         }
         $Leave_status =  $ShowSqlleave['Leave_status'];
        
+        @$Leave_start =   $ShowSqlleave['Leave_start'];
+        @$Leave_end =   $ShowSqlleave['Leave_end'];
+        @$datesom =  substr($Leave_end, 8) - substr($Leave_start, 8);
 
+if(@$ShowSqlleave['App_date'] = '0000-00-00'){
+	@$App_date = 'รอพิจณา';
+}else{
+		@$App_date = @$ShowSqlleave['App_date'];
+	
+}
         @$data[] = array(
             'Leave_id' => @$ShowSqlleave['Leave_id'],
             'Emp_name' => @$Emp_name,
@@ -69,10 +78,11 @@ if ($str == 'datala') {
             'Leave_date' => @$ShowSqlleave['Leave_date'],
             'Leave_start' => @$ShowSqlleave['Leave_start'],
             'Leave_end' => @$ShowSqlleave['Leave_end'],
-            'App_date' => @$ShowSqlleave['App_date'],
+            'App_date' => @$App_date,
             'Leave_reason' => @$ShowSqlleave['Leave_reason'],
             'App_note' => @$ShowSqlleave['App_note'],
-            'text'=> 'อนุมัติการลางานแล้ว'
+            'text'=> 'อนุมัติ',
+            'datesom'=> @$datesom
         );
     }
     echo json_encode($data);
@@ -95,8 +105,14 @@ if ($str == 'datala') {
             @$Type_name = $namesql['Type_name'];
         }
         $Leave_status =  $ShowSqlleave['Leave_status'];
-       
-
+        @$Leave_start =   $ShowSqlleave['Leave_start'];
+        @$Leave_end =   $ShowSqlleave['Leave_end'];
+if(@$ShowSqlleave['App_date'] = '0000-00-00'){
+	@$App_date = 'รอพิจณา';
+}else{
+		@$App_date = @$ShowSqlleave['App_date'];
+	
+}
         @$data[] = array(
             'Leave_id' => @$ShowSqlleave['Leave_id'],
             'Emp_name' => @$Emp_name,
@@ -104,10 +120,11 @@ if ($str == 'datala') {
             'Leave_date' => @$ShowSqlleave['Leave_date'],
             'Leave_start' => @$ShowSqlleave['Leave_start'],
             'Leave_end' => @$ShowSqlleave['Leave_end'],
-            'App_date' => @$ShowSqlleave['App_date'],
+            'App_date' =>@$App_date,
             'Leave_reason' => @$ShowSqlleave['Leave_reason'],
             'App_note' => @$ShowSqlleave['App_note'],
-            'text'=> 'ไม่อนุมัติ'
+            'text'=> 'ไม่อนุมัติ',
+            'datesom'=> @$datesom
         );
     }
     echo json_encode($data);
@@ -130,7 +147,8 @@ if ($str == 'datala') {
             @$Type_name = $namesql['Type_name'];
         }
         $Leave_status =  $ShowSqlleave['Leave_status'];
-       
+        @$Leave_start =   $ShowSqlleave['Leave_start'];
+        @$Leave_end =   $ShowSqlleave['Leave_end'];
 
         @$data[] = array(
             'Leave_id' => @$ShowSqlleave['Leave_id'],
@@ -142,7 +160,8 @@ if ($str == 'datala') {
             'App_date' => @$ShowSqlleave['App_date'],
             'Leave_reason' => @$ShowSqlleave['Leave_reason'],
             'App_note' => @$ShowSqlleave['App_note'],
-            'text'=> 'รอการอนุมัติ'
+            'text'=> 'รอการอนุมัติ',
+            'datesom'=> @$datesom
         );
     }
     echo json_encode($data);

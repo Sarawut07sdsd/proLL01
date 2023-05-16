@@ -62,7 +62,7 @@ if ($str == 'in') {
   if ($numPos_name1 >= 1) {
 
     @$data = array("success" => '0', "text" => '1');
-  } else if ($distance < 200) {
+  } else if ($distance > 200) {
     @$data = array("success" => '0', "text" => '2');
   } else {
 

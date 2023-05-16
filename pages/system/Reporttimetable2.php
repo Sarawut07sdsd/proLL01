@@ -1,10 +1,30 @@
 <?php
 
-@$Emp_id = $_POST['Emp_id'];
-@$Ttb_statusin = $_POST['Ttb_statusin'];
-@$Ttb_statusout = $_POST['Ttb_statusout'];
-@$start_date = $_POST['start_date'];
-@$end_date = $_POST['end_date'];
+
+@$Ttb_statusin = $_GET['Ttb_statusin'];
+@$Ttb_statusout = $_GET['Ttb_statusout'];
+@$start_date =  date("Y-m-d");
+@$end_date =  date("Y-m-d");
+if ($Ttb_statusin == '') {
+} else  if ($Ttb_statusin == '1') {
+    $Ttb_statusinName = 'เข้างานก่อน';
+} else  if ($Ttb_statusin == '2') {
+    $Ttb_statusinName = 'เข้างานปกติ';
+} else  if ($Ttb_statusin == '3') {
+    $Ttb_statusinName = 'เข้างานสาย';
+}
+
+if ($Ttb_statusout == '') {
+} else  if ($Ttb_statusout == '1') {
+    $Ttb_statusinName = 'ออกงานปกติ';
+} else  if ($Ttb_statusout == '2') {
+    $Ttb_statusinName = 'ออกงานก่อน';
+} else  if ($Ttb_statusout == '3') {
+    $Ttb_statusinName = 'ออกงานช้า';
+}
+
+
+
 
 if ($end_date == null || $end_date == '') {
     $end_date = $start_date;
@@ -46,7 +66,8 @@ ob_start();
 
         <center>
             <h2 align="center" class="mb-2 text-titlecase mb-4">ระบบบันทึกเวลาเข้าออกงาน</h2>
-            <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมูลการลงเวลาของพนักงาน</h3>
+            <h3 align="center" class="mb-2 text-titlecase mb-4">ข้อมูลการลงเวลาประจำวันที่ <?php echo  date("Y-m-d"); ?></h3>
+            <h3 align="center" class="mb-2 text-titlecase mb-4">รายงานข้อมูลพนักงานที่ : <?php echo $Ttb_statusinName; ?> </h3>
             <?php if ($_SESSION['user_group'] == '2') { ?>
                 <h3 align="center" class="mb-2 text-titlecase mb-4">ชื่อ : <?php echo $_SESSION['Emp_name'];  ?></h3>
             <?php } ?>
@@ -58,221 +79,6 @@ ob_start();
         ?>
 
         <br>
-
-        <?php
-        $str1 = 0;
-        $str2 = 0;
-        $str3 = 0;
-        $strSum = 0;
-
-        $strr1 = 0;
-        $strr2 = 0;
-        $strr3 = 0;
-        $strrSum = 0;
-        @$start_date4 =  date("Y-m-d");
-        @$end_date4 =  date("Y-m-d");
-
-        @$timetable = "SELECT * FROM `timetable`
-                                INNER JOIN `employee` ON `timetable`.`Emp_id` = `employee`.`Emp_id`
-                                WHERE `timetable`.`Emp_id` LIKE '%%'
-                                AND `timetable`.`Ttb_statusin` LIKE '%%'
-                                AND `timetable`.`Ttb_statusout` LIKE '%%'
-                                AND (`timetable`.`Ttb_date` >= '$start_date4' AND (`timetable`.`Ttb_date` <= '$end_date4' OR '$end_date4' = '$start_date4'))
-                                ORDER BY `timetable`.`Ttb_date` DESC
-                                ";
-
-        @$Sqltimetable = mysqli_query($con, $timetable) or die("Error in query: $timetable ");
-        $numPos_name1 = mysqli_num_rows($Sqltimetable);
-        $date_tmp = "0000-00-00";
-        while ($ShowSqltimetable = mysqli_fetch_array($Sqltimetable)) {
-            $Ttb_statusin4 = $ShowSqltimetable['Ttb_statusin'];
-            if ($Ttb_statusin4 == 1) {
-                @$str1++;
-            } else if ($Ttb_statusin4 == 2) {
-                @$str2++;
-            } else if ($Ttb_statusin4 == 3) {
-                @$str3++;
-            }
-            $Ttb_statusout4 =  $ShowSqltimetable['Ttb_statusout'];
-            if ($Ttb_statusout4 == 1) {
-                @$strr1++;
-            } else if ($Ttb_statusout4 == 2) {
-                @$strr2++;
-            } else if ($Ttb_statusout4 == 3) {
-                @$strr3++;
-            }
-        }
-        ?>
-        <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <center>
-                            <h4> สรุปยอดรวมรายการเข้าทำงาน ประจำวันที่ <?php echo date("Y-m-d"); ?> </h4>
-                        </center>
-                        <table class="table" style="width: 30%;">
-                            <thead>
-
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่เข้างานก่อนเวลา</th>
-                                    <td><?php echo @$str1; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusin=1" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่เข้างานปกติ</th>
-                                    <td><?php echo @$str2; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusin=2" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่เข้างานสาย</th>
-                                    <td><?php echo @$str3; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusin=3" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-                                    <th align="left" scope="row">รวมยอดรายการทั้งหมด</th>
-                                    <td><?php echo @$strSum = $str1 + $str2 + $str3; ?> </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <center>
-                            <h4> สรุปยอดรวมรายการออกทำงาน ประจำวันที่ <?php echo date("Y-m-d"); ?> </h4>
-                        </center>
-                        <table class="table" style="width: 30%;">
-                            <thead>
-
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่เข้าออกก่อนเวลา</th>
-                                    <td><?php echo @$strr1; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusout=1" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่ออกงานปกติ</th>
-                                    <td><?php echo @$strr2; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusout=2" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th align="left" scope="row">จำนวนคนที่ออกงานช้า</th>
-                                    <td><?php echo @$strr3; ?> </td>
-                                    <td>
-                                        <a href="index.php?p=Reporttimetable2&Ttb_statusout=3" type="button" class="btn btn-success btn-sm btn-icon-text">
-                                            <h6> ดูข้อมูลเพิ่มเติม </h6>
-                                        </a>
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <th align="left" scope="row">รวมยอดรายการทั้งหมด</th>
-                                    <td><?php echo @$strrSum = $strr1 + $strr2 + $strr3; ?> </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-
-
-        <center>
-            <?php if ($_SESSION['user_group'] != '2') { ?>
-                <div class="col-sm-10">
-                    <br>
-                    <form name="register" action="index.php?p=Reporttimetable" method="POST" class="form-horizontal">
-
-                        <div class="input-group">
-
-                            <label class="input-group-text" for="inputGroupSelect03">ชื่อ-สกุล</label>
-                            <select class="form-select" id="Emp_id" name="Emp_id" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมดㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</option>
-                                <?php
-                                @$employeeCEO = "SELECT * FROM employee    ";
-                                @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
-                                while ($row = mysqli_fetch_array($SqlemployeeCEO)) {
-                                ?>
-                                    <option value="<?php echo $row['Emp_id']; ?>"><?php echo $row['Emp_name']; ?></option>
-                                <?php } ?>
-                            </select>
-
-
-
-                            <label class="input-group-text" for="inputGroupSelect03">สถานะเข้างาน</label>
-                            <select class="form-select" id="Ttb_statusin" name="Ttb_statusin" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมด</option>
-                                <option value="1">เข้างานก่อน</option>
-                                <option value="2">เข้างานปกติ</option>
-                                <option value="3">เข้างานสาย</option>
-                            </select>
-
-                            <label class="input-group-text" for="inputGroupSelect03">สถานะออกงาน</label>
-                            <select class="form-select" id="Ttb_statusout" name="Ttb_statusout" aria-label="Example select with button addon">
-                                <option value="">ทั้งหมด</option>
-                                <option value="1">ออกงานปกติ</option>
-                                <option value="2">ออกงานก่อน</option>
-                                <option value="3">ออกงานช้า</option>
-                            </select>
-
-                            <label class="input-group-text" for="inputGroupSelect03">วันที่</label>
-                            <input id="start_date" type="date" placeholder="dd-mm-yyyy" value="All" name="start_date" width="300" />
-                            <label class="input-group-text" for="inputGroupSelect03">ถึงวันที่</label>
-                            <input id="end_date" type="date" placeholder="dd-mm-yyyy" value="All" name="end_date" width="300" />
-
-
-
-
-                            <button class="btn btn-outline-secondary" type="submit">ค้นหา</button>
-
-                        </div>
-
-                    </form>
-                </div>
-            <?php } ?>
-        </center>
-
 
         <br><br>
         <div align="right">
@@ -302,8 +108,8 @@ ob_start();
         }
 
 
-        if ($Emp_id == '') {
-            $Emp_name = 'ทั้งหมด';
+        if (@$Emp_id == '') {
+            @$Emp_name = 'ทั้งหมด';
         }
 
 
@@ -346,12 +152,6 @@ ob_start();
         ob_start(); ?>
 
 
-        <?php if ($_SESSION['user_group'] != '2') { ?>
-            <center>
-                <h4 align='center'>เฉพาะ : ชื่อ : <?php echo $Emp_name; ?> : สถานะเข้างาน : <?php echo $Ttb_statusinName; ?>
-                    : สถานะออกงาน : <?php echo $Ttb_statusoutName; ?> : วันที่ : <?php echo $nameDate; ?> : ถึงวันที่ : <?php echo $nameDate2; ?> </h4>
-            </center>
-        <?php } ?>
         <br>
         <div class="row">
             <div class="col-md-12">
@@ -365,10 +165,10 @@ ob_start();
                                     <th>ชื่อพนักงาน</th>
 
                                     <th>เวลาเข้า</th>
-                                      <th>รัศมีเข้า</th>
+                                    <th>รัศมีเข้า</th>
                                     <th>สถานะเข้างาน</th>
                                     <th>เวลาออก</th>
-                                     <th>รัศมีออก</th>
+                                    <th>รัศมีออก</th>
                                     <th>สถานะออกงาน</th>
 
 
@@ -423,7 +223,7 @@ ob_start();
                                         <td><?php echo $ShowSqltimetable['Emp_name']; ?></td>
 
                                         <td><?php echo $ShowSqltimetable['Ttb_timein'] ?></td>
-                                            <td><?php echo $ShowSqltimetable['Ttb_radiusin'] ?></td>
+                                        <td><?php echo $ShowSqltimetable['Ttb_radiusin'] ?></td>
 
                                         <td align='center'>
 
@@ -452,7 +252,7 @@ ob_start();
 
 
                                         <td><?php echo $ShowSqltimetable['Ttb_timeinout'] ?></td>
-                                          <td><?php echo $ShowSqltimetable['Ttb_radiusout'] ?></td>
+                                        <td><?php echo $ShowSqltimetable['Ttb_radiusout'] ?></td>
 
                                         <td align='center'><?php
                                                             $Ttb_statusout =  $ShowSqltimetable['Ttb_statusout'];
@@ -525,7 +325,7 @@ ob_start();
         <div class="col-lg-6 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4> สรุปยอดรวมรายการเข้าทำงาน </h4>
+                    <h4> สรุปยอดรวมรายการเข้าทำงาน ประจำวันที่ <?php echo date("Y-m-d"); ?> </h4>
 
                     <table class="table" style="width: 30%;">
                         <thead>
@@ -565,7 +365,7 @@ ob_start();
             <div class="card">
                 <div class="card-body">
 
-                    <h4> สรุปยอดรวมรายการออกทำงาน </h4>
+                    <h4> สรุปยอดรวมรายการออกทำงาน ประจำวันที่ <?php echo date("Y-m-d"); ?>  </h4>
 
                     <table class="table" style="width: 30%;">
                         <thead>

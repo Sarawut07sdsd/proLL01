@@ -71,16 +71,16 @@ require_once __DIR__ . '../../../vendor/autoload.php';
                 <div class=" card">
                     <div class="table-responsive pt-3">
                         <table class="table table-striped project-orders-table" style="width:100%">
-                            <thead align="left">
+                            <thead align="center">
                                 <tr>
-                                    <th style="border:solid 1px black;" align="left">ชื่อตำแหน่ง</th>
-                                    <th style="border:solid 1px black;" align="left">จำนวน คน</th>
+                                    <th style="border:solid 1px black;" align="left"> <b> ชื่อตำแหน่ง </b> </th>
+                                    <th style="border:solid 1px black;" align="left"> <b> จำนวน (คน) </b></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 $num = 0;
-                                $i=0;
+                                $i = 0;
                                 while ($Showposition = mysqli_fetch_array($Sqlposition)) {
                                     $i++;
                                     $numPos_name1 = 0;
@@ -90,15 +90,15 @@ require_once __DIR__ . '../../../vendor/autoload.php';
                                     $numPos_name1 = mysqli_num_rows($q);
                                     $num = $num + $numPos_name1;
                                 ?>
-                                    <tr>
+                                    <tr align="center">
                                         <td style="border:solid 1px black;"><?php echo $Showposition['Pos_name'] ?></td>
-                                        <td style="border:solid 1px black;"><?php echo $numPos_name1 ?> คน </td>
+                                        <td style="border:solid 1px black;"><?php echo $numPos_name1 ?></td>
                                         <?php
                                         $html = ob_get_contents();
                                         $mpdf->WriteHTML($html);
                                         ob_end_flush();
                                         ?>
-                                        <td>
+                                        <td style="border:solid 1px black;">
                                             <center>
                                                 <a href="index.php?p=ReportEmp1&str=<?php echo $i; ?>" type="button" class="btn btn-success btn-sm btn-icon-text">
                                                     <h6> ดูข้อมูลเพิ่มเติม </h6>
@@ -108,7 +108,7 @@ require_once __DIR__ . '../../../vendor/autoload.php';
                                         <?php ob_start(); ?>
                                     </tr>
                                 <?php } ?>
-                                <tr>
+                                <tr align="center">
                                     <th scope="row" style="border:solid 1px black;">
                                         <center> ยอดรวมทั้งหมด </center>
                                     </th>

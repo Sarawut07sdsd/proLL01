@@ -50,12 +50,18 @@ while ($Showposition1 = mysqli_fetch_array($Sqlposition1)) {
     $DataPos[$ps]  =  $Showposition1['Pos_id'];
 }
 
-/* @$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[3]'   ";
+@$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = 'POS2901'   ";
 @$SqlemployeeCEO = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
+
+
+@$employeeCEO = "SELECT * FROM employee  WHERE Pos_id = 'POS2991'   ";
+@$SqlemployeeEmp2 = mysqli_query($con, $employeeCEO) or die("Error in query: $employeeCEO ");
 
 @$employeeHR = "SELECT * FROM employee  WHERE Pos_id = '$DataPos[1]'   ";
 @$SqlemployeeHR = mysqli_query($con, $employeeHR) or die("Error in query: $employeeHR ");
- */
+
+
+
 @$employeeEmp = "SELECT * FROM employee ORDER BY Pos_id ASC   ";
 @$SqlemployeeEmp = mysqli_query($con, $employeeEmp) or die("Error in query: $employeeEmp ");
 
